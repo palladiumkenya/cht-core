@@ -15,6 +15,21 @@ const context = {
   muted: false,
   show_pregnancy_form: isReadyForNewPregnancy(thisContact, allReports),
   show_delivery_form: isReadyForDelivery(thisContact, allReports),
+  has_hts_initial: allReports.some((report) => report.form === 'hts_initial_form'),
+};
+let mostRecentHtsInitial = {};
+allReports.forEach((report) => {
+  if (report.form === 'hts_initial_form') {
+    mostRecentHtsInitial = report;
+  }
+});
+
+context.hts_initial = {
+  population_type:getField(mostRecentHtsInitial, 'hiv_testing.population_type') || '',
+  disability:getField(mostRecentHtsInitial, 'hiv_testing.disability') || '',
+  disability_type:getField(mostRecentHtsInitial, 'hiv_testing.disability_type') || '',
+  ever_tested:getField(mostRecentHtsInitial, 'hiv_testing.ever_tested_by_provider') || '',
+
 };
 
 const fields = [

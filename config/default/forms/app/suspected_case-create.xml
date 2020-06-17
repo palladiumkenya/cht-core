@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>New Client</h:title>
+    <h:title>New Suspected Case</h:title>
     <model>
       <itext>
         <translation lang="en">
-          <text id="/data/person/age_months:jr:constraintMsg">
+          <text id="/suspected_case-create/suspected_case/age_months:jr:constraintMsg">
             <value>Months must between 0 and 11</value>
           </text>
-          <text id="/data/person/age_years:jr:constraintMsg">
+          <text id="/suspected_case-create/suspected_case/age_years:jr:constraintMsg">
             <value>Age must be between 0 and 130</value>
           </text>
-          <text id="/data/person/alternate_phone:jr:constraintMsg">
+          <text id="/suspected_case-create/suspected_case/alternate_phone:jr:constraintMsg">
             <value>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</value>
           </text>
-          <text id="/data/person/date_of_birth:jr:constraintMsg">
+          <text id="/suspected_case-create/suspected_case/date_of_birth:jr:constraintMsg">
             <value>Date cannot be in the future.</value>
           </text>
-          <text id="/data/person/date_of_death:jr:constraintMsg">
+          <text id="/suspected_case-create/suspected_case/date_of_death:jr:constraintMsg">
             <value>Date cannot be in the future.</value>
           </text>
-          <text id="/data/person/dob_calendar:jr:constraintMsg">
+          <text id="/suspected_case-create/suspected_case/dob_calendar:jr:constraintMsg">
             <value>Date must be before today</value>
           </text>
-          <text id="/data/person/phone:jr:constraintMsg">
+          <text id="/suspected_case-create/suspected_case/phone:jr:constraintMsg">
             <value>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</value>
           </text>
           <text id="static_instance-close_contact-0">
@@ -1856,7 +1856,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2020-05-27 20:57:03">
+        <suspected_case-create delimiter="#" id="contact:suspected_case:create" prefix="J1!contact:suspected_case:create!" version="2020-05-17 21:47:21">
           <inputs>
             <meta>
               <location>
@@ -1872,11 +1872,11 @@
               <name/>
             </user>
           </inputs>
-          <person>
+          <suspected_case>
             <type>contact</type>
-            <contact_type>person</contact_type>
+            <contact_type>suspected_case</contact_type>
             <parent>PARENT</parent>
-            <role>person</role>
+            <role>suspected_case</role>
             <n_id_numbers/>
             <type_of_identifier/>
             <case_id/>
@@ -1940,12 +1940,13 @@
               <created_by_person_uuid/>
               <created_by_place_uuid/>
             </meta>
-          </person>
+          </suspected_case>
           <meta tag="hidden">
             <instanceID/>
           </meta>
-        </data>
+        </suspected_case-create>
       </instance>
+      <instance id="contact-summary"/>
       <instance id="close_contact">
         <root>
           <item>
@@ -4757,100 +4758,100 @@
           </item>
         </root>
       </instance>
-      <bind nodeset="/data/inputs" relevant="0"/>
-      <bind nodeset="/data/inputs/user/contact_id" type="string"/>
-      <bind nodeset="/data/inputs/user/facility_id" type="string"/>
-      <bind nodeset="/data/inputs/user/name" type="string"/>
-      <bind nodeset="/data/person/type" type="string"/>
-      <bind nodeset="/data/person/contact_type" type="string"/>
-      <bind nodeset="/data/person/parent" type="string"/>
-      <bind nodeset="/data/person/role" type="string"/>
-      <bind nodeset="/data/person/n_id_numbers" readonly="true()" type="string"/>
-      <bind nodeset="/data/person/type_of_identifier" required="true()" type="select1"/>
-      <bind nodeset="/data/person/case_id" type="string"/>
-      <bind nodeset="/data/person/national_id" relevant=" /data/person/type_of_identifier  = 'national_id'" required="true()" type="string"/>
-      <bind nodeset="/data/person/passport_number" relevant=" /data/person/type_of_identifier  = 'passport_number'" required="true()" type="string"/>
-      <bind nodeset="/data/person/alien_number" relevant=" /data/person/type_of_identifier  = 'other'" required="true()" type="string"/>
-      <bind nodeset="/data/person/id_delimiter" readonly="true()" type="string"/>
-      <bind nodeset="/data/person/n_demographics" readonly="true()" type="string"/>
-      <bind nodeset="/data/person/s_name" required="true()" type="string"/>
-      <bind nodeset="/data/person/f_name" required="true()" type="string"/>
-      <bind nodeset="/data/person/o_name" type="string"/>
-      <bind calculate="concat( /data/person/f_name , ' ',  /data/person/o_name , ' ',  /data/person/s_name )" nodeset="/data/person/name" type="string"/>
-      <bind calculate="../name" nodeset="/data/person/patient_name" type="string"/>
-      <bind nodeset="/data/person/sex" required="true()" type="select1"/>
-      <bind nodeset="/data/person/dob_known" required="true()" type="select1"/>
-      <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/data/person/dob_calendar:jr:constraintMsg')" nodeset="/data/person/dob_calendar" relevant=" /data/person/dob_known  = 'yes'" required="true()" type="date"/>
-      <bind constraint=". &gt;= 0 and . &lt;= 100" jr:constraintMsg="jr:itext('/data/person/age_years:jr:constraintMsg')" nodeset="/data/person/age_years" relevant=" /data/person/dob_known  != 'yes'" required="true()" type="int"/>
-      <bind constraint=". &gt;= 0 and . &lt;= 11" jr:constraintMsg="jr:itext('/data/person/age_months:jr:constraintMsg')" nodeset="/data/person/age_months" relevant=" /data/person/dob_known  != 'yes'" required="false()" type="int"/>
-      <bind calculate="if(format-date-time(today(),&quot;%m&quot;) -  /data/person/age_months  &lt; 0, format-date-time(today(),&quot;%m&quot;) -  /data/person/age_months  + 12, format-date-time(today(),&quot;%m&quot;) -  /data/person/age_months )" nodeset="/data/person/ephemeral_months" type="string"/>
-      <bind calculate="if(format-date-time(today(),&quot;%m&quot;) -  /data/person/age_months  &lt; 0, format-date-time(today(),&quot;%Y&quot;) -  /data/person/age_years  - 1, format-date-time(today(),&quot;%Y&quot;) -  /data/person/age_years )" nodeset="/data/person/ephemeral_years" type="string"/>
-      <bind calculate="date(concat(string( /data/person/ephemeral_years ),'-',if( /data/person/ephemeral_months &lt;10, concat('0',string( /data/person/ephemeral_months )),  /data/person/ephemeral_months ),'-',string(format-date-time(today(), &quot;%d&quot;))))" nodeset="/data/person/dob_approx" type="string"/>
-      <bind calculate="if( /data/person/dob_known  = 'yes',  /data/person/dob_calendar , /data/person/dob_approx )" nodeset="/data/person/dob_raw" type="string"/>
-      <bind calculate="format-date-time(decimal-date-time(../dob_raw),&quot;%Y-%m-%d&quot;)" nodeset="/data/person/dob_iso" type="string"/>
-      <bind nodeset="/data/person/dob_debug" readonly="true()" relevant="0" type="string"/>
-      <bind calculate="floor( difference-in-months(  /data/person/date_of_birth , today() ) div 12 )" nodeset="/data/person/age_in_years" type="string"/>
-      <bind calculate="difference-in-months(  /data/person/date_of_birth , today() )" nodeset="/data/person/age_in_months" type="string"/>
-      <bind calculate=" /data/person/dob_iso " constraint=". &lt; today()" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')" nodeset="/data/person/date_of_birth" type="string"/>
-      <bind nodeset="/data/person/head_of_household" type="string"/>
-      <bind nodeset="/data/person/marital_status" type="select1"/>
-      <bind nodeset="/data/person/occupation" type="select1"/>
-      <bind nodeset="/data/person/occupation_other" relevant=" /data/person/occupation  = 'others'" required="true()" type="string"/>
-      <bind nodeset="/data/person/education" type="select1"/>
-      <bind nodeset="/data/person/deceased" required="true()" type="select1"/>
-      <bind constraint=". &lt; today()" jr:constraintMsg="jr:itext('/data/person/date_of_death:jr:constraintMsg')" nodeset="/data/person/date_of_death" relevant=" /data/person/deceased  = 'yes'" required="true()" type="date"/>
-      <bind nodeset="/data/person/demographics_delimiter" readonly="true()" type="string"/>
-      <bind nodeset="/data/person/n_address" readonly="true()" type="string"/>
-      <bind nodeset="/data/person/nationality" type="select1"/>
-      <bind constraint="regex(.,'(\+?\d{1,3})(\d{2,4})(\d{5,6})') and string-length(.) &lt;=14" jr:constraintMsg="jr:itext('/data/person/phone:jr:constraintMsg')" nodeset="/data/person/phone" required="true()" type="string"/>
-      <bind constraint="regex(.,'(\+?\d{1,3})(\d{2,4})(\d{5,6})') and string-length(.) &lt;=14" jr:constraintMsg="jr:itext('/data/person/alternate_phone:jr:constraintMsg')" nodeset="/data/person/alternate_phone" required="false()" type="string"/>
-      <bind nodeset="/data/person/postal_address" required="false()" type="string"/>
-      <bind nodeset="/data/person/email_address" required="false()" type="string"/>
-      <bind nodeset="/data/person/county" required="true()" type="select1"/>
-      <bind nodeset="/data/person/subcounty" required="true()" type="select1"/>
-      <bind nodeset="/data/person/town" required="true()" type="string"/>
-      <bind nodeset="/data/person/ward" required="false()" type="string"/>
-      <bind nodeset="/data/person/location" required="false()" type="string"/>
-      <bind nodeset="/data/person/sub_location" required="false()" type="string"/>
-      <bind nodeset="/data/person/village" required="false()" type="string"/>
-      <bind nodeset="/data/person/landmark" required="false()" type="string"/>
-      <bind nodeset="/data/person/residence" type="string"/>
-      <bind nodeset="/data/person/nearest_health_center" required="false()" type="string"/>
-      <bind nodeset="/data/person/address_delimiter" readonly="true()" type="string"/>
-      <bind nodeset="/data/person/n_next_of_kin_details" readonly="true()" type="string"/>
-      <bind nodeset="/data/person/kin_name" required="false()" type="string"/>
-      <bind nodeset="/data/person/kin_relationship" required="false()" type="select1"/>
-      <bind nodeset="/data/person/kin_phone_number" required="false()" type="string"/>
-      <bind nodeset="/data/person/kin_postal_address" required="false()" type="string"/>
-      <bind nodeset="/data/person/relationship_delimiter" readonly="true()" type="string"/>
-      <bind calculate="../../../inputs/user/name" nodeset="/data/person/meta/created_by" type="string"/>
-      <bind calculate="../../../inputs/user/contact_id" nodeset="/data/person/meta/created_by_person_uuid" type="string"/>
-      <bind calculate="../../../inputs/user/facility_id" nodeset="/data/person/meta/created_by_place_uuid" type="string"/>
-      <bind calculate="concat('uuid:', uuid())" nodeset="/data/meta/instanceID" readonly="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/inputs" relevant="0"/>
+      <bind nodeset="/suspected_case-create/inputs/user/contact_id" type="string"/>
+      <bind nodeset="/suspected_case-create/inputs/user/facility_id" type="string"/>
+      <bind nodeset="/suspected_case-create/inputs/user/name" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/type" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/contact_type" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/parent" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/role" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/n_id_numbers" readonly="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/type_of_identifier" required="true()" type="select1"/>
+      <bind nodeset="/suspected_case-create/suspected_case/case_id" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/national_id" relevant=" /suspected_case-create/suspected_case/type_of_identifier  = 'national_id'" required="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/passport_number" relevant=" /suspected_case-create/suspected_case/type_of_identifier  = 'passport_number'" required="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/alien_number" relevant=" /suspected_case-create/suspected_case/type_of_identifier  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/id_delimiter" readonly="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/n_demographics" readonly="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/s_name" required="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/f_name" required="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/o_name" type="string"/>
+      <bind calculate="concat( /suspected_case-create/suspected_case/f_name , ' ',  /suspected_case-create/suspected_case/o_name , ' ',  /suspected_case-create/suspected_case/s_name )" nodeset="/suspected_case-create/suspected_case/name" type="string"/>
+      <bind calculate="../name" nodeset="/suspected_case-create/suspected_case/patient_name" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/sex" required="true()" type="select1"/>
+      <bind nodeset="/suspected_case-create/suspected_case/dob_known" required="true()" type="select1"/>
+      <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/suspected_case-create/suspected_case/dob_calendar:jr:constraintMsg')" nodeset="/suspected_case-create/suspected_case/dob_calendar" relevant=" /suspected_case-create/suspected_case/dob_known  = 'yes'" required="true()" type="date"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 100" jr:constraintMsg="jr:itext('/suspected_case-create/suspected_case/age_years:jr:constraintMsg')" nodeset="/suspected_case-create/suspected_case/age_years" relevant=" /suspected_case-create/suspected_case/dob_known  != 'yes'" required="true()" type="int"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 11" jr:constraintMsg="jr:itext('/suspected_case-create/suspected_case/age_months:jr:constraintMsg')" nodeset="/suspected_case-create/suspected_case/age_months" relevant=" /suspected_case-create/suspected_case/dob_known  != 'yes'" required="false()" type="int"/>
+      <bind calculate="if(format-date-time(today(),&quot;%m&quot;) -  /suspected_case-create/suspected_case/age_months  &lt; 0, format-date-time(today(),&quot;%m&quot;) -  /suspected_case-create/suspected_case/age_months  + 12, format-date-time(today(),&quot;%m&quot;) -  /suspected_case-create/suspected_case/age_months )" nodeset="/suspected_case-create/suspected_case/ephemeral_months" type="string"/>
+      <bind calculate="if(format-date-time(today(),&quot;%m&quot;) -  /suspected_case-create/suspected_case/age_months  &lt; 0, format-date-time(today(),&quot;%Y&quot;) -  /suspected_case-create/suspected_case/age_years  - 1, format-date-time(today(),&quot;%Y&quot;) -  /suspected_case-create/suspected_case/age_years )" nodeset="/suspected_case-create/suspected_case/ephemeral_years" type="string"/>
+      <bind calculate="date(concat(string( /suspected_case-create/suspected_case/ephemeral_years ),'-',if( /suspected_case-create/suspected_case/ephemeral_months &lt;10, concat('0',string( /suspected_case-create/suspected_case/ephemeral_months )),  /suspected_case-create/suspected_case/ephemeral_months ),'-',string(format-date-time(today(), &quot;%d&quot;))))" nodeset="/suspected_case-create/suspected_case/dob_approx" type="string"/>
+      <bind calculate="if( /suspected_case-create/suspected_case/dob_known  = 'yes',  /suspected_case-create/suspected_case/dob_calendar , /suspected_case-create/suspected_case/dob_approx )" nodeset="/suspected_case-create/suspected_case/dob_raw" type="string"/>
+      <bind calculate="format-date-time(decimal-date-time(../dob_raw),&quot;%Y-%m-%d&quot;)" nodeset="/suspected_case-create/suspected_case/dob_iso" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/dob_debug" readonly="true()" relevant="false()" type="string"/>
+      <bind calculate="floor( difference-in-months(  /suspected_case-create/suspected_case/date_of_birth , today() ) div 12 )" nodeset="/suspected_case-create/suspected_case/age_in_years" type="string"/>
+      <bind calculate="difference-in-months(  /suspected_case-create/suspected_case/date_of_birth , today() )" nodeset="/suspected_case-create/suspected_case/age_in_months" type="string"/>
+      <bind calculate=" /suspected_case-create/suspected_case/dob_iso " constraint=". &lt; today()" jr:constraintMsg="jr:itext('/suspected_case-create/suspected_case/date_of_birth:jr:constraintMsg')" nodeset="/suspected_case-create/suspected_case/date_of_birth" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/head_of_household" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/marital_status" type="select1"/>
+      <bind nodeset="/suspected_case-create/suspected_case/occupation" type="select1"/>
+      <bind nodeset="/suspected_case-create/suspected_case/occupation_other" relevant=" /suspected_case-create/suspected_case/occupation  = 'others'" required="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/education" type="select1"/>
+      <bind nodeset="/suspected_case-create/suspected_case/deceased" required="true()" type="select1"/>
+      <bind constraint=". &lt; today()" jr:constraintMsg="jr:itext('/suspected_case-create/suspected_case/date_of_death:jr:constraintMsg')" nodeset="/suspected_case-create/suspected_case/date_of_death" relevant=" /suspected_case-create/suspected_case/deceased  = 'yes'" required="true()" type="date"/>
+      <bind nodeset="/suspected_case-create/suspected_case/demographics_delimiter" readonly="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/n_address" readonly="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/nationality" type="select1"/>
+      <bind constraint="regex(.,'(\+?\d{1,3})(\d{2,4})(\d{5,6})') and string-length(.) &lt;=14" jr:constraintMsg="jr:itext('/suspected_case-create/suspected_case/phone:jr:constraintMsg')" nodeset="/suspected_case-create/suspected_case/phone" required="true()" type="string"/>
+      <bind constraint="regex(.,'(\+?\d{1,3})(\d{2,4})(\d{5,6})') and string-length(.) &lt;=14" jr:constraintMsg="jr:itext('/suspected_case-create/suspected_case/alternate_phone:jr:constraintMsg')" nodeset="/suspected_case-create/suspected_case/alternate_phone" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/postal_address" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/email_address" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/county" required="true()" type="select1"/>
+      <bind nodeset="/suspected_case-create/suspected_case/subcounty" required="true()" type="select1"/>
+      <bind nodeset="/suspected_case-create/suspected_case/town" required="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/ward" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/location" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/sub_location" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/village" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/landmark" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/residence" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/nearest_health_center" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/address_delimiter" readonly="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/n_next_of_kin_details" readonly="true()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/kin_name" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/kin_relationship" required="false()" type="select1"/>
+      <bind nodeset="/suspected_case-create/suspected_case/kin_phone_number" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/kin_postal_address" required="false()" type="string"/>
+      <bind nodeset="/suspected_case-create/suspected_case/relationship_delimiter" readonly="true()" type="string"/>
+      <bind calculate="../../../inputs/user/name" nodeset="/suspected_case-create/suspected_case/meta/created_by" type="string"/>
+      <bind calculate="../../../inputs/user/contact_id" nodeset="/suspected_case-create/suspected_case/meta/created_by_person_uuid" type="string"/>
+      <bind calculate="../../../inputs/user/facility_id" nodeset="/suspected_case-create/suspected_case/meta/created_by_place_uuid" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/suspected_case-create/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">
-    <group ref="/data/inputs">
+    <group ref="/suspected_case-create/inputs">
       <label></label>
-      <group ref="/data/inputs/user">
+      <group ref="/suspected_case-create/inputs/user">
         <label></label>
-        <input ref="/data/inputs/user/contact_id">
+        <input ref="/suspected_case-create/inputs/user/contact_id">
           <label></label>
         </input>
-        <input ref="/data/inputs/user/facility_id">
+        <input ref="/suspected_case-create/inputs/user/facility_id">
           <label></label>
         </input>
-        <input ref="/data/inputs/user/name">
+        <input ref="/suspected_case-create/inputs/user/name">
           <label></label>
         </input>
       </group>
     </group>
-    <group appearance="field-list" ref="/data/person">
-      <label>Registration Details</label>
-      <input ref="/data/person/n_id_numbers">
+    <group appearance="field-list" ref="/suspected_case-create/suspected_case">
+      <label>Suspected Case</label>
+      <input ref="/suspected_case-create/suspected_case/n_id_numbers">
         <label>**&lt;span style="color:blue"&gt;ID Numbers&lt;/span&gt;**</label>
       </input>
-      <select1 ref="/data/person/type_of_identifier">
+      <select1 ref="/suspected_case-create/suspected_case/type_of_identifier">
         <label>Type of national identifier</label>
         <item>
           <label>National ID Number</label>
@@ -4865,33 +4866,33 @@
           <value>other</value>
         </item>
       </select1>
-      <input ref="/data/person/national_id">
+      <input ref="/suspected_case-create/suspected_case/national_id">
         <label>National ID Number</label>
         <hint>If the patient is below 18 years of age, enter the guardian's National Identification Number of available. For children under 18, suffix the ID number with their birth order. E.g. 12121212-01 for a first born</hint>
       </input>
-      <input ref="/data/person/passport_number">
+      <input ref="/suspected_case-create/suspected_case/passport_number">
         <label>Passport Number</label>
       </input>
-      <input ref="/data/person/alien_number">
+      <input ref="/suspected_case-create/suspected_case/alien_number">
         <label>Alien Number</label>
         <hint>Use a combination of name initials and phone number, e.g. AB-0722000000</hint>
       </input>
-      <input ref="/data/person/id_delimiter">
+      <input ref="/suspected_case-create/suspected_case/id_delimiter">
         <label>&lt;hr style="margin:0 auto;"&gt;</label>
       </input>
-      <input ref="/data/person/n_demographics">
+      <input ref="/suspected_case-create/suspected_case/n_demographics">
         <label>**&lt;span style="color:blue"&gt;Demographics&lt;/span&gt;**</label>
       </input>
-      <input ref="/data/person/s_name">
+      <input ref="/suspected_case-create/suspected_case/s_name">
         <label>Surname</label>
       </input>
-      <input ref="/data/person/f_name">
+      <input ref="/suspected_case-create/suspected_case/f_name">
         <label>First name</label>
       </input>
-      <input ref="/data/person/o_name">
+      <input ref="/suspected_case-create/suspected_case/o_name">
         <label>Other name(s)</label>
       </input>
-      <select1 ref="/data/person/sex">
+      <select1 ref="/suspected_case-create/suspected_case/sex">
         <label>Sex</label>
         <item>
           <label>Male</label>
@@ -4902,8 +4903,8 @@
           <value>female</value>
         </item>
       </select1>
-      <select1 ref="/data/person/dob_known">
-        <label>Does <output value=" /data/person/patient_name "/> know their date of birth?</label>
+      <select1 ref="/suspected_case-create/suspected_case/dob_known">
+        <label>Does <output value=" /suspected_case-create/suspected_case/patient_name "/> know their date of birth?</label>
         <item>
           <label>Yes</label>
           <value>yes</value>
@@ -4913,18 +4914,18 @@
           <value>no</value>
         </item>
       </select1>
-      <input ref="/data/person/dob_calendar">
+      <input ref="/suspected_case-create/suspected_case/dob_calendar">
         <label>Date of Birth</label>
       </input>
-      <input ref="/data/person/age_years">
+      <input ref="/suspected_case-create/suspected_case/age_years">
         <label>Age (years)</label>
       </input>
-      <input ref="/data/person/age_months">
+      <input ref="/suspected_case-create/suspected_case/age_months">
         <label>Age (months)</label>
       </input>
-      <input ref="/data/person/dob_debug">
-        <label>Months: <output value=" /data/person/ephemeral_months "/> Year: <output value=" /data/person/ephemeral_years "/> DOB Approx: <output value=" /data/person/dob_approx "/> DOB Calendar: <output value=" /data/person/dob_calendar "/> DOB ISO: <output value=" /data/person/dob_iso "/> AGE Years: <output value=" /data/person/age_in_years "/></label></input>
-      <select1 appearance="minimal" ref="/data/person/marital_status">
+      <input ref="/suspected_case-create/suspected_case/dob_debug">
+        <label>Months: <output value=" /suspected_case-create/suspected_case/ephemeral_months "/> Year: <output value=" /suspected_case-create/suspected_case/ephemeral_years "/> DOB Approx: <output value=" /suspected_case-create/suspected_case/dob_approx "/> DOB Calendar: <output value=" /suspected_case-create/suspected_case/dob_calendar "/> DOB ISO: <output value=" /suspected_case-create/suspected_case/dob_iso "/> AGE Years: <output value=" /suspected_case-create/suspected_case/age_in_years "/></label></input>
+      <select1 appearance="minimal" ref="/suspected_case-create/suspected_case/marital_status">
         <label>Marital Status</label>
         <item>
           <label>Married polygamous</label>
@@ -4951,7 +4952,7 @@
           <value>single</value>
         </item>
       </select1>
-      <select1 appearance="minimal" ref="/data/person/occupation">
+      <select1 appearance="minimal" ref="/suspected_case-create/suspected_case/occupation">
         <label>Primary Occupation</label>
         <item>
           <label>Farmer</label>
@@ -4982,10 +4983,10 @@
           <value>others</value>
         </item>
       </select1>
-      <input ref="/data/person/occupation_other">
+      <input ref="/suspected_case-create/suspected_case/occupation_other">
         <label>Other (specify)</label>
       </input>
-      <select1 appearance="minimal" ref="/data/person/education">
+      <select1 appearance="minimal" ref="/suspected_case-create/suspected_case/education">
         <label>Education</label>
         <item>
           <label>Primary school education</label>
@@ -5004,7 +5005,7 @@
           <value>none</value>
         </item>
       </select1>
-      <select1 ref="/data/person/deceased">
+      <select1 ref="/suspected_case-create/suspected_case/deceased">
         <label>Deceased</label>
         <item>
           <label>Yes</label>
@@ -5015,16 +5016,16 @@
           <value>no</value>
         </item>
       </select1>
-      <input ref="/data/person/date_of_death">
+      <input ref="/suspected_case-create/suspected_case/date_of_death">
         <label>Date of death</label>
       </input>
-      <input ref="/data/person/demographics_delimiter">
+      <input ref="/suspected_case-create/suspected_case/demographics_delimiter">
         <label>&lt;hr style="margin:0 auto;"&gt;</label>
       </input>
-      <input ref="/data/person/n_address">
+      <input ref="/suspected_case-create/suspected_case/n_address">
         <label>**&lt;span style="color:blue"&gt;Address&lt;/span&gt;**</label>
       </input>
-      <select1 appearance="minimal" ref="/data/person/nationality">
+      <select1 appearance="minimal" ref="/suspected_case-create/suspected_case/nationality">
         <label>Nationality</label>
         <item>
           <label>Afghanistan</label>
@@ -5811,21 +5812,21 @@
           <value>Zimbabwe</value>
         </item>
       </select1>
-      <input ref="/data/person/phone">
+      <input ref="/suspected_case-create/suspected_case/phone">
         <label>Telephone contact</label>
         <hint>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</hint>
       </input>
-      <input ref="/data/person/alternate_phone">
+      <input ref="/suspected_case-create/suspected_case/alternate_phone">
         <label>Alternate phone number</label>
         <hint>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</hint>
       </input>
-      <input ref="/data/person/postal_address">
+      <input ref="/suspected_case-create/suspected_case/postal_address">
         <label>Postal address</label>
       </input>
-      <input ref="/data/person/email_address">
+      <input ref="/suspected_case-create/suspected_case/email_address">
         <label>Email Address</label>
       </input>
-      <select1 appearance="minimal" ref="/data/person/county">
+      <select1 appearance="minimal" ref="/suspected_case-create/suspected_case/county">
         <label>County of residence</label>
         <item>
           <label>Baringo</label>
@@ -6016,45 +6017,45 @@
           <value>West Pokot</value>
         </item>
       </select1>
-      <select1 appearance="minimal" ref="/data/person/subcounty">
+      <select1 appearance="minimal" ref="/suspected_case-create/suspected_case/subcounty">
         <label>Sub county of residence</label>
-        <itemset nodeset="instance('select_subcounty')/root/item[county =  /data/person/county ]">
+        <itemset nodeset="instance('select_subcounty')/root/item[county =  /suspected_case-create/suspected_case/county ]">
           <value ref="name"/>
           <label ref="jr:itext(itextId)"/>
         </itemset>
       </select1>
-      <input ref="/data/person/ward">
+      <input ref="/suspected_case-create/suspected_case/ward">
         <label>Ward of residence</label>
       </input>
-      <input ref="/data/person/location">
+      <input ref="/suspected_case-create/suspected_case/location">
         <label>Location of residence</label>
       </input>
-      <input ref="/data/person/sub_location">
+      <input ref="/suspected_case-create/suspected_case/sub_location">
         <label>Sub-location of residence</label>
       </input>
-      <input ref="/data/person/village">
+      <input ref="/suspected_case-create/suspected_case/village">
         <label>Village of residence</label>
       </input>
-      <input ref="/data/person/landmark">
+      <input ref="/suspected_case-create/suspected_case/landmark">
         <label>Landmark</label>
       </input>
-      <input ref="/data/person/residence">
+      <input ref="/suspected_case-create/suspected_case/residence">
         <label>Residence</label>
         <hint>(Estate or house number)</hint>
       </input>
-      <input ref="/data/person/nearest_health_center">
+      <input ref="/suspected_case-create/suspected_case/nearest_health_center">
         <label>Nearest health center</label>
       </input>
-      <input ref="/data/person/address_delimiter">
+      <input ref="/suspected_case-create/suspected_case/address_delimiter">
         <label>&lt;hr style="margin:0 auto;"&gt;</label>
       </input>
-      <input ref="/data/person/n_next_of_kin_details">
+      <input ref="/suspected_case-create/suspected_case/n_next_of_kin_details">
         <label>**&lt;span style="color:blue"&gt;Next of kin details&lt;/span&gt;**</label>
       </input>
-      <input ref="/data/person/kin_name">
+      <input ref="/suspected_case-create/suspected_case/kin_name">
         <label>Name</label>
       </input>
-      <select1 appearance="minimal" ref="/data/person/kin_relationship">
+      <select1 appearance="minimal" ref="/suspected_case-create/suspected_case/kin_relationship">
         <label>Relationship</label>
         <item>
           <label>Partner</label>
@@ -6109,16 +6110,16 @@
           <value>co-worker</value>
         </item>
       </select1>
-      <input ref="/data/person/kin_phone_number">
+      <input ref="/suspected_case-create/suspected_case/kin_phone_number">
         <label>Phone number</label>
       </input>
-      <input ref="/data/person/kin_postal_address">
+      <input ref="/suspected_case-create/suspected_case/kin_postal_address">
         <label>Postal address</label>
       </input>
-      <input ref="/data/person/relationship_delimiter">
+      <input ref="/suspected_case-create/suspected_case/relationship_delimiter">
         <label>&lt;hr style="margin:0 auto;"&gt;</label>
       </input>
-      <group appearance="hidden" ref="/data/person/meta">
+      <group appearance="hidden" ref="/suspected_case-create/suspected_case/meta">
         <label></label>
       </group>
     </group>
