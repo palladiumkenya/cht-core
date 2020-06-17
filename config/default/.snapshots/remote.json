@@ -73,5 +73,17 @@
   },
   "messages-en": {
     "surveillance-covid19.health.go.ke/medic": "7wPAUqVbY3J39Slr+fNkEw=="
+  },
+  "form:hiv_treatment_verification": {
+    "surveillance-covid19.health.go.ke/medic": "vo5WC98EemNOGm3EYlLl/w=="
+  },
+  "form:peer_calendar": {
+    "surveillance-covid19.health.go.ke/medic": "ZAJprsN7rhUGfyvib46jCA=="
+  },
+  "form:prep_treatment_verification": {
+    "surveillance-covid19.health.go.ke/medic": "LlzS5tH4GNuJJ6pnBxp25A=="
+  },
+  "form:tracking": {
+    "surveillance-covid19.health.go.ke/medic": "TfiyhwtCrGHrC7f/s7Wv5Q=="
   }
 }

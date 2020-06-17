@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>PrEP Treatment Verification</h:title>
+    <model>
+      <instance>
+        <prep_treatment_verification delimiter="#" id="prep_treatment_verification" prefix="J1!prep_treatment_verification!" version="2020-06-17 11:20:10">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <name/>
+              <contact>
+                <_id/>
+                <name/>
+              </contact>
+              <parent>
+                <parent>
+                  <contact>
+                    <name/>
+                    <phone/>
+                  </contact>
+                </parent>
+              </parent>
+            </contact>
+          </inputs>
+          <source/>
+          <source_id/>
+          <place_id/>
+          <place_name/>
+          <head/>
+          <prep_history>
+            <enrollmenet_date/>
+            <facility_name/>
+            <pepfar_sites/>
+            <date_initiated_on_prep/>
+            <prep_regimen/>
+            <source_of_information/>
+          </prep_history>
+          <prep_appointments>
+            <verification_date/>
+            <prep_status/>
+            <discontinuation_reason/>
+            <other_reason/>
+            <next_appointment/>
+            <comments/>
+          </prep_appointments>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </prep_treatment_verification>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/prep_treatment_verification/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/prep_treatment_verification/inputs/source" type="string"/>
+      <bind nodeset="/prep_treatment_verification/inputs/source_id" type="string"/>
+      <bind nodeset="/prep_treatment_verification/inputs/contact/_id" type="db:clinic"/>
+      <bind nodeset="/prep_treatment_verification/inputs/contact/name" type="string"/>
+      <bind nodeset="/prep_treatment_verification/inputs/contact/contact/_id" type="db:person"/>
+      <bind nodeset="/prep_treatment_verification/inputs/contact/contact/name" type="string"/>
+      <bind nodeset="/prep_treatment_verification/inputs/contact/parent/parent/contact/name" type="string"/>
+      <bind nodeset="/prep_treatment_verification/inputs/contact/parent/parent/contact/phone" type="string"/>
+      <bind calculate="../inputs/source" nodeset="/prep_treatment_verification/source" type="string"/>
+      <bind calculate="../inputs/source_id" nodeset="/prep_treatment_verification/source_id" type="string"/>
+      <bind calculate="../inputs/contact/_id" nodeset="/prep_treatment_verification/place_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/prep_treatment_verification/place_name" type="string"/>
+      <bind calculate="../inputs/contact/contact/name" nodeset="/prep_treatment_verification/head" type="string"/>
+      <bind nodeset="/prep_treatment_verification/prep_history/enrollmenet_date" required="true()" type="date"/>
+      <bind nodeset="/prep_treatment_verification/prep_history/facility_name" required="true()" type="string"/>
+      <bind nodeset="/prep_treatment_verification/prep_history/pepfar_sites" required="false()" type="select1"/>
+      <bind nodeset="/prep_treatment_verification/prep_history/date_initiated_on_prep" type="date"/>
+      <bind nodeset="/prep_treatment_verification/prep_history/prep_regimen" type="select1"/>
+      <bind nodeset="/prep_treatment_verification/prep_history/source_of_information" required="true()" type="select1"/>
+      <bind nodeset="/prep_treatment_verification/prep_appointments/verification_date" required="true()" type="date"/>
+      <bind nodeset="/prep_treatment_verification/prep_appointments/prep_status" required="true()" type="select1"/>
+      <bind nodeset="/prep_treatment_verification/prep_appointments/discontinuation_reason" required="true()" type="select1"/>
+      <bind nodeset="/prep_treatment_verification/prep_appointments/other_reason" relevant=" /prep_treatment_verification/prep_appointments/discontinuation_reason =&quot;other&quot;" required="false()" type="string"/>
+      <bind nodeset="/prep_treatment_verification/prep_appointments/next_appointment" required="true()" type="date"/>
+      <bind nodeset="/prep_treatment_verification/prep_appointments/comments" required="false()" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/prep_treatment_verification/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/prep_treatment_verification/inputs">
+      <label>Patient</label>
+      <group ref="/prep_treatment_verification/inputs/contact">
+        <label>Contact</label>
+        <input appearance="db-object" ref="/prep_treatment_verification/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <group ref="/prep_treatment_verification/inputs/contact/contact">
+          <label>Contact</label>
+          <input appearance="db-object" ref="/prep_treatment_verification/inputs/contact/contact/_id">
+            <label>ID of head of household</label>
+          </input>
+        </group>
+        <group ref="/prep_treatment_verification/inputs/contact/parent">
+          <label>Parent</label>
+          <group ref="/prep_treatment_verification/inputs/contact/parent/parent">
+            <label>Parent</label>
+            <group ref="/prep_treatment_verification/inputs/contact/parent/parent/contact">
+              <label>Contact</label>
+            </group>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/prep_treatment_verification/prep_history">
+      <label>PrEP History</label>
+      <input ref="/prep_treatment_verification/prep_history/enrollmenet_date">
+        <label>Enrollment Date</label>
+      </input>
+      <input ref="/prep_treatment_verification/prep_history/facility_name">
+        <label>Name of health facility:</label>
+      </input>
+      <select1 ref="/prep_treatment_verification/prep_history/pepfar_sites">
+        <label>Is a PEPFAR site?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/prep_treatment_verification/prep_history/date_initiated_on_prep">
+        <label>Date initiated on PrEP?</label>
+      </input>
+      <select1 ref="/prep_treatment_verification/prep_history/prep_regimen">
+        <label>PrEP Regimen</label>
+        <item>
+          <label>TDF+3TC</label>
+          <value>tdf_3tc</value>
+        </item>
+        <item>
+          <label>TDF + FTC</label>
+          <value>tdf_ftc</value>
+        </item>
+        <item>
+          <label>TDF</label>
+          <value>tdf</value>
+        </item>
+      </select1>
+      <select1 ref="/prep_treatment_verification/prep_history/source_of_information">
+        <label>Source of Information:</label>
+        <item>
+          <label>Verbal Report</label>
+          <value>verbal_report</value>
+        </item>
+        <item>
+          <label>Appointment Card</label>
+          <value>appointment_card</value>
+        </item>
+        <item>
+          <label>Phone Call Written record</label>
+          <value>phone_call_written_record</value>
+        </item>
+        <item>
+          <label>SMS</label>
+          <value>sms</value>
+        </item>
+        <item>
+          <label>EID Dashboard</label>
+          <value>eid_dashboard</value>
+        </item>
+      </select1>
+    </group>
+    <group appearance="field-list" ref="/prep_treatment_verification/prep_appointments">
+      <label>PrEP Appointments</label>
+      <input ref="/prep_treatment_verification/prep_appointments/verification_date">
+        <label>Verification Date:</label>
+      </input>
+      <select1 ref="/prep_treatment_verification/prep_appointments/prep_status">
+        <label>PrEP Status</label>
+        <item>
+          <label>Continue</label>
+          <value>continue</value>
+        </item>
+        <item>
+          <label>Discontinue</label>
+          <value>discontinue</value>
+        </item>
+        <item>
+          <label>Restart</label>
+          <value>restart</value>
+        </item>
+      </select1>
+      <select1 ref="/prep_treatment_verification/prep_appointments/discontinuation_reason">
+        <label>PrEP Discontinuation Reason</label>
+        <item>
+          <label>Tested HIV Positive</label>
+          <value>tested_hiv_positive</value>
+        </item>
+        <item>
+          <label>Client Request</label>
+          <value>client_request</value>
+        </item>
+        <item>
+          <label>Not Adherent to PrEP</label>
+          <value>not_adhered</value>
+        </item>
+        <item>
+          <label>Viral Suppression of HIV + Partner</label>
+          <value>viral_supression</value>
+        </item>
+        <item>
+          <label>Too many HIV Tests</label>
+          <value>many_hiv_test</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/prep_treatment_verification/prep_appointments/other_reason">
+        <label>Other Specify:</label>
+      </input>
+      <input ref="/prep_treatment_verification/prep_appointments/next_appointment">
+        <label>Next Appointment Date:</label>
+      </input>
+      <input ref="/prep_treatment_verification/prep_appointments/comments">
+        <label>Comments:</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

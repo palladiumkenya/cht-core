@@ -1,0 +1,343 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>HIV Treatment Verification</h:title>
+    <model>
+      <instance>
+        <hiv_treatment_verification delimiter="#" id="hiv_treatment_verification" prefix="J1!hiv_treatment_verification!" version="2020-06-17 12:10:06">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <name/>
+              <contact>
+                <_id/>
+                <name/>
+              </contact>
+              <parent>
+                <parent>
+                  <contact>
+                    <name/>
+                    <phone/>
+                  </contact>
+                </parent>
+              </parent>
+            </contact>
+          </inputs>
+          <source/>
+          <source_id/>
+          <place_id/>
+          <place_name/>
+          <head/>
+          <art_history>
+            <encounter_date/>
+            <year_diagnosed_hiv_positive/>
+            <facility_name/>
+            <pepfar_sites/>
+            <date_initiated_on_art/>
+            <current_regimen/>
+            <source_of_information/>
+          </art_history>
+          <hiv_monitoring>
+            <when_test_done/>
+            <levels/>
+          </hiv_monitoring>
+          <viral_load>
+            <dates/>
+            <justification/>
+            <levels/>
+            <disclosed_status/>
+            <to_who/>
+            <disclosed_other/>
+          </viral_load>
+          <ipt>
+            <when_started_ipt/>
+            <when_initiated_on_treatment/>
+          </ipt>
+          <care_model>
+            <on_differentiated_care/>
+            <supprot_group/>
+            <support_name/>
+          </care_model>
+          <oportunistic_infection>
+            <opportunistic_infection/>
+            <other_oportunistic/>
+            <when_diagnosed_with_oi/>
+            <when_completed_oi_treatment/>
+            <when_initiated_oi_treatment/>
+            <date_initiated_on_art/>
+            <comments/>
+          </oportunistic_infection>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </hiv_treatment_verification>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/hiv_treatment_verification/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/hiv_treatment_verification/inputs/source" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/inputs/source_id" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/inputs/contact/_id" type="db:clinic"/>
+      <bind nodeset="/hiv_treatment_verification/inputs/contact/name" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/inputs/contact/contact/_id" type="db:person"/>
+      <bind nodeset="/hiv_treatment_verification/inputs/contact/contact/name" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/inputs/contact/parent/parent/contact/name" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/inputs/contact/parent/parent/contact/phone" type="string"/>
+      <bind calculate="../inputs/source" nodeset="/hiv_treatment_verification/source" type="string"/>
+      <bind calculate="../inputs/source_id" nodeset="/hiv_treatment_verification/source_id" type="string"/>
+      <bind calculate="../inputs/contact/_id" nodeset="/hiv_treatment_verification/place_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/hiv_treatment_verification/place_name" type="string"/>
+      <bind calculate="../inputs/contact/contact/name" nodeset="/hiv_treatment_verification/head" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/art_history/encounter_date" required="true()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/art_history/year_diagnosed_hiv_positive" required="true()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/art_history/facility_name" required="true()" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/art_history/pepfar_sites" required="true()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/art_history/date_initiated_on_art" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/art_history/current_regimen" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/art_history/source_of_information" required="true()" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/hiv_monitoring/when_test_done" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/hiv_monitoring/levels" required="true()" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/viral_load/dates" required="true()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/viral_load/justification" required="true()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/viral_load/levels" required="true()" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/viral_load/disclosed_status" required="true()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/viral_load/to_who" relevant=" /hiv_treatment_verification/viral_load/disclosed_status =&quot;yes&quot;" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/viral_load/disclosed_other" relevant=" /hiv_treatment_verification/viral_load/to_who =&quot;other&quot;" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/ipt/when_started_ipt" required="true()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/ipt/when_initiated_on_treatment" required="true()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/care_model/on_differentiated_care" required="true()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/care_model/supprot_group" required="true()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/care_model/support_name" required="true()" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/oportunistic_infection/opportunistic_infection" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/oportunistic_infection/other_oportunistic" relevant=" /hiv_treatment_verification/oportunistic_infection/opportunistic_infection =&quot;other&quot;" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/oportunistic_infection/when_diagnosed_with_oi" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/oportunistic_infection/when_completed_oi_treatment" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/oportunistic_infection/when_initiated_oi_treatment" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/oportunistic_infection/date_initiated_on_art" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/oportunistic_infection/comments" required="false()" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/hiv_treatment_verification/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/hiv_treatment_verification/inputs">
+      <label>Patient</label>
+      <group ref="/hiv_treatment_verification/inputs/contact">
+        <label>Contact</label>
+        <input appearance="db-object" ref="/hiv_treatment_verification/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <group ref="/hiv_treatment_verification/inputs/contact/contact">
+          <label>Contact</label>
+          <input appearance="db-object" ref="/hiv_treatment_verification/inputs/contact/contact/_id">
+            <label>ID of head of household</label>
+          </input>
+        </group>
+        <group ref="/hiv_treatment_verification/inputs/contact/parent">
+          <label>Parent</label>
+          <group ref="/hiv_treatment_verification/inputs/contact/parent/parent">
+            <label>Parent</label>
+            <group ref="/hiv_treatment_verification/inputs/contact/parent/parent/contact">
+              <label>Contact</label>
+            </group>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/hiv_treatment_verification/art_history">
+      <label>ART/HIV History</label>
+      <input ref="/hiv_treatment_verification/art_history/encounter_date">
+        <label>Encounter Date</label>
+      </input>
+      <input ref="/hiv_treatment_verification/art_history/year_diagnosed_hiv_positive">
+        <label>Month and Year diagnosed HIV positive:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/art_history/facility_name">
+        <label>Name of health facility accessing ART:</label>
+      </input>
+      <select1 ref="/hiv_treatment_verification/art_history/pepfar_sites">
+        <label>Is a PEPFAR site?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/hiv_treatment_verification/art_history/date_initiated_on_art">
+        <label>Date initiated on ART?</label>
+      </input>
+      <input ref="/hiv_treatment_verification/art_history/current_regimen">
+        <label>Current Regimen</label>
+      </input>
+      <input ref="/hiv_treatment_verification/art_history/source_of_information">
+        <label>Source of Information:</label>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/hiv_treatment_verification/hiv_monitoring">
+      <label>HIV Monitoring</label>
+      <input ref="/hiv_treatment_verification/hiv_monitoring/when_test_done">
+        <label>Month and Year test done:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/hiv_monitoring/levels">
+        <label>Levels:</label>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/hiv_treatment_verification/viral_load">
+      <label>Viral Load</label>
+      <input ref="/hiv_treatment_verification/viral_load/dates">
+        <label>Dates:</label>
+      </input>
+      <select1 ref="/hiv_treatment_verification/viral_load/justification">
+        <label>Justification:</label>
+        <item>
+          <label>Routine VL</label>
+          <value>routine_vl</value>
+        </item>
+        <item>
+          <label>Repeat VL</label>
+          <value>repeatvl</value>
+        </item>
+        <item>
+          <label>Substitution of Drugs</label>
+          <value>substitution_drug</value>
+        </item>
+        <item>
+          <label>Clinical Failure</label>
+          <value>clinical_failure</value>
+        </item>
+        <item>
+          <label>Single Drug Substitution</label>
+          <value>singledrug</value>
+        </item>
+        <item>
+          <label>Baseline VL</label>
+          <value>baselinevl</value>
+        </item>
+      </select1>
+      <input ref="/hiv_treatment_verification/viral_load/levels">
+        <label>Levels:</label>
+      </input>
+      <select1 ref="/hiv_treatment_verification/viral_load/disclosed_status">
+        <label>Disclosed_status?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/hiv_treatment_verification/viral_load/to_who">
+        <label>To Who?</label>
+        <item>
+          <label>Sexual Partner</label>
+          <value>sexual_partner</value>
+        </item>
+        <item>
+          <label>Family Member</label>
+          <value>family_member</value>
+        </item>
+        <item>
+          <label>Treatment Partner</label>
+          <value>treatment_partner</value>
+        </item>
+        <item>
+          <label>Spiritual Leader</label>
+          <value>spiritual-leader</value>
+        </item>
+      </select1>
+      <input ref="/hiv_treatment_verification/viral_load/disclosed_other">
+        <label>Specify to who:</label>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/hiv_treatment_verification/ipt">
+      <label>IPT</label>
+      <input ref="/hiv_treatment_verification/ipt/when_started_ipt">
+        <label>Month and Year started IPT:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/ipt/when_initiated_on_treatment">
+        <label>Month and Year initiated on OI treatment:</label>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/hiv_treatment_verification/care_model">
+      <label>Care Model</label>
+      <select1 ref="/hiv_treatment_verification/care_model/on_differentiated_care">
+        <label>On differentiated care?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/hiv_treatment_verification/care_model/supprot_group">
+        <label>Support Group?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/hiv_treatment_verification/care_model/support_name">
+        <label>Name of Support Group:</label>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/hiv_treatment_verification/oportunistic_infection">
+      <label>Opportunistic Infections:</label>
+      <select1 ref="/hiv_treatment_verification/oportunistic_infection/opportunistic_infection">
+        <label>Opportunistic Infections:</label>
+        <item>
+          <label>Candididiasis</label>
+          <value>candididiasis</value>
+        </item>
+        <item>
+          <label>Cryptococcosis</label>
+          <value>cryptococcosis</value>
+        </item>
+        <item>
+          <label>Lymhoma</label>
+          <value>lymhoma</value>
+        </item>
+        <item>
+          <label>Pneumonia</label>
+          <value>pneumonia</value>
+        </item>
+      </select1>
+      <input ref="/hiv_treatment_verification/oportunistic_infection/other_oportunistic">
+        <label>Specify other oportunistic infections</label>
+      </input>
+      <input ref="/hiv_treatment_verification/oportunistic_infection/when_diagnosed_with_oi">
+        <label>Month and Year diagnosed with OI:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/oportunistic_infection/when_completed_oi_treatment">
+        <label>Month and Year completed OI treatment:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/oportunistic_infection/when_initiated_oi_treatment">
+        <label>Month and Year Initiated OI treatment:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/oportunistic_infection/date_initiated_on_art">
+        <label>Date initiated on ART?</label>
+      </input>
+      <input ref="/hiv_treatment_verification/oportunistic_infection/comments">
+        <label>Comments:</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

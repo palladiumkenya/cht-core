@@ -66,7 +66,7 @@
     "localhost/medic": "IoFzGpJWPUrLVd+em8fMwQ=="
   },
   "messages-en": {
-    "localhost/medic": "VQNpfn74EynRvfMdCLGxdw=="
+    "localhost/medic": "puT2jfuotYb3S+MrXqIx0g=="
   },
   "form:suspected_case:create": {
     "localhost/medic": "cNHXDl/jBpR837JKE6grwQ=="
@@ -85,5 +85,17 @@
   },
   "form:contact:clinic:edit.old": {
     "localhost/medic": "YyltBrYat7j49iPlbj0AJA=="
+  },
+  "form:hiv_treatment_verification": {
+    "localhost/medic": "vo5WC98EemNOGm3EYlLl/w=="
+  },
+  "form:peer_calendar": {
+    "localhost/medic": "ZAJprsN7rhUGfyvib46jCA=="
+  },
+  "form:prep_treatment_verification": {
+    "localhost/medic": "LlzS5tH4GNuJJ6pnBxp25A=="
+  },
+  "form:tracking": {
+    "localhost/medic": "TfiyhwtCrGHrC7f/s7Wv5Q=="
   }
 }
