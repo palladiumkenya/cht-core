@@ -8,12 +8,13 @@ const lineage = require('@medic/lineage')(Promise, db.medic);
 const getRoles = require('./types-and-roles');
 const auth = require('../auth');
 const config = require('../config');
+const phoneNumber = require('@medic/phone-number');
 
 const USER_PREFIX = 'org.couchdb.user:';
 const ONLINE_ROLE = 'mm-online';
 const DOC_IDS_WARN_LIMIT = 10000;
 
-const REMOTE_TOKEN_EXPIRE_TIME = 24 * 60 * 60 * 1000; // 24 hours
+const LOGIN_TOKEN_EXPIRE_TIME = 24 * 60 * 60 * 1000; // 24 hours
 
 const PASSWORD_MINIMUM_LENGTH = 8;
 const PASSWORD_MINIMUM_SCORE = 50;
@@ -30,6 +31,7 @@ const USER_EDITABLE_FIELDS = RESTRICTED_USER_EDITABLE_FIELDS.concat([
   'place',
   'type',
   'roles',
+  'token_login',
 ]);
 
 const RESTRICTED_SETTINGS_EDITABLE_FIELDS = [
@@ -404,8 +406,13 @@ const deleteUser = id => {
 };
 
 const genPassword = (length = PASSWORD_MINIMUM_LENGTH) => {
-  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:!';
-  return _.sampleSize(chars, length).join('');
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:!$^()-=';
+  let password;
+  do {
+    password = Array.from({ length }).map(() => _.sample(chars)).join('');
+  } while (passwordTester(password) < PASSWORD_MINIMUM_SCORE);
+
+  return password;
 };
 
 const validatePassword = (password) => {
@@ -424,10 +431,22 @@ const validatePassword = (password) => {
   }
 };
 
+const validatePhone = (data) => {
+  const settings = config.get();
+  if (!phoneNumber.validate(settings, data.phone)) {
+    return error400(
+      'A valid phone number is required for SMS login.',
+      'configuration.enable.token.login.phone'
+    );
+  }
+
+  data.phone = phoneNumber.normalize(settings, data.phone);
+};
+
 const missingFields = data => {
   const required = ['username'];
 
-  if (!enableRemoteLogin(data)) {
+  if (!enableTokenLogin(data)) {
     required.push('password');
   } else {
     required.push('phone');
@@ -464,57 +483,54 @@ const getUpdatedSettingsDoc = (username, data) => {
   });
 };
 
-const enableRemoteLogin = data => data.remote_login;
+const enableTokenLogin = data => data.token_login;
 
-const sendRemoteLoginLink = (data, response) => {
-  if (!enableRemoteLogin(data)) {
-    return;
-  }
+const getHash = string => crypto.createHash('sha1').update(string, 'utf8').digest('hex');
 
-  // send SMS
-  const remoteLoginConfig = config.get('remote_login');
-  if (!remoteLoginConfig || !remoteLoginConfig.translation_key || !remoteLoginConfig.app_url) {
-    response.remote_login = {
-      error: true,
-      reason: 'invalid config',
-    };
+const generateLoginSms = (user, userSettings, token, tokenLoginConfig) => {
+  const doc = {
+    type: 'token_login_sms',
+    reported_date: new Date().getTime(),
+  };
+  const userHash = getHash(user._id);
+  const url = `${tokenLoginConfig.app_url}/medic/login/token/${token}/${userHash}`;
+  const context = { templateContext: Object.assign({}, userSettings, user, { url }) };
+  doc.tasks = config.getTransitionsLib().messages.addMessage(doc, tokenLoginConfig, userSettings.phone, context);
+
+  return doc;
+};
+
+const sendTokenLoginLink = (data, response) => {
+  if (!enableTokenLogin(data)) {
     return response;
   }
 
-  const token = crypto
-    .createHash('sha256')
-    .update(genPassword(20), 'utf8')
-    .digest('hex');
+  const tokenLoginConfig = config.get('token_login');
+  if (!tokenLoginConfig || !tokenLoginConfig.translation_key || !tokenLoginConfig.app_url) {
+    response.token_login = { error: true, reason: 'invalid config' };
+    return response;
+  }
 
-  const smsDoc = {
-    type: 'remote_login_sms',
-    date_updated: new Date().getTime(),
-  };
+  return Promise
+    .all([
+      db.users.get(response.user.id),
+      db.medic.get(response['user-settings'].id),
+    ])
+    .then(([ user, userSettings ]) => {
+      const token = genPassword(50);
 
-  const context = {
-    templateContext: Object.assign(
-      {},
-      data,
-      { login_url: `${remoteLoginConfig.app_url}/medic/login?token=${token}` }
-    ),
-  };
-  smsDoc.tasks = config.getTransitionsLib().messages.addMessage(smsDoc, remoteLoginConfig, data.phone, context);
+      user.token_login = true;
+      user.token = token;
+      user.token_expiration_date = new Date().getTime() + LOGIN_TOKEN_EXPIRE_TIME;
 
-  return db.users
-    .get(response.user.id)
-    .then(user => {
-      Object.assign(user, {
-        remote_login: true,
-        token,
-        token_expiration_date: new Date().getTime() + REMOTE_TOKEN_EXPIRE_TIME,
-      });
+      const smsDoc = generateLoginSms(user, userSettings, token, tokenLoginConfig);
 
-      response.remote_login = { ok: true, token_expiration_date: user.token_expiration_date };
+      response.token_login = { ok: true, token_expiration_date: user.token_expiration_date };
 
       return Promise.all([ db.medic.post(smsDoc), db.users.put(user) ]);
     })
     .then(([result]) => {
-      response.remote_login.id = result.id;
+      response.token_login.id = result.id;
       return response;
     });
 };
@@ -551,10 +567,14 @@ module.exports = {
         { 'fields': missing.join(', ') }
       ));
     }
-    if (enableRemoteLogin(data)) {
+    if (enableTokenLogin(data)) {
+      const phoneError = validatePhone(data);
+      if (phoneError) {
+        return Promise.reject(phoneError);
+      }
       data.password = genPassword(20);
     }
-    const passwordError = validatePassword(data.password, enableRemoteLogin);
+    const passwordError = validatePassword(data.password);
     if (passwordError) {
       return Promise.reject(passwordError);
     }
@@ -566,7 +586,7 @@ module.exports = {
       .then(() => storeUpdatedPlace(data))
       .then(() => createUser(data, response))
       .then(() => createUserSettings(data, response))
-      .then(() => sendRemoteLoginLink(data, response))
+      .then(() => sendTokenLoginLink(data, response))
       .then(() => response);
   },
 
@@ -620,6 +640,11 @@ module.exports = {
         { 'fields': props.join(', ') }
       ));
     }
+
+    if (enableTokenLogin(data)) {
+      data.password = genPassword(20);
+    }
+
     if (data.password) {
       const passwordError = validatePassword(data.password);
       if (passwordError) {
@@ -627,11 +652,19 @@ module.exports = {
       }
     }
 
-    return Promise.all([
-      getUpdatedUserDoc(username, data),
-      getUpdatedSettingsDoc(username, data),
-    ])
+    return Promise
+      .all([
+        getUpdatedUserDoc(username, data),
+        getUpdatedSettingsDoc(username, data),
+      ])
       .then(([ user, settings ]) => {
+        if (enableTokenLogin(settings)) {
+          const phoneError = validatePhone(settings);
+          if (phoneError) {
+            return Promise.reject(phoneError);
+          }
+        }
+
         const response = {};
 
         return Promise.resolve()
@@ -639,7 +672,9 @@ module.exports = {
             if (data.place) {
               settings.facility_id = user.facility_id;
               return places.getPlace(user.facility_id);
-            } else if (_.isNull(data.place)) {
+            }
+
+            if (_.isNull(data.place)) {
               if (settings.roles && auth.isOffline(settings.roles)) {
                 return Promise.reject(error400(
                   'Place field is required for offline users',
@@ -654,7 +689,9 @@ module.exports = {
           .then(() => {
             if (data.contact) {
               return validateContact(settings.contact_id, user.facility_id);
-            } else if (_.isNull(data.contact)) {
+            }
+
+            if (_.isNull(data.contact)) {
               if (settings.roles && auth.isOffline(settings.roles)) {
                 return Promise.reject(error400(
                   'Contact field is required for offline users',
@@ -679,18 +716,48 @@ module.exports = {
               rev: resp.rev
             };
           })
+          .then(() => sendTokenLoginLink(data, response))
           .then(() => response);
       });
   },
 
   DOC_IDS_WARN_LIMIT,
 
-  remoteLogin: user => {
-    delete user.remote_login;
-    delete user.token;
-    delete user.token_expiration_date;
+  getUserByToken: (token, hash) => {
+    if (!token || !hash) {
+      return Promise.resolve(false);
+    }
 
-    user.password = genPassword();
-    return db.users.put(user).then(() => user.password);
+    return db.users.query('token-login/users-by-token', { key: token }).then(response => {
+      if (!response || !response.rows || !response.rows.length) {
+        return false;
+      }
+
+      const row = response.rows[0];
+      const usernameHash = getHash(row.id);
+
+      if (usernameHash !== hash) {
+        return false;
+      }
+
+      if (row.value.token_expiration_date <= new Date().getTime()) {
+        return false;
+      }
+
+      return row.id;
+    });
+  },
+
+  tokenLogin: userId => {
+    return db.users
+      .get(userId)
+      .then(user => {
+        delete user.token_login;
+        delete user.token;
+        delete user.token_expiration_date;
+
+        user.password = genPassword();
+        return db.users.put(user).then(() => ({ user: user.name, password: user.password }));
+      });
   },
 };
