@@ -185,7 +185,7 @@ const setCookies = (req, res, sessionRes) => {
           return updateUserLanguageIfRequired(req.body.user, language, selectedLocale);
         })
         .then(() => {
-          res.status(302).send(getRedirectUrl(userCtx, req.body.redirect));
+          return getRedirectUrl(userCtx, req.body.redirect);
         });
     })
     .catch(err => {
@@ -222,12 +222,42 @@ const getBranding = () => {
     });
 };
 
+const remoteLogin = (req, res, next) => {
+  return db.users.query('remote-login/users-by-token', { key: req.query.token, include_docs: true }).then(response => {
+    if (!response || !response.rows || !response.rows.length) {
+      return getLogin(req, res, next);
+    }
+
+    const user = response.rows[0].doc;
+    if (user.token_expiration_date < new Date().getTime()) {
+      // token expired ??? token has expired????
+      return getLogin(req, res, next);
+    }
+
+    return users
+      .remoteLogin(user)
+      .then(password => {
+        req.body = { user: user.name, password };
+        req.redirect = true;
+        return module.exports.post(req, res);
+      });
+  });
+};
+
+const getLogin = (req, res, next) => {
+  return getBranding()
+    .then(branding => renderLogin(req, branding))
+    .then(body => res.send(body))
+    .catch(next);
+};
+
 module.exports = {
   get: (req, res, next) => {
-    return getBranding()
-      .then(branding => renderLogin(req, branding))
-      .then(body => res.send(body))
-      .catch(next);
+    if (req.query && req.query.token) {
+      return remoteLogin(req, res, next);
+    }
+
+    return getLogin(req, res, next);
   },
   post: (req, res) => {
     return createSession(req)
@@ -237,6 +267,14 @@ module.exports = {
           return;
         }
         return setCookies(req, res, sessionRes);
+      })
+      .then(redirectUrl => {
+        if (req.redirect) {
+          res.redirect(redirectUrl);
+          return;
+        }
+
+        res.status(302).send(redirectUrl);
       })
       .catch(err => {
         logger.error('Error logging in: %o', err);

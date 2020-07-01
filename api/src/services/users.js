@@ -1,15 +1,19 @@
 const _ = require('lodash');
 const passwordTester = require('simple-password-tester');
+const crypto = require('crypto');
 const people  = require('../controllers/people');
 const places = require('../controllers/places');
 const db = require('../db');
 const lineage = require('@medic/lineage')(Promise, db.medic);
 const getRoles = require('./types-and-roles');
 const auth = require('../auth');
+const config = require('../config');
 
 const USER_PREFIX = 'org.couchdb.user:';
 const ONLINE_ROLE = 'mm-online';
 const DOC_IDS_WARN_LIMIT = 10000;
+
+const REMOTE_TOKEN_EXPIRE_TIME = 24 * 60 * 60 * 1000; // 24 hours
 
 const PASSWORD_MINIMUM_LENGTH = 8;
 const PASSWORD_MINIMUM_SCORE = 50;
@@ -100,7 +104,7 @@ const validateContact = (id, placeID) => {
       if (!people.isAPerson(doc)) {
         return Promise.reject(error400('Wrong type, contact is not a person.','contact.type.wrong'));
       }
-      if (!module.exports._hasParent(doc, placeID)) {
+      if (!hasParent(doc, placeID)) {
         return Promise.reject(error400('Contact is not within place.','configuration.user.place.contact'));
       }
       return doc;
@@ -252,7 +256,7 @@ const setContactParent = data => {
     // contact parent must exist
     return places.getPlace(data.contact.parent)
       .then(place => {
-        if (!module.exports._hasParent(place, data.place)) {
+        if (!hasParent(place, data.place)) {
           return Promise.reject(error400('Contact is not within place.','configuration.user.place.contact'));
         }
         // save result to contact object
@@ -399,7 +403,12 @@ const deleteUser = id => {
   return Promise.all([ usersDbPromise, medicDbPromise ]);
 };
 
-const validatePassword = password => {
+const genPassword = (length = PASSWORD_MINIMUM_LENGTH) => {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:!';
+  return _.sampleSize(chars, length).join('');
+};
+
+const validatePassword = (password) => {
   if (password.length < PASSWORD_MINIMUM_LENGTH) {
     return error400(
       `The password must be at least ${PASSWORD_MINIMUM_LENGTH} characters long.`,
@@ -416,7 +425,14 @@ const validatePassword = password => {
 };
 
 const missingFields = data => {
-  const required = ['username', 'password'];
+  const required = ['username'];
+
+  if (!enableRemoteLogin(data)) {
+    required.push('password');
+  } else {
+    required.push('phone');
+  }
+
   if (data.roles && auth.isOffline(data.roles)) {
     required.push('place', 'contact');
   }
@@ -432,8 +448,8 @@ const missingFields = data => {
 
 const getUpdatedUserDoc = (username, data) => {
   const userID = createID(username);
-  return module.exports._validateUser(userID).then(doc => {
-    const user = Object.assign(doc, module.exports._getUserUpdates(username, data));
+  return validateUser(userID).then(doc => {
+    const user = Object.assign(doc, getUserUpdates(username, data));
     user._id = userID;
     return user;
   });
@@ -441,11 +457,66 @@ const getUpdatedUserDoc = (username, data) => {
 
 const getUpdatedSettingsDoc = (username, data) => {
   const userID = createID(username);
-  return module.exports._validateUserSettings(userID).then(doc => {
-    const settings = Object.assign(doc, module.exports._getSettingsUpdates(username, data));
+  return validateUserSettings(userID).then(doc => {
+    const settings = Object.assign(doc, getSettingsUpdates(username, data));
     settings._id = userID;
     return settings;
   });
+};
+
+const enableRemoteLogin = data => data.remote_login;
+
+const sendRemoteLoginLink = (data, response) => {
+  if (!enableRemoteLogin(data)) {
+    return;
+  }
+
+  // send SMS
+  const remoteLoginConfig = config.get('remote_login');
+  if (!remoteLoginConfig || !remoteLoginConfig.translation_key || !remoteLoginConfig.app_url) {
+    response.remote_login = {
+      error: true,
+      reason: 'invalid config',
+    };
+    return response;
+  }
+
+  const token = crypto
+    .createHash('sha256')
+    .update(genPassword(20), 'utf8')
+    .digest('hex');
+
+  const smsDoc = {
+    type: 'remote_login_sms',
+    date_updated: new Date().getTime(),
+  };
+
+  const context = {
+    templateContext: Object.assign(
+      {},
+      data,
+      { login_url: `${remoteLoginConfig.app_url}/medic/login?token=${token}` }
+    ),
+  };
+  smsDoc.tasks = config.getTransitionsLib().messages.addMessage(smsDoc, remoteLoginConfig, data.phone, context);
+
+  return db.users
+    .get(response.user.id)
+    .then(user => {
+      Object.assign(user, {
+        remote_login: true,
+        token,
+        token_expiration_date: new Date().getTime() + REMOTE_TOKEN_EXPIRE_TIME,
+      });
+
+      response.remote_login = { ok: true, token_expiration_date: user.token_expiration_date };
+
+      return Promise.all([ db.medic.post(smsDoc), db.users.put(user) ]);
+    })
+    .then(([result]) => {
+      response.remote_login.id = result.id;
+      return response;
+    });
 };
 
 /*
@@ -453,30 +524,12 @@ const getUpdatedSettingsDoc = (username, data) => {
  * to export functions needed for testing.
  */
 module.exports = {
-  _createUser: createUser,
-  _createContact: createContact,
-  _createPlace: createPlace,
-  _createUserSettings: createUserSettings,
-  _getType : getType,
-  _getAllUsers: getAllUsers,
-  _getAllUserSettings: getAllUserSettings,
-  _getFacilities: getFacilities,
-  _getSettingsUpdates: getSettingsUpdates,
-  _getUserUpdates: getUserUpdates,
-  _hasParent: hasParent,
-  _lineage: lineage,
-  _setContactParent: setContactParent,
-  _storeUpdatedPlace: storeUpdatedPlace,
-  _validateContact: validateContact,
-  _validateNewUsername: validateNewUsername,
-  _validateUser: validateUser,
-  _validateUserSettings: validateUserSettings,
   deleteUser: username => deleteUser(createID(username)),
   getList: () => {
     return Promise.all([
-      module.exports._getAllUsers(),
-      module.exports._getAllUserSettings(),
-      module.exports._getFacilities()
+      getAllUsers(),
+      getAllUserSettings(),
+      getFacilities()
     ])
       .then(([ users, settings, facilities ]) => {
         return mapUsers(users, settings, facilities);
@@ -498,18 +551,22 @@ module.exports = {
         { 'fields': missing.join(', ') }
       ));
     }
-    const passwordError = validatePassword(data.password);
+    if (enableRemoteLogin(data)) {
+      data.password = genPassword(20);
+    }
+    const passwordError = validatePassword(data.password, enableRemoteLogin);
     if (passwordError) {
       return Promise.reject(passwordError);
     }
     const response = {};
-    return module.exports._validateNewUsername(data.username)
-      .then(() => module.exports._createPlace(data))
-      .then(() => module.exports._setContactParent(data))
-      .then(() => module.exports._createContact(data, response))
-      .then(() => module.exports._storeUpdatedPlace(data))
-      .then(() => module.exports._createUser(data, response))
-      .then(() => module.exports._createUserSettings(data, response))
+    return validateNewUsername(data.username)
+      .then(() => createPlace(data))
+      .then(() => setContactParent(data))
+      .then(() => createContact(data, response))
+      .then(() => storeUpdatedPlace(data))
+      .then(() => createUser(data, response))
+      .then(() => createUserSettings(data, response))
+      .then(() => sendRemoteLoginLink(data, response))
       .then(() => response);
   },
 
@@ -518,10 +575,9 @@ module.exports = {
   */
   createAdmin: userCtx => {
     const data = { username: userCtx.name, roles: ['admin'] };
-    return module.exports
-      ._validateNewUsername(userCtx.name)
-      .then(() => module.exports._createUser(data, {}))
-      .then(() => module.exports._createUserSettings(data, {}));
+    return validateNewUsername(userCtx.name)
+      .then(() => createUser(data, {}))
+      .then(() => createUserSettings(data, {}));
   },
 
   /**
@@ -597,7 +653,7 @@ module.exports = {
           })
           .then(() => {
             if (data.contact) {
-              return module.exports._validateContact(settings.contact_id, user.facility_id);
+              return validateContact(settings.contact_id, user.facility_id);
             } else if (_.isNull(data.contact)) {
               if (settings.roles && auth.isOffline(settings.roles)) {
                 return Promise.reject(error400(
@@ -627,5 +683,14 @@ module.exports = {
       });
   },
 
-  DOC_IDS_WARN_LIMIT
+  DOC_IDS_WARN_LIMIT,
+
+  remoteLogin: user => {
+    delete user.remote_login;
+    delete user.token;
+    delete user.token_expiration_date;
+
+    user.password = genPassword();
+    return db.users.put(user).then(() => user.password);
+  },
 };
