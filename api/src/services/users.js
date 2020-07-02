@@ -9,6 +9,7 @@ const getRoles = require('./types-and-roles');
 const auth = require('../auth');
 const config = require('../config');
 const phoneNumber = require('@medic/phone-number');
+const taskUtils = require('@medic/task-utils');
 
 const USER_PREFIX = 'org.couchdb.user:';
 const ONLINE_ROLE = 'mm-online';
@@ -31,7 +32,6 @@ const USER_EDITABLE_FIELDS = RESTRICTED_USER_EDITABLE_FIELDS.concat([
   'place',
   'type',
   'roles',
-  'token_login',
 ]);
 
 const RESTRICTED_SETTINGS_EDITABLE_FIELDS = [
@@ -431,7 +431,7 @@ const validatePassword = (password) => {
   }
 };
 
-const validatePhone = (data) => {
+const validateAndNormalizePhone = (data) => {
   const settings = config.get();
   if (!phoneNumber.validate(settings, data.phone)) {
     return error400(
@@ -446,7 +446,7 @@ const validatePhone = (data) => {
 const missingFields = data => {
   const required = ['username'];
 
-  if (!enableTokenLogin(data)) {
+  if (!shouldEnableTokenLogin(data)) {
     required.push('password');
   } else {
     required.push('phone');
@@ -483,56 +483,172 @@ const getUpdatedSettingsDoc = (username, data) => {
   });
 };
 
-const enableTokenLogin = data => data.token_login;
+const shouldEnableTokenLogin = data => {
+  const tokenLoginConfig = config.get('token_login');
+  if (!tokenLoginConfig || !tokenLoginConfig.translation_key || !tokenLoginConfig.app_url) {
+    return false;
+  }
+
+  return data.token_login;
+};
+const shouldDisableTokenLogin = data => data.token_login === false;
 
 const getHash = string => crypto.createHash('sha1').update(string, 'utf8').digest('hex');
 
-const generateLoginSms = (user, userSettings, token, tokenLoginConfig) => {
-  const doc = {
-    type: 'token_login_sms',
-    reported_date: new Date().getTime(),
-  };
-  const userHash = getHash(user._id);
-  const url = `${tokenLoginConfig.app_url}/medic/login/token/${token}/${userHash}`;
-  const context = { templateContext: Object.assign({}, userSettings, user, { url }) };
-  doc.tasks = config.getTransitionsLib().messages.addMessage(doc, tokenLoginConfig, userSettings.phone, context);
+/**
+ * Clears pending tasks in the currently assigned `token_login_sms` doc
+ * Used to either disable or refresh token-login
+ *
+ * @param {Object} user - the _users doc
+ * @param {Object} user.token_login - token-login information
+ * @param {Boolean} user.token_login.active - whether the token-login is active or not
+ * @param {String} user.token_login.doc_id - the id of the current `token_login_sms`
+ * @returns {Promise<void>|*}
+ */
+const clearOldLoginSms = (user) => {
+  if (!user.token_login || !user.token_login.active || !user.token_login.doc_id) {
+    return Promise.resolve();
+  }
 
-  return doc;
+  return db.medic
+    .get(user.token_login.doc_id)
+    .then(doc => {
+      if (doc && doc.tasks) {
+        const pendingTasks = doc.tasks.filter(task => task.state === 'pending');
+        pendingTasks.forEach(task => taskUtils.setTaskState(task, 'cleared'));
+
+        return db.medic.put(doc);
+      }
+    });
 };
 
-const sendTokenLoginLink = (data, response) => {
-  if (!enableTokenLogin(data)) {
-    return response;
+/**
+ * Generates a doc of type `token_login_sms` that contains the two tasks required for token login: one reserved
+ * for the URL and one containing instructions for the user.
+ * If the user already had token-login activated, the pending tasks of the existent `token_login_sms` doc are cleared.
+ * @param {Object} user - the _users document
+ * @param {Object} userSettings - the user-settings document from the main database
+ * @param {String} token - the randomly generated token
+ * @param {String} userHash - sha1 hash of the user's document id
+ * @param {Object} tokenLoginConfig - the token_login config section that contains the translation_key used to generate
+ *                                    the instructions sms message
+ * @returns {Promise<Object>} - returns the result of saving the new token_login_sms document
+ */
+const generateLoginSms = (user, userSettings, token, userHash, tokenLoginConfig) => {
+  return clearOldLoginSms(user).then(() => {
+    const doc = {
+      type: 'token_login_sms',
+      reported_date: new Date().getTime(),
+      user: user._id,
+      tasks: [],
+    };
+    const userHash = getHash(user._id);
+    const url = `${tokenLoginConfig.app_url}/medic/login/token/${token}/${userHash}`;
+
+    const messagesLib = config.getTransitionsLib().messages;
+
+    const context = { templateContext: Object.assign({}, userSettings, user) };
+    messagesLib.addMessage(doc, tokenLoginConfig, userSettings.phone, context);
+    messagesLib.addMessage(doc, { message: url }, userSettings.phone);
+
+    return db.medic.post(doc);
+  });
+};
+
+/**
+ * Enables or disables token-login for a user
+ * @returns {Promise<{Object}>} - updated response to be sent to the client
+ */
+const manageTokenLogin = (data, response) => {
+  if (shouldDisableTokenLogin(data)) {
+    return disableTokenLogin(data, response);
   }
 
-  const tokenLoginConfig = config.get('token_login');
-  if (!tokenLoginConfig || !tokenLoginConfig.translation_key || !tokenLoginConfig.app_url) {
-    response.token_login = { error: true, reason: 'invalid config' };
-    return response;
+  if (!shouldEnableTokenLogin(data)) {
+    return Promise.resolve(response);
   }
+
+  return enableTokenLogin(data, response);
+};
+
+/**
+ * Enables token-login for a user
+ * - if `token-login` configuration is missing, no changes are made.
+ * - if `token-login` configuration is invalid, the response will contain a `token_login` section indicating the error
+ * - if `token-login` config is correct:
+ *   - a new document is created in the `medic` database that contains tasks (SMSs) to be sent to the phone number
+ *     belonging to the current user (userSettings.phone) that contain instructions and a url to login in the app
+ *   - updates the user document to contain information about the active `token-login` context for the user
+ *   - updates the user-settings document to contain some information to be displayed in the admin page
+ * @param {Object} data - request body
+ * @param {Object} response - the response of previous actions
+ * @returns {Promise<{Object}>} - updated response to be sent to the client
+ */
+const enableTokenLogin = (data, response) => {
+  const tokenLoginConfig = config.get('token_login');
 
   return Promise
     .all([
-      db.users.get(response.user.id),
-      db.medic.get(response['user-settings'].id),
+      validateUser(response.user.id),
+      validateUserSettings(response['user-settings'].id),
     ])
     .then(([ user, userSettings ]) => {
       const token = genPassword(50);
+      const hash = getHash(user._id);
 
-      user.token_login = true;
-      user.token = token;
-      user.token_expiration_date = new Date().getTime() + LOGIN_TOKEN_EXPIRE_TIME;
+      return generateLoginSms(user, userSettings, token, hash, tokenLoginConfig)
+        .then(result => {
+          user.token_login = {
+            active: true,
+            token,
+            hash,
+            expiration_date: new Date().getTime() + LOGIN_TOKEN_EXPIRE_TIME,
+            doc_id: result.id
+          };
 
-      const smsDoc = generateLoginSms(user, userSettings, token, tokenLoginConfig);
+          userSettings.token_login = {
+            active: true,
+            expiration_date: user.token_login.expiration_date,
+          };
 
-      response.token_login = { ok: true, token_expiration_date: user.token_expiration_date };
+          response.token_login = {
+            id: result.id,
+            expiration_date: user.token_login.expiration_date,
+          };
 
-      return Promise.all([ db.medic.post(smsDoc), db.users.put(user) ]);
+          return Promise.all([ db.users.put(user), db.medic.put(userSettings) ]);
+        });
     })
-    .then(([result]) => {
-      response.token_login.id = result.id;
-      return response;
-    });
+    .then(() => response);
+};
+
+/**
+ * Disables token-login for a user.
+ * Deletes the `token_login` properties from the user and userSettings doc.
+ * Clears pending tasks in existent SMSs
+ *
+ * @param {Object} data - request body
+ * @param {Object} response - the response of previous actions
+ * @returns {Promise<{Object}>} - updated response to be sent to the client
+ */
+const disableTokenLogin = (data, response) => {
+  return Promise
+    .all([
+      validateUser(response.user.id),
+      validateUserSettings(response['user-settings'].id),
+    ])
+    .then(([ user, userSettings ]) => {
+      return clearOldLoginSms(user).then(() => {
+        delete user.token_login;
+        delete userSettings.token_login;
+
+        return Promise.all([
+          db.medic.put(userSettings),
+          db.users.put(user),
+        ]);
+      });
+    })
+    .then(() => response);
 };
 
 /*
@@ -567,8 +683,9 @@ module.exports = {
         { 'fields': missing.join(', ') }
       ));
     }
-    if (enableTokenLogin(data)) {
-      const phoneError = validatePhone(data);
+    if (shouldEnableTokenLogin(data)) {
+      // if token-login is requested, we will need to send sms-s to the user's phone number.
+      const phoneError = validateAndNormalizePhone(data);
       if (phoneError) {
         return Promise.reject(phoneError);
       }
@@ -586,7 +703,7 @@ module.exports = {
       .then(() => storeUpdatedPlace(data))
       .then(() => createUser(data, response))
       .then(() => createUserSettings(data, response))
-      .then(() => sendTokenLoginLink(data, response))
+      .then(() => manageTokenLogin(data, response))
       .then(() => response);
   },
 
@@ -641,7 +758,7 @@ module.exports = {
       ));
     }
 
-    if (enableTokenLogin(data)) {
+    if (shouldEnableTokenLogin(data)) {
       data.password = genPassword(20);
     }
 
@@ -658,8 +775,9 @@ module.exports = {
         getUpdatedSettingsDoc(username, data),
       ])
       .then(([ user, settings ]) => {
-        if (enableTokenLogin(settings)) {
-          const phoneError = validatePhone(settings);
+        if (shouldEnableTokenLogin(data)) {
+          // if token-login is requested, we will need to send sms-s to the user's phone number.
+          const phoneError = validateAndNormalizePhone(settings);
           if (phoneError) {
             return Promise.reject(phoneError);
           }
@@ -716,30 +834,31 @@ module.exports = {
               rev: resp.rev
             };
           })
-          .then(() => sendTokenLoginLink(data, response))
+          .then(() => manageTokenLogin(data, response))
           .then(() => response);
       });
   },
 
   DOC_IDS_WARN_LIMIT,
 
+  /**
+   * Searches for a user with active, not expired token-login that matches the requested token and hash.
+   *
+   * @param {String} token
+   * @param {String} hash
+   * @returns {Promise<string>} the id of the matched user
+   */
   getUserByToken: (token, hash) => {
     if (!token || !hash) {
-      return Promise.resolve(false);
+      return Promise.resolve();
     }
 
-    return db.users.query('token-login/users-by-token', { key: token }).then(response => {
+    return db.users.query('token-login/users-by-token', { key: [token, hash] }).then(response => {
       if (!response || !response.rows || !response.rows.length) {
         return false;
       }
 
       const row = response.rows[0];
-      const usernameHash = getHash(row.id);
-
-      if (usernameHash !== hash) {
-        return false;
-      }
-
       if (row.value.token_expiration_date <= new Date().getTime()) {
         return false;
       }
@@ -748,16 +867,38 @@ module.exports = {
     });
   },
 
+  /**
+   * Updates the user and userSettings docs when the token login link is accessed
+   * Generates a new random password for the user.
+   * @param {String} userId - the user's id to login via token link
+   * @returns {*}
+   */
   tokenLogin: userId => {
-    return db.users
-      .get(userId)
-      .then(user => {
-        delete user.token_login;
-        delete user.token;
-        delete user.token_expiration_date;
+    return Promise
+      .all([
+        validateUser(userId),
+        validateUserSettings(userId),
+      ])
+      .then(([ user, userSettings ]) => {
+        if (!user.token_login || !userSettings.token_login) {
+          throw new Error({ code: 400, message: 'invalid user' });
+        }
+
+        const updates = {
+          active: false,
+          login_date: new Date().getTime(),
+        };
+        user.token_login = Object.assign(user.token_login, updates);
+        userSettings.token_login = Object.assign(userSettings.token_login, updates);
 
         user.password = genPassword();
-        return db.users.put(user).then(() => ({ user: user.name, password: user.password }));
+
+        return Promise
+          .all([
+            db.medic.put(userSettings),
+            db.users.put(user),
+          ])
+          .then(() => ({ user: user.name, password: user.password }));
       });
   },
 };

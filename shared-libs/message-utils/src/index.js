@@ -323,7 +323,6 @@ exports.template = function(config, translate, doc, content, extraContext) {
   if (!template) {
     return '';
   }
-  console.log(extraContext);
   const context = extendedTemplateContext(doc, extraContext);
   return render(config, template, context, locale);
 };

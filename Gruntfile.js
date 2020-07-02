@@ -133,6 +133,8 @@ module.exports = function(grunt) {
         },
         files: {
           ['http://admin:pass@localhost:4984/medic-test']: 'build/ddocs/medic.json',
+          ['http://admin:pass@localhost:4984/medic-test-sentinel']: 'build/ddocs/medic/_attachments/ddocs/sentinel.json',
+          ['http://admin:pass@localhost:4984/_users']: 'build/ddocs/medic/_attachments/ddocs/_users.json',
         },
       },
       staging: {

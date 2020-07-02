@@ -294,7 +294,8 @@ module.exports = {
       })
       .then(redirectUrl => {
         if (req.redirect) {
-          res.redirect(redirectUrl);
+          console.log('redirect', redirectUrl);
+          res.redirect(302, redirectUrl);
           return;
         }
 
