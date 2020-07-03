@@ -83,7 +83,7 @@ const checkDbForMessagesToSend = () => {
       }
       return sendMessages(service, messages);
     })
-    .catch(err => logger.error('Error sending outgoing mgetPendingMessagesessages: %o', err));
+    .catch(err => logger.error('Error sending outgoing messages: %o', err));
 };
 
 const getPendingMessages = doc => {

@@ -851,7 +851,7 @@ module.exports = {
    */
   getUserByToken: (token, hash) => {
     if (!token || !hash) {
-      return Promise.resolve();
+      return Promise.resolve(false);
     }
 
     return db.users.query('token-login/users-by-token', { key: [token, hash] }).then(response => {
@@ -881,8 +881,8 @@ module.exports = {
         validateUserSettings(userId),
       ])
       .then(([ user, userSettings ]) => {
-        if (!user.token_login || !userSettings.token_login) {
-          throw new Error({ code: 400, message: 'invalid user' });
+        if (!user.token_login || !user.token_login.active) {
+          return Promise.reject({ code: 400, message: 'invalid user' });
         }
 
         const updates = {

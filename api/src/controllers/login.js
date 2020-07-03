@@ -183,7 +183,7 @@ const setCookies = (req, res, sessionRes) => {
   const sessionCookie = getSessionCookie(sessionRes);
   if (!sessionCookie) {
     res.status(401).json({ error: 'Not logged in' });
-    return;
+    throw { code: 401 };
   }
   const options = { headers: { Cookie: sessionCookie } };
   return auth
@@ -215,6 +215,7 @@ const setCookies = (req, res, sessionRes) => {
     .catch(err => {
       logger.error(`Error getting authCtx %o`, err);
       res.status(401).json({ error: 'Error getting authCtx' });
+      throw { code: 401 };
     });
 };
 
@@ -290,15 +291,20 @@ module.exports = {
           res.status(sessionRes.statusCode).json({ error: 'Not logged in' });
           return;
         }
-        return setCookies(req, res, sessionRes);
-      })
-      .then(redirectUrl => {
-        if (req.redirect) {
-          res.redirect(302, redirectUrl);
-          return;
-        }
+        return setCookies(req, res, sessionRes)
+          .then(redirectUrl => {
+            if (req.redirect) {
+              res.redirect(302, redirectUrl);
+              return;
+            }
 
-        res.status(302).send(redirectUrl);
+            res.status(302).send(redirectUrl);
+          })
+          .catch(err => {
+            if (err.code !== 401) {
+              throw err;
+            }
+          });
       })
       .catch(err => {
         logger.error('Error logging in: %o', err);

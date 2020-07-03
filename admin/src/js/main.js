@@ -2,15 +2,6 @@ window.PouchDB = require('pouchdb-browser');
 window.$ = window.jQuery = require('jquery');
 require('../../node_modules/select2/dist/js/select2.full')(window.jQuery);
 
-require('moment');
-require('moment/locale/bm');
-require('moment/locale/es');
-require('moment/locale/fr');
-require('moment/locale/hi');
-require('moment/locale/id');
-require('moment/locale/ne');
-require('moment/locale/sw');
-
 require('bootstrap');
 require('angular');
 require('angular-cookie');
