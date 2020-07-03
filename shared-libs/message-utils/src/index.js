@@ -210,7 +210,6 @@ const formatDate = function(config, text, view, formatString, locale) {
 };
 
 const render = function(config, template, view, locale) {
-  console.log(template, view);
   return mustache.render(template, Object.assign(view, {
     bikram_sambat_date: function() {
       return function(text) {

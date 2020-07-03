@@ -40,6 +40,7 @@ const RESTRICTED_SETTINGS_EDITABLE_FIELDS = [
   'phone',
   'language',
   'known',
+  'token_login',
 ];
 
 const SETTINGS_EDITABLE_FIELDS = RESTRICTED_SETTINGS_EDITABLE_FIELDS.concat([
@@ -762,7 +763,7 @@ module.exports = {
       data.password = genPassword(20);
     }
 
-    if (data.password) {
+    if (data.password || shouldDisableTokenLogin(data)) {
       const passwordError = validatePassword(data.password);
       if (passwordError) {
         return Promise.reject(passwordError);
