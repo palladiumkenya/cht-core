@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Peer Calendar</h:title>
+    <model>
+      <instance>
+        <peer_calendar delimiter="#" id="peer_calendar" prefix="J1!peer_calendar!" version="2020-06-18 19:10:04">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <name/>
+              <contact>
+                <_id/>
+                <name/>
+              </contact>
+              <parent>
+                <parent>
+                  <contact>
+                    <name/>
+                    <phone/>
+                  </contact>
+                </parent>
+              </parent>
+            </contact>
+          </inputs>
+          <source/>
+          <source_id/>
+          <place_id/>
+          <place_name/>
+          <head/>
+          <dice_history_information>
+            <select_month/>
+            <sex_act_per_week/>
+            <condoms_per_month/>
+            <average_anal_per_week/>
+            <lubricant_required_per_month/>
+            <injection_per_day/>
+            <needles_per_month/>
+            <duration_of_sex_work/>
+            <ever_experince_violence/>
+            <services_received/>
+            <week_to_fill_services/>
+          </dice_history_information>
+          <weekly_count>
+            <no_of_needles_distributed/>
+            <no_of_condoms_distributed/>
+            <no_female_condoms/>
+            <no_of_lubes_distributed/>
+            <health_education/>
+            <clinical_service/>
+            <no_of_hiv_kits_distributed/>
+            <received_clinical_service/>
+            <violence_reported/>
+            <remarks/>
+          </weekly_count>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </peer_calendar>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/peer_calendar/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/peer_calendar/inputs/source" type="string"/>
+      <bind nodeset="/peer_calendar/inputs/source_id" type="string"/>
+      <bind nodeset="/peer_calendar/inputs/contact/_id" type="db:clinic"/>
+      <bind nodeset="/peer_calendar/inputs/contact/name" type="string"/>
+      <bind nodeset="/peer_calendar/inputs/contact/contact/_id" type="db:person"/>
+      <bind nodeset="/peer_calendar/inputs/contact/contact/name" type="string"/>
+      <bind nodeset="/peer_calendar/inputs/contact/parent/parent/contact/name" type="string"/>
+      <bind nodeset="/peer_calendar/inputs/contact/parent/parent/contact/phone" type="string"/>
+      <bind calculate="../inputs/source" nodeset="/peer_calendar/source" type="string"/>
+      <bind calculate="../inputs/source_id" nodeset="/peer_calendar/source_id" type="string"/>
+      <bind calculate="../inputs/contact/_id" nodeset="/peer_calendar/place_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/peer_calendar/place_name" type="string"/>
+      <bind calculate="../inputs/contact/contact/name" nodeset="/peer_calendar/head" type="string"/>
+      <bind nodeset="/peer_calendar/dice_history_information/select_month" required="true()" type="select1"/>
+      <bind nodeset="/peer_calendar/dice_history_information/sex_act_per_week" type="string"/>
+      <bind nodeset="/peer_calendar/dice_history_information/condoms_per_month" type="string"/>
+      <bind nodeset="/peer_calendar/dice_history_information/average_anal_per_week" type="string"/>
+      <bind nodeset="/peer_calendar/dice_history_information/lubricant_required_per_month" type="string"/>
+      <bind nodeset="/peer_calendar/dice_history_information/injection_per_day" type="string"/>
+      <bind nodeset="/peer_calendar/dice_history_information/needles_per_month" type="string"/>
+      <bind nodeset="/peer_calendar/dice_history_information/duration_of_sex_work" type="string"/>
+      <bind nodeset="/peer_calendar/dice_history_information/ever_experince_violence" type="select1"/>
+      <bind nodeset="/peer_calendar/dice_history_information/services_received" required="true()" type="select"/>
+      <bind nodeset="/peer_calendar/dice_history_information/week_to_fill_services" required="true()" type="select"/>
+      <bind nodeset="/peer_calendar/weekly_count/no_of_needles_distributed" type="string"/>
+      <bind nodeset="/peer_calendar/weekly_count/no_of_condoms_distributed" type="string"/>
+      <bind nodeset="/peer_calendar/weekly_count/no_female_condoms" type="string"/>
+      <bind nodeset="/peer_calendar/weekly_count/no_of_lubes_distributed" type="string"/>
+      <bind nodeset="/peer_calendar/weekly_count/health_education" type="select1"/>
+      <bind nodeset="/peer_calendar/weekly_count/clinical_service" required="true()" type="select1"/>
+      <bind nodeset="/peer_calendar/weekly_count/no_of_hiv_kits_distributed" type="string"/>
+      <bind nodeset="/peer_calendar/weekly_count/received_clinical_service" required="false()" type="select1"/>
+      <bind nodeset="/peer_calendar/weekly_count/violence_reported" required="true()" type="select1"/>
+      <bind nodeset="/peer_calendar/weekly_count/remarks" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/peer_calendar/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/peer_calendar/inputs">
+      <label>Patient</label>
+      <group ref="/peer_calendar/inputs/contact">
+        <label>Contact</label>
+        <input appearance="db-object" ref="/peer_calendar/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <group ref="/peer_calendar/inputs/contact/contact">
+          <label>Contact</label>
+          <input appearance="db-object" ref="/peer_calendar/inputs/contact/contact/_id">
+            <label>ID of head of household</label>
+          </input>
+        </group>
+        <group ref="/peer_calendar/inputs/contact/parent">
+          <label>Parent</label>
+          <group ref="/peer_calendar/inputs/contact/parent/parent">
+            <label>Parent</label>
+            <group ref="/peer_calendar/inputs/contact/parent/parent/contact">
+              <label>Contact</label>
+            </group>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/peer_calendar/dice_history_information">
+      <label>DISC History Information</label>
+      <select1 ref="/peer_calendar/dice_history_information/select_month">
+        <label>Select which month you will be filling Peer Calendar:</label>
+        <item>
+          <label>January</label>
+          <value>january</value>
+        </item>
+        <item>
+          <label>February</label>
+          <value>february</value>
+        </item>
+        <item>
+          <label>March</label>
+          <value>march</value>
+        </item>
+        <item>
+          <label>April</label>
+          <value>april</value>
+        </item>
+        <item>
+          <label>May</label>
+          <value>may</value>
+        </item>
+        <item>
+          <label>June</label>
+          <value>june</value>
+        </item>
+        <item>
+          <label>July</label>
+          <value>july</value>
+        </item>
+        <item>
+          <label>August</label>
+          <value>august</value>
+        </item>
+        <item>
+          <label>September</label>
+          <value>september</value>
+        </item>
+        <item>
+          <label>October</label>
+          <value>october</value>
+        </item>
+        <item>
+          <label>November</label>
+          <value>november</value>
+        </item>
+        <item>
+          <label>December</label>
+          <value>december</value>
+        </item>
+      </select1>
+      <input ref="/peer_calendar/dice_history_information/sex_act_per_week">
+        <label>Sex acts per week</label>
+      </input>
+      <input ref="/peer_calendar/dice_history_information/condoms_per_month">
+        <label>Condom Requirements per month:</label>
+      </input>
+      <input ref="/peer_calendar/dice_history_information/average_anal_per_week">
+        <label>Average no. of Anal sex acts per week</label>
+      </input>
+      <input ref="/peer_calendar/dice_history_information/lubricant_required_per_month">
+        <label>Lubricant requirements per month:</label>
+      </input>
+      <input ref="/peer_calendar/dice_history_information/injection_per_day">
+        <label>Average no. of Injecting episodes per day</label>
+      </input>
+      <input ref="/peer_calendar/dice_history_information/needles_per_month">
+        <label>Needle and syringe requirements per month</label>
+      </input>
+      <input ref="/peer_calendar/dice_history_information/duration_of_sex_work">
+        <label>Duration in sex work/injecting(Years)</label>
+      </input>
+      <select1 ref="/peer_calendar/dice_history_information/ever_experince_violence">
+        <label>Ever experienced violence:</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select ref="/peer_calendar/dice_history_information/services_received">
+        <label>What services/goods did you recieve last month?</label>
+        <item>
+          <label>Condoms</label>
+          <value>condoms</value>
+        </item>
+        <item>
+          <label>Contacted</label>
+          <value>contacted</value>
+        </item>
+        <item>
+          <label>Needles &amp; Syringes</label>
+          <value>needles_syringes</value>
+        </item>
+        <item>
+          <label>Visited Clinic</label>
+          <value>visited_clinic</value>
+        </item>
+      </select>
+      <select ref="/peer_calendar/dice_history_information/week_to_fill_services">
+        <label>Which week would you like to fill the monthly service uptake:</label>
+        <item>
+          <label>1 Week</label>
+          <value>first_week</value>
+        </item>
+        <item>
+          <label>2 Weeks</label>
+          <value>second_week</value>
+        </item>
+        <item>
+          <label>3 Weeks</label>
+          <value>third_week</value>
+        </item>
+        <item>
+          <label>4 Weeks</label>
+          <value>fourth_week</value>
+        </item>
+      </select>
+    </group>
+    <group appearance="field-list" ref="/peer_calendar/weekly_count">
+      <label>Weekly Count</label>
+      <input ref="/peer_calendar/weekly_count/no_of_needles_distributed">
+        <label>No. of needles &amp; Syringes distributed</label>
+      </input>
+      <input ref="/peer_calendar/weekly_count/no_of_condoms_distributed">
+        <label>No. of male condoms distributed:</label>
+      </input>
+      <input ref="/peer_calendar/weekly_count/no_female_condoms">
+        <label>No. of female condoms distributed:</label>
+      </input>
+      <input ref="/peer_calendar/weekly_count/no_of_lubes_distributed">
+        <label>No. of lubes distributed:</label>
+      </input>
+      <select1 ref="/peer_calendar/weekly_count/health_education">
+        <label>Health Education:</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/peer_calendar/weekly_count/clinical_service">
+        <label>Refered to clinical services:</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/peer_calendar/weekly_count/no_of_hiv_kits_distributed">
+        <label>No of HIV test kits distributed</label>
+      </input>
+      <select1 ref="/peer_calendar/weekly_count/received_clinical_service">
+        <label>Recieved clinical services</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/peer_calendar/weekly_count/violence_reported">
+        <label>Crisis/ Violence Reported:</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/peer_calendar/weekly_count/remarks">
+        <label>Remarks</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>
