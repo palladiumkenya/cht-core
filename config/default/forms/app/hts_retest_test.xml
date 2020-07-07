@@ -1,0 +1,759 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>HTS Retest Form</h:title>
+    <model>
+      <instance>
+        <hts_retest_test delimiter="#" id="hts_retest_form" prefix="J1!hts_retest_form!" version="2020-05-18 21:54:20">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <name/>
+              <contact>
+                <_id/>
+                <name/>
+              </contact>
+              <parent>
+                <parent>
+                  <contact>
+                    <name/>
+                    <phone/>
+                  </contact>
+                </parent>
+              </parent>
+            </contact>
+          </inputs>
+          <source/>
+          <source_id/>
+          <place_id/>
+          <place_name/>
+          <head/>
+          <hiv_testing>
+            <population_type/>
+            <kp_type/>
+            <priority_type/>
+            <disability/>
+            <disability_type/>
+            <ever_tested_by_provider/>
+            <months_since_last_test/>
+            <self_test_in_last_12_months/>
+            <hts_strategy/>
+            <entry_point/>
+            <client_consent/>
+            <individual_couple_testing/>
+            <test_one>
+              <test_1_note/>
+              <kit_1_name/>
+              <kit_1_lot_number/>
+              <kit_1_expiry/>
+              <test_1_result/>
+            </test_one>
+            <test_two>
+              <test_2_note/>
+              <kit_2_name/>
+              <kit_2_lot_number/>
+              <kit_2_expiry/>
+              <test_2_result/>
+            </test_two>
+            <final_result/>
+            <couple_discordant/>
+            <tb_screening_result/>
+            <remarks/>
+          </hiv_testing>
+          <group_review>
+            <n_submit/>
+            <n_household_details_title/>
+            <n_household_details/>
+            <n_assessment_findings/>
+            <n_drinking_water_source/>
+            <n_surface_water/>
+            <n_uncovered_well_or_spring/>
+            <n_vendor_provided/>
+            <n_hts_strategy/>
+            <n_pitc/>
+            <n_client_initiated/>
+            <n_integrated_vct/>
+            <n_standalone_vct/>
+            <n_home_based_testing/>
+            <n_mobile_outreach/>
+            <n_pns/>
+            <n_hts_strategy_other/>
+            <n_entry_point/>
+            <e_n_opd/>
+            <e_n_ipd/>
+            <e_n_pead_clinic/>
+            <e_n_nutrition_clinic/>
+            <e_n_pmtct/>
+            <e_n_tb/>
+            <e_n_ccc/>
+            <e_n_vct/>
+            <e_n_home_based_testing/>
+            <e_n_mobile_outreach/>
+            <e_n_other/>
+            <n_test_1_results/>
+            <n_test_result_1_positive/>
+            <n_test_result_1_negative/>
+            <n_test_result_1_invalid/>
+            <n_test_2_results/>
+            <n_test_result_2_positive/>
+            <n_test_result_2_negative/>
+            <n_test_result_2_invalid/>
+            <n_final_results/>
+            <n_final_test_positive/>
+            <n_final_test_negative/>
+            <n_final_test_invalid/>
+            <n_couple_discordant/>
+            <n_couple_discordant_yes/>
+            <n_couple_discordant_no/>
+            <n_couple_discordant_na/>
+            <n_tb_screening_summary/>
+            <n_no_signs/>
+            <n_presumed_tb/>
+            <n_not_done/>
+            <n_on_treatment/>
+          </group_review>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </hts_retest_test>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/hts_retest_test/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/hts_retest_test/inputs/source" type="string"/>
+      <bind nodeset="/hts_retest_test/inputs/source_id" type="string"/>
+      <bind nodeset="/hts_retest_test/inputs/contact/_id" type="db:clinic"/>
+      <bind nodeset="/hts_retest_test/inputs/contact/name" type="string"/>
+      <bind nodeset="/hts_retest_test/inputs/contact/contact/_id" type="db:person"/>
+      <bind nodeset="/hts_retest_test/inputs/contact/contact/name" type="string"/>
+      <bind nodeset="/hts_retest_test/inputs/contact/parent/parent/contact/name" type="string"/>
+      <bind nodeset="/hts_retest_test/inputs/contact/parent/parent/contact/phone" type="string"/>
+      <bind calculate="../inputs/source" nodeset="/hts_retest_test/source" type="string"/>
+      <bind calculate="../inputs/source_id" nodeset="/hts_retest_test/source_id" type="string"/>
+      <bind calculate="../inputs/contact/_id" nodeset="/hts_retest_test/place_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/hts_retest_test/place_name" type="string"/>
+      <bind calculate="../inputs/contact/contact/name" nodeset="/hts_retest_test/head" type="string"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/population_type" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/kp_type" relevant="selected( /hts_retest_test/hiv_testing/population_type ,'key_population')" type="select"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/priority_type" relevant="selected( /hts_retest_test/hiv_testing/population_type ,'priority_population')" type="select"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/disability" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/disability_type" relevant="selected( /hts_retest_test/hiv_testing/disability ,'yes')" type="select"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/ever_tested_by_provider" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/months_since_last_test" relevant="selected( /hts_retest_test/hiv_testing/ever_tested_by_provider ,'yes')" type="int"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/self_test_in_last_12_months" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/hts_strategy" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/entry_point" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/client_consent" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/individual_couple_testing" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_one/test_1_note" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_one/kit_1_name" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_one/kit_1_lot_number" required="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_one/kit_1_expiry" required="true()" type="date"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_one/test_1_result" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_two" relevant="selected( /hts_retest_test/hiv_testing/test_one/test_1_result ,'positive') or selected( /hts_retest_test/hiv_testing/test_one/test_1_result ,'invalid')"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_two/test_2_note" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_two/kit_2_name" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_two/kit_2_lot_number" type="string"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_two/kit_2_expiry" type="date"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/test_two/test_2_result" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/final_result" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/couple_discordant" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/tb_screening_result" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/hiv_testing/remarks" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_submit" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_household_details_title" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_household_details" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_assessment_findings" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_drinking_water_source" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_surface_water" readonly="true()" relevant="selected(../../hiv_testing/population_type, 'general')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_uncovered_well_or_spring" readonly="true()" relevant="selected(../../hiv_testing/population_type, 'key_population')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_vendor_provided" readonly="true()" relevant="selected(../../hiv_testing/population_type, 'priority_population')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_hts_strategy" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_pitc" readonly="true()" relevant="selected(../../hiv_testing/hts_strategy, 'pitc')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_client_initiated" readonly="true()" relevant="selected(../../hiv_testing/hts_strategy, 'client_initiated')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_integrated_vct" readonly="true()" relevant="selected(../../hiv_testing/hts_strategy, 'integrated_vct')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_standalone_vct" readonly="true()" relevant="selected(../../hiv_testing/hts_strategy, 'standalone_vct')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_home_based_testing" readonly="true()" relevant="selected(../../hiv_testing/hts_strategy, 'home_based_testing')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_mobile_outreach" readonly="true()" relevant="selected(../../hiv_testing/hts_strategy, 'mobile_outreach')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_pns" readonly="true()" relevant="selected(../../hiv_testing/hts_strategy, 'pns')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_hts_strategy_other" readonly="true()" relevant="selected(../../hiv_testing/hts_strategy, 'other')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_entry_point" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_opd" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'opd')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_ipd" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'ipd')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_pead_clinic" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'pead_clinic')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_nutrition_clinic" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'nutrition_clinic')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_pmtct" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'pmtct')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_tb" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'tb')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_ccc" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'ccc')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_vct" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'vct')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_home_based_testing" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'home_based_testing')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_mobile_outreach" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'mobile_outreach')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/e_n_other" readonly="true()" relevant="selected(../../hiv_testing/entry_point, 'other')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_test_1_results" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_test_result_1_positive" readonly="true()" relevant="selected(../../hiv_testing/test_one/test_1_result, 'positive')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_test_result_1_negative" readonly="true()" relevant="selected(../../hiv_testing/test_one/test_1_result, 'negative')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_test_result_1_invalid" readonly="true()" relevant="selected(../../hiv_testing/test_one/test_1_result, 'invalid')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_test_2_results" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_test_result_2_positive" readonly="true()" relevant="selected(../../hiv_testing/test_two/test_2_result, 'positive')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_test_result_2_negative" readonly="true()" relevant="selected(../../hiv_testing/test_two/test_2_result, 'negative')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_test_result_2_invalid" readonly="true()" relevant="selected(../../hiv_testing/test_two/test_2_result, 'NA')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_final_results" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_final_test_positive" readonly="true()" relevant="selected(../../hiv_testing/final_result, 'positive')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_final_test_negative" readonly="true()" relevant="selected(../../hiv_testing/final_result, 'negative')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_final_test_invalid" readonly="true()" relevant="selected(../../hiv_testing/final_result, 'invalid')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_couple_discordant" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_couple_discordant_yes" readonly="true()" relevant="selected(../../hiv_testing/couple_discordant, 'yes')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_couple_discordant_no" readonly="true()" relevant="selected(../../hiv_testing/couple_discordant, 'no')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_couple_discordant_na" readonly="true()" relevant="selected(../../hiv_testing/couple_discordant, 'NA')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_tb_screening_summary" readonly="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_no_signs" readonly="true()" relevant="selected(../../hiv_testing/tb_screening_result, 'no_signs')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_presumed_tb" readonly="true()" relevant="selected(../../hiv_testing/tb_screening_result, 'presumed_tb')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_not_done" readonly="true()" relevant="selected(../../hiv_testing/tb_screening_result, 'not_done')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_on_treatment" readonly="true()" relevant="selected(../../hiv_testing/tb_screening_result, 'on_treatment')" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/hts_retest_test/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/hts_retest_test/inputs">
+      <label>Patient</label>
+      <group ref="/hts_retest_test/inputs/contact">
+        <label>Contact</label>
+        <input appearance="db-object" ref="/hts_retest_test/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <group ref="/hts_retest_test/inputs/contact/contact">
+          <label>Contact</label>
+          <input appearance="db-object" ref="/hts_retest_test/inputs/contact/contact/_id">
+            <label>ID of head of household</label>
+          </input>
+        </group>
+        <group ref="/hts_retest_test/inputs/contact/parent">
+          <label>Parent</label>
+          <group ref="/hts_retest_test/inputs/contact/parent/parent">
+            <label>Parent</label>
+            <group ref="/hts_retest_test/inputs/contact/parent/parent/contact">
+              <label>Contact</label>
+            </group>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/hts_retest_test/hiv_testing">
+      <label>HIV Testing Session</label>
+      <select1 ref="/hts_retest_test/hiv_testing/population_type">
+        <label>Population type</label>
+        <item>
+          <label>General Population</label>
+          <value>general</value>
+        </item>
+        <item>
+          <label>Key Population</label>
+          <value>key_population</value>
+        </item>
+        <item>
+          <label>Priority Population</label>
+          <value>priority_population</value>
+        </item>
+      </select1>
+      <select ref="/hts_retest_test/hiv_testing/kp_type">
+        <label>Key population type</label>
+        <item>
+          <label>People who inject drugs</label>
+          <value>pwid</value>
+        </item>
+        <item>
+          <label>Female sex worker</label>
+          <value>fsw</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select>
+      <select ref="/hts_retest_test/hiv_testing/priority_type">
+        <label>Priority population type</label>
+        <item>
+          <label>Fisherfolk</label>
+          <value>fisherfolk</value>
+        </item>
+        <item>
+          <label>Truck driver</label>
+          <value>truck_driver</value>
+        </item>
+        <item>
+          <label>Adolescent and young girls</label>
+          <value>agyw</value>
+        </item>
+        <item>
+          <label>Prisoner</label>
+          <value>prisoner</value>
+        </item>
+        <item>
+          <label>Not applicable</label>
+          <value>NA</value>
+        </item>
+      </select>
+      <select1 ref="/hts_retest_test/hiv_testing/disability">
+        <label>Does client have any disability?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select ref="/hts_retest_test/hiv_testing/disability_type">
+        <label>Disability type</label>
+        <item>
+          <label>Hearing impairment</label>
+          <value>hearing</value>
+        </item>
+        <item>
+          <label>Visual impairment</label>
+          <value>visual</value>
+        </item>
+        <item>
+          <label>Mentally challenged</label>
+          <value>mental</value>
+        </item>
+        <item>
+          <label>Physically challenged</label>
+          <value>physical</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select>
+      <select1 ref="/hts_retest_test/hiv_testing/ever_tested_by_provider">
+        <label>Has the client ever been tested for HIV by a HTS provider?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/hts_retest_test/hiv_testing/months_since_last_test">
+        <label>Duration in months since the last test</label>
+      </input>
+      <select1 ref="/hts_retest_test/hiv_testing/self_test_in_last_12_months">
+        <label>Has the client done HIV self test in the last 12 months?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/hts_retest_test/hiv_testing/hts_strategy">
+        <label>Indicate HTS strategy used?</label>
+        <item>
+          <label>Provider Initiated Testing(PITC)</label>
+          <value>pitc</value>
+        </item>
+        <item>
+          <label>Client Initiated Testing</label>
+          <value>client_initiated</value>
+        </item>
+        <item>
+          <label>Integrated VCT Center</label>
+          <value>integrated_vct</value>
+        </item>
+        <item>
+          <label>Standalone VCT Center</label>
+          <value>standalone_vct</value>
+        </item>
+        <item>
+          <label>Home Based Testing</label>
+          <value>home_based_testing</value>
+        </item>
+        <item>
+          <label>Mobile outreach HTS</label>
+          <value>mobile_outreach</value>
+        </item>
+        <item>
+          <label>PNS</label>
+          <value>pns</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <select1 ref="/hts_retest_test/hiv_testing/entry_point">
+        <label>Indicate HTS entry point</label>
+        <item>
+          <label>Outpatient Deparment(OPD)</label>
+          <value>opd</value>
+        </item>
+        <item>
+          <label>Inpatient Department(IPD)</label>
+          <value>ipd</value>
+        </item>
+        <item>
+          <label>Paediatric Clinic</label>
+          <value>pead_clinic</value>
+        </item>
+        <item>
+          <label>Nutrition Clinic</label>
+          <value>nutrition_clinic</value>
+        </item>
+        <item>
+          <label>PMTCT</label>
+          <value>pmtct</value>
+        </item>
+        <item>
+          <label>TB</label>
+          <value>tb</value>
+        </item>
+        <item>
+          <label>CCC</label>
+          <value>ccc</value>
+        </item>
+        <item>
+          <label>VCT</label>
+          <value>vct</value>
+        </item>
+        <item>
+          <label>Home Based Testing</label>
+          <value>home_based_testing</value>
+        </item>
+        <item>
+          <label>Mobile outreach</label>
+          <value>mobile_outreach</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <select1 ref="/hts_retest_test/hiv_testing/client_consent">
+        <label>Has client consented?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/hts_retest_test/hiv_testing/individual_couple_testing">
+        <label>Client tested as?</label>
+        <item>
+          <label>Individual</label>
+          <value>individual</value>
+        </item>
+        <item>
+          <label>Couple</label>
+          <value>couple</value>
+        </item>
+      </select1>
+      <group ref="/hts_retest_test/hiv_testing/test_one">
+        <label>Test 1</label>
+        <input ref="/hts_retest_test/hiv_testing/test_one/test_1_note">
+          <label>&lt;span style="color:green;"&gt;**Please enter details for HIV Test 1**&lt;/span&gt;</label>
+        </input>
+        <select1 ref="/hts_retest_test/hiv_testing/test_one/kit_1_name">
+          <label>Kit name</label>
+          <item>
+            <label>Determine</label>
+            <value>determine</value>
+          </item>
+          <item>
+            <label>First Response</label>
+            <value>first_response</value>
+          </item>
+          <item>
+            <label>Dual Kit</label>
+            <value>dual</value>
+          </item>
+        </select1>
+        <input ref="/hts_retest_test/hiv_testing/test_one/kit_1_lot_number">
+          <label>Lot Number</label>
+        </input>
+        <input ref="/hts_retest_test/hiv_testing/test_one/kit_1_expiry">
+          <label>Expiry Date</label>
+        </input>
+        <select1 ref="/hts_retest_test/hiv_testing/test_one/test_1_result">
+          <label>HIV Test 1 result</label>
+          <item>
+            <label>Positive</label>
+            <value>positive</value>
+          </item>
+          <item>
+            <label>Negative</label>
+            <value>negative</value>
+          </item>
+          <item>
+            <label>Invalid</label>
+            <value>invalid</value>
+          </item>
+        </select1>
+      </group>
+      <group ref="/hts_retest_test/hiv_testing/test_two">
+        <label>Test 2</label>
+        <input ref="/hts_retest_test/hiv_testing/test_two/test_2_note">
+          <label>&lt;span style="color:green;"&gt;**Please enter details for HIV Test 2**&lt;/span&gt;</label>
+        </input>
+        <select1 ref="/hts_retest_test/hiv_testing/test_two/kit_2_name">
+          <label>Kit name</label>
+          <item>
+            <label>Determine</label>
+            <value>determine</value>
+          </item>
+          <item>
+            <label>First Response</label>
+            <value>first_response</value>
+          </item>
+          <item>
+            <label>Dual Kit</label>
+            <value>dual</value>
+          </item>
+        </select1>
+        <input ref="/hts_retest_test/hiv_testing/test_two/kit_2_lot_number">
+          <label>Lot Number</label>
+        </input>
+        <input ref="/hts_retest_test/hiv_testing/test_two/kit_2_expiry">
+          <label>Expiry Date</label>
+        </input>
+        <select1 ref="/hts_retest_test/hiv_testing/test_two/test_2_result">
+          <label>HIV Test 2 result</label>
+          <item>
+            <label>Positive</label>
+            <value>positive</value>
+          </item>
+          <item>
+            <label>Negative</label>
+            <value>negative</value>
+          </item>
+          <item>
+            <label>N/A</label>
+            <value>NA</value>
+          </item>
+        </select1>
+      </group>
+      <select1 ref="/hts_retest_test/hiv_testing/final_result">
+        <label>Final result</label>
+        <item>
+          <label>Positive</label>
+          <value>positive</value>
+        </item>
+        <item>
+          <label>Negative</label>
+          <value>negative</value>
+        </item>
+        <item>
+          <label>Invalid</label>
+          <value>invalid</value>
+        </item>
+      </select1>
+      <select1 ref="/hts_retest_test/hiv_testing/couple_discordant">
+        <label>Couple is discordant</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+        <item>
+          <label>N/A</label>
+          <value>NA</value>
+        </item>
+      </select1>
+      <select1 ref="/hts_retest_test/hiv_testing/tb_screening_result">
+        <label>TB screening result</label>
+        <item>
+          <label>No TB signs</label>
+          <value>no_signs</value>
+        </item>
+        <item>
+          <label>Presumed TB</label>
+          <value>presumed_tb</value>
+        </item>
+        <item>
+          <label>Not Done</label>
+          <value>not_done</value>
+        </item>
+        <item>
+          <label>On TB Treatment</label>
+          <value>on_treatment</value>
+        </item>
+      </select1>
+      <input ref="/hts_retest_test/hiv_testing/remarks">
+        <label>Remarks</label>
+      </input>
+    </group>
+    <group appearance="field-list summary" ref="/hts_retest_test/group_review">
+      <label>Summary page</label>
+      <input ref="/hts_retest_test/group_review/n_submit">
+        <label>_Be sure you submit to complete this action._</label>
+      </input>
+      <input appearance="h1 yellow" ref="/hts_retest_test/group_review/n_household_details_title">
+        <label>Client details&lt;I class="fa fa-user"&gt;&lt;/i&gt;</label>
+      </input>
+      <input ref="/hts_retest_test/group_review/n_household_details">
+        <label>&lt;h4 style=&quot;text-align:center;&quot;&gt;<output value=" /hts_retest_test/place_name "/> <output value=" /hts_retest_test/head "/>&lt;/h4&gt;</label>
+      </input>
+      <input appearance="h1 blue" ref="/hts_retest_test/group_review/n_assessment_findings">
+        <label>Assessment findings&lt;I class="fa fa-user"&gt;&lt;/i&gt;</label>
+      </input>
+      <input ref="/hts_retest_test/group_review/n_drinking_water_source">
+        <label>**_Population Type_**</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_surface_water">
+        <label>General Population</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_uncovered_well_or_spring">
+        <label>Key Population</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_vendor_provided">
+        <label>Priority Population</label>
+      </input>
+      <input ref="/hts_retest_test/group_review/n_hts_strategy">
+        <label>**_HTS Strategy_**</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_pitc">
+        <label>Provider Initiated Testing(PITC)</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_client_initiated">
+        <label>Client Initiated Testing</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_integrated_vct">
+        <label>Integrated VCT Center</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_standalone_vct">
+        <label>Standalone VCT Center</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_home_based_testing">
+        <label>Home Based Testing</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_mobile_outreach">
+        <label>Mobile outreach HTS</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_pns">
+        <label>PNS</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_hts_strategy_other">
+        <label>Other</label>
+      </input>
+      <input ref="/hts_retest_test/group_review/n_entry_point">
+        <label>**_Entry Point_**</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_opd">
+        <label>Outpatient Deparment(OPD)</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_ipd">
+        <label>Inpatient Department(IPD)</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_pead_clinic">
+        <label>Paediatric Clinic</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_nutrition_clinic">
+        <label>Nutrition Clinic</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_pmtct">
+        <label>PMTCT</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_tb">
+        <label>TB</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_ccc">
+        <label>CCC</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_vct">
+        <label>VCT</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_home_based_testing">
+        <label>Home Based Testing</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_mobile_outreach">
+        <label>Mobile outreach</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/e_n_other">
+        <label>Other</label>
+      </input>
+      <input ref="/hts_retest_test/group_review/n_test_1_results">
+        <label>**_Test 1 Result_**</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_test_result_1_positive">
+        <label>Positive</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_test_result_1_negative">
+        <label>Negative</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_test_result_1_invalid">
+        <label>Invalid</label>
+      </input>
+      <input ref="/hts_retest_test/group_review/n_test_2_results">
+        <label>**_Test 2 Result_**</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_test_result_2_positive">
+        <label>Positive</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_test_result_2_negative">
+        <label>Negative</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_test_result_2_invalid">
+        <label>N/A</label>
+      </input>
+      <input ref="/hts_retest_test/group_review/n_final_results">
+        <label>**_Final Result_**</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_final_test_positive">
+        <label>Positive</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_final_test_negative">
+        <label>Negative</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_final_test_invalid">
+        <label>Invalid</label>
+      </input>
+      <input ref="/hts_retest_test/group_review/n_couple_discordant">
+        <label>**_Couple Discordance_**</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_couple_discordant_yes">
+        <label>Yes</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_couple_discordant_no">
+        <label>No</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_couple_discordant_na">
+        <label>N/A</label>
+      </input>
+      <input ref="/hts_retest_test/group_review/n_tb_screening_summary">
+        <label>**_TB Screening_**</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_no_signs">
+        <label>No TB signs</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_presumed_tb">
+        <label>Presumed TB</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_not_done">
+        <label>Not Done</label>
+      </input>
+      <input appearance="li" ref="/hts_retest_test/group_review/n_on_treatment">
+        <label>On TB Treatment</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>
