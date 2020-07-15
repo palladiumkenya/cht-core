@@ -4,7 +4,7 @@
     <h:title>Tracking</h:title>
     <model>
       <instance>
-        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-06-17 11:43:47">
+        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-06-18 19:17:26">
           <inputs>
             <meta>
               <location>
@@ -73,19 +73,19 @@
       <bind calculate="../inputs/contact/_id" nodeset="/tracking/place_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/tracking/place_name" type="string"/>
       <bind calculate="../inputs/contact/contact/name" nodeset="/tracking/head" type="string"/>
-      <bind nodeset="/tracking/tracking_nformation/tracking_attempted" required="false()" type="select1"/>
+      <bind nodeset="/tracking/tracking_nformation/tracking_attempted" required="true()" type="select1"/>
       <bind nodeset="/tracking/tracking_nformation/why_not" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;no&quot;" required="false()" type="select1"/>
       <bind nodeset="/tracking/tracking_nformation/Specify" relevant=" /tracking/tracking_nformation/why_not =&quot;other&quot;" required="false()" type="string"/>
-      <bind nodeset="/tracking/tracking_nformation/number_of_attempt" required="false()" type="string"/>
-      <bind nodeset="/tracking/tracking_nformation/date_attempted" type="date"/>
-      <bind nodeset="/tracking/tracking_nformation/tracing_type" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/outcome" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/outcome_status_reached" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/status" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/exit_reason" relevant=" /tracking/tracking_nformation/status =&quot;voluntary_exit&quot;" type="string"/>
-      <bind nodeset="/tracking/tracking_nformation/source_of_info" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/status_in_program" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/reason_for_exit" required="false()" type="string"/>
+      <bind nodeset="/tracking/tracking_nformation/number_of_attempt" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="string"/>
+      <bind nodeset="/tracking/tracking_nformation/date_attempted" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" type="date"/>
+      <bind nodeset="/tracking/tracking_nformation/tracing_type" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/tracking_nformation/outcome" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/tracking_nformation/outcome_status_reached" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/tracking_nformation/status" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/tracking_nformation/exit_reason" relevant=" /tracking/tracking_nformation/status =&quot;voluntary_exitt&quot;" type="string"/>
+      <bind nodeset="/tracking/tracking_nformation/source_of_info" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/tracking_nformation/status_in_program" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/tracking_nformation/reason_for_exit" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/tracking/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -237,11 +237,11 @@
       <select1 ref="/tracking/tracking_nformation/source_of_info">
         <label>Source of Information</label>
         <item>
-          <label>KP</label>
+          <label>Key Population</label>
           <value>kp</value>
         </item>
         <item>
-          <label>pe</label>
+          <label>Peer Educator</label>
           <value>pe</value>
         </item>
         <item>

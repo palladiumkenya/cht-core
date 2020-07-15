@@ -3,10 +3,10 @@
     "surveillance-covid19.health.go.ke/medic": "7IKU4D/drJBA2llzAw50jA=="
   },
   "form:hts_initial_test": {
-    "surveillance-covid19.health.go.ke/medic": "VwF4FE9wSqipqaHG5L1a7g=="
+    "surveillance-covid19.health.go.ke/medic": "jW3v7hdwrXzAXyqFK2IeyA=="
   },
   "form:hts_retest_test": {
-    "surveillance-covid19.health.go.ke/medic": "cPmTokslko/WYKNmSB3wTA=="
+    "surveillance-covid19.health.go.ke/medic": "BGK0zh5jwZSSIam3ZCWIJg=="
   },
   "form:pnc_danger_sign_follow_up_baby": {
     "surveillance-covid19.health.go.ke/medic": "0PJWqSJufMPaKEN3vHYf+Q=="
@@ -75,15 +75,24 @@
     "surveillance-covid19.health.go.ke/medic": "7wPAUqVbY3J39Slr+fNkEw=="
   },
   "form:hiv_treatment_verification": {
-    "surveillance-covid19.health.go.ke/medic": "vo5WC98EemNOGm3EYlLl/w=="
+    "surveillance-covid19.health.go.ke/medic": "O938XyNPqEl/jTcSwhofIQ=="
   },
   "form:peer_calendar": {
-    "surveillance-covid19.health.go.ke/medic": "ZAJprsN7rhUGfyvib46jCA=="
+    "surveillance-covid19.health.go.ke/medic": "nglSUoSU2I3YsN7BbP+UHA=="
   },
   "form:prep_treatment_verification": {
-    "surveillance-covid19.health.go.ke/medic": "LlzS5tH4GNuJJ6pnBxp25A=="
+    "surveillance-covid19.health.go.ke/medic": "j5jFSmm70VC5Jg0sx4pCHQ=="
   },
   "form:tracking": {
-    "surveillance-covid19.health.go.ke/medic": "TfiyhwtCrGHrC7f/s7Wv5Q=="
+    "surveillance-covid19.health.go.ke/medic": "cXfrOjsKP1Ld1ROs7JoPxA=="
+  },
+  "form:contatct": {
+    "surveillance-covid19.health.go.ke/medic": "6nzlK/8zonUUOnG8nHFRWg=="
+  },
+  "form:hts_linkage": {
+    "surveillance-covid19.health.go.ke/medic": "Hp2DBkTr+EmABvYMMPEbQA=="
+  },
+  "form:hts_referral": {
+    "surveillance-covid19.health.go.ke/medic": "TkdPVVb9+xBbKONjMGKMHQ=="
   }
 }

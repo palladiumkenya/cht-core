@@ -4,7 +4,7 @@
     <h:title>Peer Calendar</h:title>
     <model>
       <instance>
-        <peer_calendar delimiter="#" id="peer_calendar" prefix="J1!peer_calendar!" version="2020-06-15 21:25:14">
+        <peer_calendar delimiter="#" id="peer_calendar" prefix="J1!peer_calendar!" version="2020-06-18 19:10:04">
           <inputs>
             <meta>
               <location>
@@ -92,8 +92,8 @@
       <bind nodeset="/peer_calendar/dice_history_information/needles_per_month" type="string"/>
       <bind nodeset="/peer_calendar/dice_history_information/duration_of_sex_work" type="string"/>
       <bind nodeset="/peer_calendar/dice_history_information/ever_experince_violence" type="select1"/>
-      <bind nodeset="/peer_calendar/dice_history_information/services_received" required="true()" type="select1"/>
-      <bind nodeset="/peer_calendar/dice_history_information/week_to_fill_services" required="true()" type="select1"/>
+      <bind nodeset="/peer_calendar/dice_history_information/services_received" required="true()" type="select"/>
+      <bind nodeset="/peer_calendar/dice_history_information/week_to_fill_services" required="true()" type="select"/>
       <bind nodeset="/peer_calendar/weekly_count/no_of_needles_distributed" type="string"/>
       <bind nodeset="/peer_calendar/weekly_count/no_of_condoms_distributed" type="string"/>
       <bind nodeset="/peer_calendar/weekly_count/no_female_condoms" type="string"/>
@@ -217,7 +217,7 @@
           <value>no</value>
         </item>
       </select1>
-      <select1 ref="/peer_calendar/dice_history_information/services_received">
+      <select ref="/peer_calendar/dice_history_information/services_received">
         <label>What services/goods did you recieve last month?</label>
         <item>
           <label>Condoms</label>
@@ -235,26 +235,26 @@
           <label>Visited Clinic</label>
           <value>visited_clinic</value>
         </item>
-      </select1>
-      <select1 ref="/peer_calendar/dice_history_information/week_to_fill_services">
+      </select>
+      <select ref="/peer_calendar/dice_history_information/week_to_fill_services">
         <label>Which week would you like to fill the monthly service uptake:</label>
         <item>
-          <label>1. Weeks</label>
+          <label>1 Week</label>
           <value>first_week</value>
         </item>
         <item>
-          <label>2. Weeks</label>
+          <label>2 Weeks</label>
           <value>second_week</value>
         </item>
         <item>
-          <label>3. Weeks</label>
+          <label>3 Weeks</label>
           <value>third_week</value>
         </item>
         <item>
-          <label>4. Weeks</label>
+          <label>4 Weeks</label>
           <value>fourth_week</value>
         </item>
-      </select1>
+      </select>
     </group>
     <group appearance="field-list" ref="/peer_calendar/weekly_count">
       <label>Weekly Count</label>

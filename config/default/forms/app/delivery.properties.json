@@ -1,9 +1,0 @@
-{
-    "icon": "icon-mother-child",
-    "title": "Delivery",
-    "context": {
-        "person": true,
-        "place": false,
-        "expression": "contact.type === 'person'"
-    }
-}

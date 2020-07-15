@@ -4,7 +4,7 @@
     <h:title>PrEP Treatment Verification</h:title>
     <model>
       <instance>
-        <prep_treatment_verification delimiter="#" id="prep_treatment_verification" prefix="J1!prep_treatment_verification!" version="2020-06-17 11:20:10">
+        <prep_treatment_verification delimiter="#" id="prep_treatment_verification" prefix="J1!prep_treatment_verification!" version="2020-06-18 23:14:08">
           <inputs>
             <meta>
               <location>
@@ -75,16 +75,16 @@
       <bind calculate="../inputs/contact/name" nodeset="/prep_treatment_verification/place_name" type="string"/>
       <bind calculate="../inputs/contact/contact/name" nodeset="/prep_treatment_verification/head" type="string"/>
       <bind nodeset="/prep_treatment_verification/prep_history/enrollmenet_date" required="true()" type="date"/>
-      <bind nodeset="/prep_treatment_verification/prep_history/facility_name" required="true()" type="string"/>
+      <bind nodeset="/prep_treatment_verification/prep_history/facility_name" required="false()" type="string"/>
       <bind nodeset="/prep_treatment_verification/prep_history/pepfar_sites" required="false()" type="select1"/>
       <bind nodeset="/prep_treatment_verification/prep_history/date_initiated_on_prep" type="date"/>
       <bind nodeset="/prep_treatment_verification/prep_history/prep_regimen" type="select1"/>
-      <bind nodeset="/prep_treatment_verification/prep_history/source_of_information" required="true()" type="select1"/>
+      <bind nodeset="/prep_treatment_verification/prep_history/source_of_information" required="false()" type="select1"/>
       <bind nodeset="/prep_treatment_verification/prep_appointments/verification_date" required="true()" type="date"/>
       <bind nodeset="/prep_treatment_verification/prep_appointments/prep_status" required="true()" type="select1"/>
-      <bind nodeset="/prep_treatment_verification/prep_appointments/discontinuation_reason" required="true()" type="select1"/>
+      <bind nodeset="/prep_treatment_verification/prep_appointments/discontinuation_reason" relevant=" /prep_treatment_verification/prep_appointments/prep_status =&quot;discontinue&quot;" required="false()" type="select1"/>
       <bind nodeset="/prep_treatment_verification/prep_appointments/other_reason" relevant=" /prep_treatment_verification/prep_appointments/discontinuation_reason =&quot;other&quot;" required="false()" type="string"/>
-      <bind nodeset="/prep_treatment_verification/prep_appointments/next_appointment" required="true()" type="date"/>
+      <bind nodeset="/prep_treatment_verification/prep_appointments/next_appointment" relevant=" /prep_treatment_verification/prep_appointments/prep_status =&quot;continue&quot; or  /prep_treatment_verification/prep_appointments/prep_status =&quot;restart&quot;" required="false()" type="date"/>
       <bind nodeset="/prep_treatment_verification/prep_appointments/comments" required="false()" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/prep_treatment_verification/meta/instanceID" readonly="true()" type="string"/>
     </model>
@@ -131,6 +131,10 @@
         <item>
           <label>No</label>
           <value>no</value>
+        </item>
+        <item>
+          <label>Unknown</label>
+          <value>unknown</value>
         </item>
       </select1>
       <input ref="/prep_treatment_verification/prep_history/date_initiated_on_prep">
@@ -187,7 +191,7 @@
           <value>continue</value>
         </item>
         <item>
-          <label>Discontinue</label>
+          <label>Discontinued</label>
           <value>discontinue</value>
         </item>
         <item>
