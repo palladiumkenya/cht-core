@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>HTS Linkage</h:title>
+    <model>
+      <instance>
+        <hts_linkage delimiter="#" id="hts_linkage" prefix="J1!hts_linkage!" version="2020-05-11 19:25:42">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <name/>
+              <contact>
+                <_id/>
+                <name/>
+              </contact>
+              <parent>
+                <parent>
+                  <contact>
+                    <name/>
+                    <phone/>
+                  </contact>
+                </parent>
+              </parent>
+            </contact>
+          </inputs>
+          <source/>
+          <source_id/>
+          <place_id/>
+          <place_name/>
+          <head/>
+          <hts_linkage_assessment>
+            <encounter_date/>
+            <facility_linkedto_name/>
+            <ccc_number/>
+            <health_worker/>
+            <cadre_worker/>
+            <other_cadre/>
+            <date_enrolled/>
+            <Art-date/>
+            <remark/>
+          </hts_linkage_assessment>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </hts_linkage>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/hts_linkage/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/hts_linkage/inputs/source" type="string"/>
+      <bind nodeset="/hts_linkage/inputs/source_id" type="string"/>
+      <bind nodeset="/hts_linkage/inputs/contact/_id" type="db:clinic"/>
+      <bind nodeset="/hts_linkage/inputs/contact/name" type="string"/>
+      <bind nodeset="/hts_linkage/inputs/contact/contact/_id" type="db:person"/>
+      <bind nodeset="/hts_linkage/inputs/contact/contact/name" type="string"/>
+      <bind nodeset="/hts_linkage/inputs/contact/parent/parent/contact/name" type="string"/>
+      <bind nodeset="/hts_linkage/inputs/contact/parent/parent/contact/phone" type="string"/>
+      <bind calculate="../inputs/source" nodeset="/hts_linkage/source" type="string"/>
+      <bind calculate="../inputs/source_id" nodeset="/hts_linkage/source_id" type="string"/>
+      <bind calculate="../inputs/contact/_id" nodeset="/hts_linkage/place_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/hts_linkage/place_name" type="string"/>
+      <bind calculate="../inputs/contact/contact/name" nodeset="/hts_linkage/head" type="string"/>
+      <bind nodeset="/hts_linkage/hts_linkage_assessment/encounter_date" required="true()" type="date"/>
+      <bind nodeset="/hts_linkage/hts_linkage_assessment/facility_linkedto_name" required="true()" type="string"/>
+      <bind nodeset="/hts_linkage/hts_linkage_assessment/ccc_number" required="true()" type="string"/>
+      <bind nodeset="/hts_linkage/hts_linkage_assessment/health_worker" required="true()" type="string"/>
+      <bind nodeset="/hts_linkage/hts_linkage_assessment/cadre_worker" type="select1"/>
+      <bind nodeset="/hts_linkage/hts_linkage_assessment/other_cadre" relevant=" /hts_linkage/hts_linkage_assessment/cadre_worker =&quot;other&quot;" type="string"/>
+      <bind nodeset="/hts_linkage/hts_linkage_assessment/date_enrolled" required="true()" type="date"/>
+      <bind nodeset="/hts_linkage/hts_linkage_assessment/Art-date" required="true()" type="date"/>
+      <bind nodeset="/hts_linkage/hts_linkage_assessment/remark" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/hts_linkage/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/hts_linkage/inputs">
+      <label>Patient</label>
+      <group ref="/hts_linkage/inputs/contact">
+        <label>Contact</label>
+        <input appearance="db-object" ref="/hts_linkage/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <group ref="/hts_linkage/inputs/contact/contact">
+          <label>Contact</label>
+          <input appearance="db-object" ref="/hts_linkage/inputs/contact/contact/_id">
+            <label>ID of head of household</label>
+          </input>
+        </group>
+        <group ref="/hts_linkage/inputs/contact/parent">
+          <label>Parent</label>
+          <group ref="/hts_linkage/inputs/contact/parent/parent">
+            <label>Parent</label>
+            <group ref="/hts_linkage/inputs/contact/parent/parent/contact">
+              <label>Contact</label>
+            </group>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/hts_linkage/hts_linkage_assessment">
+      <label>Linkage to care</label>
+      <input ref="/hts_linkage/hts_linkage_assessment/encounter_date">
+        <label>Encounter Date</label>
+      </input>
+      <input ref="/hts_linkage/hts_linkage_assessment/facility_linkedto_name">
+        <label>Facility linked to:</label>
+      </input>
+      <input ref="/hts_linkage/hts_linkage_assessment/ccc_number">
+        <label>CCC number:</label>
+      </input>
+      <input ref="/hts_linkage/hts_linkage_assessment/health_worker">
+        <label>Health worker handed to</label>
+      </input>
+      <select1 ref="/hts_linkage/hts_linkage_assessment/cadre_worker">
+        <label>Cadre of health worker :</label>
+        <item>
+          <label>Nurse</label>
+          <value>nurse</value>
+        </item>
+        <item>
+          <label>Clincal officer/Docter</label>
+          <value>clinical_officer</value>
+        </item>
+        <item>
+          <label>Community health care worker</label>
+          <value>community_health</value>
+        </item>
+        <item>
+          <label>Employee</label>
+          <value>employee</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/hts_linkage/hts_linkage_assessment/other_cadre">
+        <label>Specify other cadre</label>
+      </input>
+      <input ref="/hts_linkage/hts_linkage_assessment/date_enrolled">
+        <label>Date enrolled :</label>
+      </input>
+      <input ref="/hts_linkage/hts_linkage_assessment/Art-date">
+        <label>ART start date</label>
+      </input>
+      <input ref="/hts_linkage/hts_linkage_assessment/remark">
+        <label>Remark(s)</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>
