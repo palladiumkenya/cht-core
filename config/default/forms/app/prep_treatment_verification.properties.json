@@ -1,13 +1,9 @@
 {
-    "icon": "icon-healthcare",
-    "title": "PrEP Treatment Verification",
-    "context": {
-        "person": true,
-        "place": false,
-<<<<<<< HEAD
-        "expression": "user.role =='pnavigator'"
-=======
-        "expression": ""
->>>>>>> 0fe371f7bb37e06e1572b57a5674cf57e4f452df
-    }
+        "icon": "icon-healthcare",
+        "title": "PrEP Treatment Verification",
+        "context": {
+                "person": true,
+                "place": false,
+                "expression": "user.role =='pnavigator'"
+        }
 }
