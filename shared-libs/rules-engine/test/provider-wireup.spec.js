@@ -187,6 +187,12 @@ describe('provider-wireup integration tests', () => {
       // dupes don't matter here
       expect(rulesStateStore.markDirty.args).to.deep.eq([[['patient', 'headless', 'patient']]]);
     });
+
+    it('none', async () => {
+      sinon.stub(rulesStateStore, 'markDirty').resolves();
+      await wireup.updateEmissionsFor(provider);
+      expect(rulesStateStore.markDirty.args).to.deep.eq([[[]]]);
+    });
   });
 
   describe('fetchTasksFor', () => {
@@ -234,7 +240,7 @@ describe('provider-wireup integration tests', () => {
       expect(refreshRulesEmissions.callCount).to.eq(1);
       expect(refreshRulesEmissions.args[0][0]).excludingEvery('_rev').to.deep.eq({
         contactDocs: [chtDocs.contact],
-        reportDocs: [headlessReport, reportConnectedByPlace, chtDocs.pregnancyReport],
+        reportDocs: [headlessReport, chtDocs.pregnancyReport, reportConnectedByPlace],
         taskDocs: [headlessTask, taskRequestedByChtContact],
         userSettingsId: 'org.couchdb.user:username',
       });

@@ -77,7 +77,7 @@ describe('TasksContentCtrl', () => {
       expect(ctrl.formId).to.equal('A');
 
       expect(render.callCount).to.equal(1);
-      expect(render.getCall(0).args.length).to.equal(4);
+      expect(render.getCall(0).args.length).to.equal(5);
       expect(render.getCall(0).args[0]).to.equal('#task-report');
       expect(render.getCall(0).args[1]).to.deep.equal(form);
       expect(render.getCall(0).args[2]).to.equal('nothing');
@@ -116,14 +116,13 @@ describe('TasksContentCtrl', () => {
   });
 
   it('unsuccessful hydration', done => {
-    get.rejects();
+    get.rejects({ status: 404 });
     task = {
       _id: '123',
       forId: 'dne',
       actions: [{
         type: 'report',
         form: 'A',
-        content: 'nothing',
       }]
     };
     const form = { _id: 'myform', title: 'My Form' };
@@ -134,7 +133,7 @@ describe('TasksContentCtrl', () => {
       expect(get.args).to.deep.eq([['dne']]);
 
       expect(render.callCount).to.eq(1);
-      expect(render.args[0][2]).to.eq('nothing');
+      expect(render.args[0][2]).to.deep.eq({ contact: { _id: 'dne' } });
       done();
     });
   });

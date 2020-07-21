@@ -3,7 +3,7 @@ describe('dhis2 export controller', () => {
 
   const dataSet = 'abc123';
   const dhisDataSets = [
-    { guid: dataSet, label: 'dataset label' },
+    { id: dataSet, translation_key: 'dataset label' },
   ];
 
   const NOW = moment('2000-01-15').valueOf();
@@ -16,7 +16,7 @@ describe('dhis2 export controller', () => {
   beforeEach(() => {
     module('adminApp');
     sinon.useFakeTimers(NOW);
-    Settings = sinon.stub().resolves({ dhisDataSets });
+    Settings = sinon.stub().resolves({ dhis_data_sets: dhisDataSets });
     query = sinon.stub().resolves({ rows: [
       mockContact('p1'),
       mockContact('p2', { dhis: { orgUnit: 'ou-p2'}}),

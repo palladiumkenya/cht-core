@@ -3,12 +3,12 @@
 const _ = require('lodash');
 const auth = require('./auth')();
 const constants = require('./constants');
-const { spawn } = require('child_process');
 const rpn = require('request-promise-native');
 const htmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
 const specReporter = require('jasmine-spec-reporter').SpecReporter;
 const fs = require('fs');
 const path = require('path');
+const Tail = require('tail').Tail;
 
 const PouchDB = require('pouchdb-core');
 PouchDB.plugin(require('pouchdb-adapter-http'));
@@ -351,7 +351,7 @@ module.exports = {
 
   specReporter: new specReporter({
     spec: {
-      displayStacktrace: true,
+      displayStacktrace: 'pretty',
       displayDuration: true
     }
   }),
@@ -598,30 +598,45 @@ module.exports = {
 
   setDebug: debug => e2eDebug = debug,
 
-  stopSentinel: () => {
-    if (process.env.TRAVIS) {
-      return new Promise(res => {
-        const pid = spawn('horti-svc-stop', ['medic-sentinel']);
+  stopSentinel: () => rpn.post('http://localhost:31337/sentinel/stop'),
+  startSentinel: () => rpn.post('http://localhost:31337/sentinel/start'),
 
-        pid.on('exit', res);
-      });
-    } else {
-      return rpn.post('http://localhost:31337/sentinel/stop');
-    }
-  },
-  startSentinel: () => {
-    if (process.env.TRAVIS) {
-      return new Promise(res => {
-        const pid = spawn('horti-svc-start', [
-          `${require('os').homedir()}/.horticulturalist/deployments`,
-          'medic-sentinel'
-        ]);
+  /**
+   * Collector that listens to the given logfile and collects lines that match at least one of the a
+   * given regular expressions
+   *
+   * To use, call before the action you wish to catch, and then execute the returned function after
+   * the action should have taken place. The function will return a promise that will succeed with
+   * the list of captured lines, or fail if there have been any errors with log capturing.
+   *
+   * @param      {string}    logFilename  filename of file in local logs directory
+   * @param      {[RegExp]}  regex        matching expression(s) run against lines
+   * @return     {function}  fn that returns a promise
+   */
+  collectLogs: (logFilename, ...regex) => {
+    const lines = [];
+    const errors = [];
 
-        pid.on('exit', res);
-      });
-    } else {
-      return rpn.post('http://localhost:31337/sentinel/start');
-    }
+    const tail = new Tail(`./tests/logs/${logFilename}`);
+    tail.on('line', data => {
+      if (regex.find(r => r.test(data))) {
+        lines.push(data);
+      }
+    });
+    tail.on('error', err => {
+      errors.push(err);
+    });
+    tail.watch();
+
+    return function() {
+      tail.unwatch();
+
+      if (errors.length) {
+        return Promise.reject({message: 'CollectLogs errored', errors: errors});
+      }
+
+      return Promise.resolve(lines);
+    };
   },
 
   // delays executing a function that returns a promise with the provided interval (in ms)
@@ -633,7 +648,7 @@ module.exports = {
 
   setProcessedSeqToNow: () => {
     return Promise.all([
-      sentinel.get('_local/sentinel-meta-data'),
+      sentinel.get('_local/sentinel-meta-data').catch(() => ({_id: '_local/sentinel-meta-data'})),
       db.info()
     ]).then(([sentinelMetadata, {update_seq: updateSeq}]) => {
       sentinelMetadata.processed_seq = updateSeq;
@@ -645,6 +660,28 @@ module.exports = {
   waitForDocRev: waitForDocRev,
 
   getDefaultSettings: getDefaultSettings,
+
+  addTranslations: (languageCode, translations = {}) => {
+    const getTranslationsDoc = code => {
+      return db.get(`messages-${code}`).catch(err => {
+        if (err.status === 404) {
+          return {
+            _id: `messages-${code}`,
+            type: 'translations',
+            code: code,
+            name: code,
+            enabled: true,
+            generic: {}
+          };
+        }
+      });
+    };
+
+    return getTranslationsDoc(languageCode).then(translationsDoc => {
+      Object.assign(translationsDoc.generic, translations);
+      return db.put(translationsDoc);
+    });
+  },
 
   getSettings: () => module.exports.getDoc('settings').then(settings => settings.settings),
 

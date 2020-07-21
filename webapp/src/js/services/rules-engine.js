@@ -1,5 +1,7 @@
 'use strict';
 
+const _ = require('lodash/core');
+
 const registrationUtils = require('@medic/registration-utils');
 const rulesEngineCore = require('@medic/rules-engine');
 
@@ -128,11 +130,10 @@ angular.module('inboxServices').factory('RulesEngine', function(
       key: 'mark-contacts-dirty',
       filter: change => !!change.doc && (ContactTypes.includes(change.doc) || isReport(change.doc)),
       callback: change => {
-        const subjectId = isReport(change.doc) ? registrationUtils.getSubjectId(change.doc) : change.id;
+        const subjectIds = isReport(change.doc) ? registrationUtils.getSubjectId(change.doc) : change.id;
         const telemetryData = telemetryEntry('rules-engine:update-emissions', true);
-
         return RulesEngineCore
-          .updateEmissionsFor(subjectId)
+          .updateEmissionsFor(subjectIds)
           .then(telemetryData.passThrough);
       },
     });
@@ -170,6 +171,17 @@ angular.module('inboxServices').factory('RulesEngine', function(
         rulesConfigChange();
       },
     });
+  };
+
+  const monitorExternalChanges = (changedDocs) => {
+    const contactsWithUpdatedTasks = changedDocs
+      .filter(doc => doc.type === 'task')
+      .map(doc => doc.requester);
+    if (!contactsWithUpdatedTasks.length) {
+      return;
+    }
+
+    return RulesEngineCore.updateEmissionsFor(_.uniq(contactsWithUpdatedTasks));
   };
 
   const translateTaskDocs = taskDocs => {
@@ -238,6 +250,14 @@ angular.module('inboxServices').factory('RulesEngine', function(
         })
         .then(telemetryData.passThrough);
     },
+
+    monitorExternalChanges: (replicationResult) => (
+      initialized.then(() => {
+        return replicationResult &&
+               replicationResult.docs &&
+               monitorExternalChanges(replicationResult.docs);
+      })
+    ),
   };
 
   return self;

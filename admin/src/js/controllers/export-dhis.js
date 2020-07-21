@@ -19,8 +19,8 @@ angular.module('controllers').controller('ExportDhisCtrl',
 
     $scope.selected = {};
     Settings().then(settingsDoc => {
-      $scope.dataSets = Array.isArray(settingsDoc.dhisDataSets) && settingsDoc.dhisDataSets;
-      $scope.selected.dataSet = $scope.dataSets[0] && $scope.dataSets[0].guid;
+      $scope.dataSets = Array.isArray(settingsDoc.dhis_data_sets) && settingsDoc.dhis_data_sets;
+      $scope.selected.dataSet = $scope.dataSets[0] && $scope.dataSets[0].id;
     });
 
     const loadPlaces = () => (

@@ -43,10 +43,10 @@
       "reporting_freq": "weekly"
     }
   ],
-  "dhisDataSets": [
+  "dhis_data_sets": [
     {
-      "guid": "VMuFODsyWaO",
-      "label": "MoH Monthly Integration"
+      "id": "VMuFODsyWaO",
+      "translation_key": "dhis.dataset.monthly.integration"
     }
   ],
   "schedule_morning_hours": 0,

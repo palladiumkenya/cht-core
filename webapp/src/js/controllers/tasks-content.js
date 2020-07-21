@@ -31,6 +31,7 @@ angular.module('inboxControllers').controller('TasksContentCtrl',
       return {
         enketoStatus: Selectors.getEnketoStatus(state),
         enketoSaving: Selectors.getEnketoSavingStatus(state),
+        enketoError: Selectors.getEnketoError(state),
         loadingContent: Selectors.getLoadingContent(state),
         selectedTask: Selectors.getSelectedTask(state),
         loadTasks: Selectors.getLoadTasks(state),
@@ -106,23 +107,25 @@ angular.module('inboxControllers').controller('TasksContentCtrl',
         return $q.resolve(task);
       }
 
-      return DB().get(task.forId)
-        .then(contactDoc => {
-          for (const action of task.actions) {
-            if (!action.content) {
-              action.content = {};
-            }
+      const setActionsContacts = (task, contact) => {
+        task.actions.forEach(action => {
+          action.content = action.content || {};
+          action.content.contact = action.content.contact || contact;
+        });
+      };
 
-            if (!action.content.contact) {
-              action.content.contact = contactDoc;
-            }
+      return DB()
+        .get(task.forId)
+        .catch(err => {
+          if (err.status !== 404) {
+            throw err;
           }
 
-
-          return task;
+          $log.info('Failed to hydrate contact information in task action', err);
+          return { _id: task.forId };
         })
-        .catch(err => {
-          $log.error('Failed to hydrate contact information in task action', err);
+        .then(contactDoc => {
+          setActionsContacts(task, contactDoc);
           return task;
         });
     };
@@ -130,6 +133,14 @@ angular.module('inboxControllers').controller('TasksContentCtrl',
     const markFormEdited = function() {
       ctrl.setEnketoEditedStatus(true);
     };
+
+    const resetFormError = function() {
+      if (ctrl.enketoError) {
+        ctrl.setEnketoError(null);
+      }
+    };
+
+    resetFormError();
 
     ctrl.performAction = function(action, skipDetails) {
       ctrl.setCancelCallback(function() {
@@ -151,7 +162,7 @@ angular.module('inboxControllers').controller('TasksContentCtrl',
         XmlForms.get(action.form)
           .then(function(formDoc) {
             ctrl.setEnketoEditedStatus(false);
-            return Enketo.render('#task-report', formDoc, action.content, markFormEdited)
+            return Enketo.render('#task-report', formDoc, action.content, markFormEdited, resetFormError)
               .then(function(formInstance) {
                 ctrl.form = formInstance;
                 ctrl.loadingForm = false;
@@ -195,7 +206,7 @@ angular.module('inboxControllers').controller('TasksContentCtrl',
         telemetryData.preSave - telemetryData.postRender);
 
       ctrl.setEnketoSavingStatus(true);
-      ctrl.setEnketoError(null);
+      resetFormError();
       Enketo.save(ctrl.formId, ctrl.form, geolocation)
         .then(function(docs) {
           $log.debug('saved report and associated docs', docs);
