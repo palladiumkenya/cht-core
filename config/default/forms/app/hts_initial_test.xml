@@ -4,7 +4,7 @@
     <h:title>HTS Initial Form</h:title>
     <model>
       <instance>
-        <hts_initial_test delimiter="#" id="hts_initial_form" prefix="J1!hts_initial_form!" version="2020-05-19 00:40:58">
+        <hts_initial_test delimiter="#" id="hts_initial_form" prefix="J1!hts_initial_form!" version="2020-07-23 23:13:04">
           <inputs>
             <meta>
               <location>
@@ -151,13 +151,13 @@
       <bind calculate="instance('contact-summary')/context/hts_initial/disability" nodeset="/hts_initial_test/filled_disability" type="string"/>
       <bind calculate="instance('contact-summary')/context/hts_initial/disability_type" nodeset="/hts_initial_test/filled_disability_type" type="string"/>
       <bind calculate="instance('contact-summary')/context/hts_initial/ever_tested" nodeset="/hts_initial_test/filled_ever_tested" type="string"/>
-      <bind nodeset="/hts_initial_test/hiv_testing/alert" readonly="true()" type="string"/>
-      <bind calculate=" /hts_initial_test/filled_population_type " nodeset="/hts_initial_test/hiv_testing/population_type" required="true()" type="select1"/>
+      <bind nodeset="/hts_initial_test/hiv_testing/alert" type="string"/>
+      <bind nodeset="/hts_initial_test/hiv_testing/population_type" required="true()" type="select1"/>
       <bind nodeset="/hts_initial_test/hiv_testing/kp_type" relevant="selected( /hts_initial_test/hiv_testing/population_type ,'key_population')" type="select"/>
       <bind nodeset="/hts_initial_test/hiv_testing/priority_type" relevant="selected( /hts_initial_test/hiv_testing/population_type ,'priority_population')" type="select"/>
-      <bind calculate=" /hts_initial_test/filled_disability " nodeset="/hts_initial_test/hiv_testing/disability" required="true()" type="select1"/>
-      <bind calculate=" /hts_initial_test/filled_disability_type " nodeset="/hts_initial_test/hiv_testing/disability_type" relevant="selected( /hts_initial_test/hiv_testing/disability ,'yes')" type="select"/>
-      <bind calculate=" /hts_initial_test/filled_ever_tested " nodeset="/hts_initial_test/hiv_testing/ever_tested_by_provider" required="true()" type="select1"/>
+      <bind nodeset="/hts_initial_test/hiv_testing/disability" required="true()" type="select1"/>
+      <bind nodeset="/hts_initial_test/hiv_testing/disability_type" relevant="selected( /hts_initial_test/hiv_testing/disability ,'yes')" type="select"/>
+      <bind nodeset="/hts_initial_test/hiv_testing/ever_tested_by_provider" required="true()" type="select1"/>
       <bind nodeset="/hts_initial_test/hiv_testing/months_since_last_test" relevant="selected( /hts_initial_test/hiv_testing/ever_tested_by_provider ,'yes')" type="int"/>
       <bind nodeset="/hts_initial_test/hiv_testing/self_test_in_last_12_months" required="true()" type="select1"/>
       <bind nodeset="/hts_initial_test/hiv_testing/hts_strategy" required="true()" type="select1"/>
@@ -259,9 +259,6 @@
     </group>
     <group appearance="field-list" ref="/hts_initial_test/hiv_testing">
       <label>HIV Testing Session</label>
-      <input ref="/hts_initial_test/hiv_testing/alert">
-        <label><output value=" /hts_initial_test/filled_population_type "/> <output value=" /hts_initial_test/filled_disability "/> <output value=" /hts_initial_test/filled_disability_type "/> <output value=" /hts_initial_test/filled_ever_tested "/></label>
-      </input>
       <select1 ref="/hts_initial_test/hiv_testing/population_type">
         <label>Population type</label>
         <item>

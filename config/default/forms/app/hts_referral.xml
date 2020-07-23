@@ -1,17 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-<<<<<<< HEAD
     <h:title>HTS Refarral</h:title>
     <model>
       <instance>
-        <hts_referral delimiter="#" id="hts_referral" prefix="J1!hts_referral!" version="2020-07-20 13:54:21">
-=======
-    <h:title>Tracking</h:title>
-    <model>
-      <instance>
-        <hts_referral delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-07-15 09:30:21">
->>>>>>> 0fe371f7bb37e06e1572b57a5674cf57e4f452df
+        <hts_referral delimiter="#" id="hts_referral" prefix="J1!hts_referral!" version="2020-07-24 00:04:06">
           <inputs>
             <meta>
               <location>
@@ -46,7 +39,8 @@
           <place_name/>
           <head/>
           <referral>
-            <acility_referred_to/>
+            <facility_referred_to/>
+            <date_to_enrol/>
             <remarks/>
           </referral>
           <meta tag="hidden">
@@ -69,7 +63,8 @@
       <bind calculate="../inputs/contact/_id" nodeset="/hts_referral/place_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/hts_referral/place_name" type="string"/>
       <bind calculate="../inputs/contact/contact/name" nodeset="/hts_referral/head" type="string"/>
-      <bind nodeset="/hts_referral/referral/acility_referred_to" required="false()" type="string"/>
+      <bind nodeset="/hts_referral/referral/facility_referred_to" required="true()" type="string"/>
+      <bind nodeset="/hts_referral/referral/date_to_enrol" required="true()" type="date"/>
       <bind nodeset="/hts_referral/referral/remarks" required="false()" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/hts_referral/meta/instanceID" readonly="true()" type="string"/>
     </model>
@@ -101,11 +96,14 @@
     </group>
     <group appearance="field-list" ref="/hts_referral/referral">
       <label>Referral</label>
-      <input ref="/hts_referral/referral/acility_referred_to">
-        <label>Facility referred to:</label>
+      <input ref="/hts_referral/referral/facility_referred_to">
+        <label>Facility referred to</label>
+      </input>
+      <input ref="/hts_referral/referral/date_to_enrol">
+        <label>Date to be enrolled</label>
       </input>
       <input ref="/hts_referral/referral/remarks">
-        <label>Remarks:</label>
+        <label>Remarks</label>
       </input>
     </group>
   </h:body>
