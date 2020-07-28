@@ -4,10 +4,6 @@
   "context": {
     "person": true,
     "place": false,
-<<<<<<< HEAD
-    "expression": "user.role=='peducator'"
-=======
     "expression": ""
->>>>>>> 0fe371f7bb37e06e1572b57a5674cf57e4f452df
   }
 }
