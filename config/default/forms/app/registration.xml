@@ -1,0 +1,373 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Contact</h:title>
+    <model>
+      <instance>
+        <registration delimiter="#" id="contact" prefix="J1!contact!" version="2020-07-29 17:22:48">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <name/>
+              <contact>
+                <_id/>
+                <name/>
+              </contact>
+              <parent>
+                <parent>
+                  <contact>
+                    <name/>
+                    <phone/>
+                  </contact>
+                </parent>
+              </parent>
+            </contact>
+          </inputs>
+          <source/>
+          <source_id/>
+          <place_id/>
+          <place_name/>
+          <head/>
+          <id_numbers>
+            <patient_nationalIdnumber/>
+            <patient_medicalRecord/>
+            <patient_passportNumber/>
+            <patient_familyName/>
+            <patient_givenName/>
+            <patient_middleName/>
+            <patient_sex/>
+            <patient_birthDate/>
+            <_1054_maritalStatus_99DCT/>
+            <_1542_occupation_99DCT/>
+            <_1712_education_99DCT/>
+            <patient_decesased/>
+            <patient_dateOfDeath/>
+            <patient_nationality/>
+            <patient_telephone/>
+            <patient_alternatePhone/>
+            <patient_postalAddress/>
+            <patient_emailAddress/>
+            <patient_county/>
+            <patient_subcounty/>
+            <patient_ward/>
+            <patient_location/>
+            <patient_sublocation/>
+            <patient_village/>
+            <patient_landmark/>
+            <patient_nearesthealthcentre/>
+            <patient_nextofkin/>
+            <patient_nextofkinRelationship/>
+            <patient_nextOfKinPhonenumber/>
+            <patient_nextOfKinPostaladdress/>
+          </id_numbers>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </registration>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/registration/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/registration/inputs/source" type="string"/>
+      <bind nodeset="/registration/inputs/source_id" type="string"/>
+      <bind nodeset="/registration/inputs/contact/_id" type="db:clinic"/>
+      <bind nodeset="/registration/inputs/contact/name" type="string"/>
+      <bind nodeset="/registration/inputs/contact/contact/_id" type="db:person"/>
+      <bind nodeset="/registration/inputs/contact/contact/name" type="string"/>
+      <bind nodeset="/registration/inputs/contact/parent/parent/contact/name" type="string"/>
+      <bind nodeset="/registration/inputs/contact/parent/parent/contact/phone" type="string"/>
+      <bind calculate="../inputs/source" nodeset="/registration/source" type="string"/>
+      <bind calculate="../inputs/source_id" nodeset="/registration/source_id" type="string"/>
+      <bind calculate="../inputs/contact/_id" nodeset="/registration/place_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/registration/place_name" type="string"/>
+      <bind calculate="../inputs/contact/contact/name" nodeset="/registration/head" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_nationalIdnumber" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_medicalRecord" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_passportNumber" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_familyName" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_givenName" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_middleName" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_sex" required="false()" type="select1"/>
+      <bind nodeset="/registration/id_numbers/patient_birthDate" type="date"/>
+      <bind nodeset="/registration/id_numbers/_1054_maritalStatus_99DCT" type="select1"/>
+      <bind nodeset="/registration/id_numbers/_1542_occupation_99DCT" type="select1"/>
+      <bind nodeset="/registration/id_numbers/_1712_education_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/registration/id_numbers/patient_decesased" type="select1"/>
+      <bind nodeset="/registration/id_numbers/patient_dateOfDeath" type="date"/>
+      <bind nodeset="/registration/id_numbers/patient_nationality" required="false()" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_telephone" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_alternatePhone" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_postalAddress" required="false()" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_emailAddress" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_county" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_subcounty" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_ward" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_location" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_sublocation" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_village" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_landmark" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_nearesthealthcentre" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_nextofkin" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_nextofkinRelationship" type="select1"/>
+      <bind nodeset="/registration/id_numbers/patient_nextOfKinPhonenumber" type="string"/>
+      <bind nodeset="/registration/id_numbers/patient_nextOfKinPostaladdress" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/registration/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/registration/inputs">
+      <label>Patient</label>
+      <group ref="/registration/inputs/contact">
+        <label>Contact</label>
+        <input appearance="db-object" ref="/registration/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <group ref="/registration/inputs/contact/contact">
+          <label>Contact</label>
+          <input appearance="db-object" ref="/registration/inputs/contact/contact/_id">
+            <label>ID of head of household</label>
+          </input>
+        </group>
+        <group ref="/registration/inputs/contact/parent">
+          <label>Parent</label>
+          <group ref="/registration/inputs/contact/parent/parent">
+            <label>Parent</label>
+            <group ref="/registration/inputs/contact/parent/parent/contact">
+              <label>Contact</label>
+            </group>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/registration/id_numbers">
+      <label>ID Numbers</label>
+      <input ref="/registration/id_numbers/patient_nationalIdnumber">
+        <label>National ID Number</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_medicalRecord">
+        <label>Medical record</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_passportNumber">
+        <label>Passport Number</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_familyName">
+        <label>Sure Name:</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_givenName">
+        <label>First Name:</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_middleName">
+        <label>Other Name:</label>
+      </input>
+      <select1 ref="/registration/id_numbers/patient_sex">
+        <label>Sex</label>
+        <item>
+          <label>Male</label>
+          <value>_1534_male_99DCT</value>
+        </item>
+        <item>
+          <label>Female</label>
+          <value>_1535_female_99DCT</value>
+        </item>
+      </select1>
+      <input ref="/registration/id_numbers/patient_birthDate">
+        <label>Date of Birth:</label>
+      </input>
+      <select1 ref="/registration/id_numbers/_1054_maritalStatus_99DCT">
+        <label>Marital status</label>
+        <item>
+          <label>Marriedpolygamous</label>
+          <value>_159715_marriedPolygamous_99DCT</value>
+        </item>
+        <item>
+          <label>Married monogomous</label>
+          <value>_5555_marriedMonogomous_99DCT</value>
+        </item>
+        <item>
+          <label>Divorced</label>
+          <value>_163007_divorced_99DCT</value>
+        </item>
+        <item>
+          <label>Widowed</label>
+          <value>_1059_widowed_99DCT</value>
+        </item>
+        <item>
+          <label>Living with partner</label>
+          <value>_1060_livingWithPartner_99DCT</value>
+        </item>
+        <item>
+          <label>Never Married</label>
+          <value>_1057_neverMarried_99DCT</value>
+        </item>
+      </select1>
+      <select1 ref="/registration/id_numbers/_1542_occupation_99DCT">
+        <label>Occupation</label>
+        <item>
+          <label>Farmer</label>
+          <value>_1538_farmer_99DCT</value>
+        </item>
+        <item>
+          <label>Trader</label>
+          <value>_1539_trader_99DCT</value>
+        </item>
+        <item>
+          <label>Employee</label>
+          <value>_1540_employee_99DCT</value>
+        </item>
+        <item>
+          <label>Student</label>
+          <value>_159465_student_99DCT</value>
+        </item>
+        <item>
+          <label>Driver</label>
+          <value>_159466_driver_99DCT</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>_1107_none_99DCT</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>_5622_other_99DCT</value>
+        </item>
+      </select1>
+      <select1 ref="/registration/id_numbers/_1712_education_99DCT">
+        <label>Education</label>
+        <item>
+          <label>None</label>
+          <value>_1107_none_99DCT</value>
+        </item>
+        <item>
+          <label>Primary education</label>
+          <value>_159943_primary_99DCT</value>
+        </item>
+        <item>
+          <label>Secondary education</label>
+          <value>_1714_secondary_99DCT</value>
+        </item>
+        <item>
+          <label>College university polytechnic</label>
+          <value>_159785_collegeUniversityPolytechnic_99DCT</value>
+        </item>
+      </select1>
+      <select1 ref="/registration/id_numbers/patient_decesased">
+        <label>Deceased</label>
+        <item>
+          <label>Yes</label>
+          <value>_1065_yes_99DCT</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>_1066_no_99DCT</value>
+        </item>
+      </select1>
+      <input ref="/registration/id_numbers/patient_dateOfDeath">
+        <label>Date of Death:</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_nationality">
+        <label>Nationality</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_telephone">
+        <label>Telephone</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_alternatePhone">
+        <label>Alternate phone contact</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_postalAddress">
+        <label>Postal Address</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_emailAddress">
+        <label>Email Address:</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_county">
+        <label>County</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_subcounty">
+        <label>Sub County</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_ward">
+        <label>Ward</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_location">
+        <label>Location</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_sublocation">
+        <label>Sub location</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_village">
+        <label>Village</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_landmark">
+        <label>Land mark</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_nearesthealthcentre">
+        <label>Nearest healt centre</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_nextofkin">
+        <label>Next of kin name</label>
+      </input>
+      <select1 ref="/registration/id_numbers/patient_nextofkinRelationship">
+        <label>Relationship</label>
+        <item>
+          <label>Father</label>
+          <value>_971_father_99DCT</value>
+        </item>
+        <item>
+          <label>Mother</label>
+          <value>_970_mother_99DCT</value>
+        </item>
+        <item>
+          <label>Grand father</label>
+          <value>_160273_grandFather_99DCT</value>
+        </item>
+        <item>
+          <label>Grand mother</label>
+          <value>_159772_grandMother_99DCT</value>
+        </item>
+        <item>
+          <label>Sibling</label>
+          <value>_972_sibling_99DCT</value>
+        </item>
+        <item>
+          <label>Child</label>
+          <value>_1528_child_99DCT</value>
+        </item>
+        <item>
+          <label>Aunt</label>
+          <value>_975_aunt_99DCT</value>
+        </item>
+        <item>
+          <label>Uncle</label>
+          <value>_974_uncle_99DCT</value>
+        </item>
+        <item>
+          <label>Guardian</label>
+          <value>_160639_guardian_99DCT</value>
+        </item>
+        <item>
+          <label>Friend</label>
+          <value>_5618_friend_99DCT</value>
+        </item>
+        <item>
+          <label>Co-worker</label>
+          <value>_160237_coworker_99DCT</value>
+        </item>
+      </select1>
+      <input ref="/registration/id_numbers/patient_nextOfKinPhonenumber">
+        <label>Phone number</label>
+      </input>
+      <input ref="/registration/id_numbers/patient_nextOfKinPostaladdress">
+        <label>Postal address</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>
