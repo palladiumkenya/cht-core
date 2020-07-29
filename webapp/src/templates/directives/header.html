@@ -94,44 +94,29 @@
           </li>
 
           <li role="separator" class="divider" ng-if="!headerCtrl.replicationStatus.disabled"></li>
-<<<<<<< HEAD
-          <li role="presentation disabled"
-            ng-if="!headerCtrl.replicationStatus.disabled && !headerCtrl.replicationStatus.current.disableSyncButton">
-            <a role="menuitem" tabindex="-1" ng-click="headerCtrl.replicate()">
-=======
 
-          <li role="presentation disabled" ng-if="!headerCtrl.replicationStatus.disabled" ng-class="{ 'disabled': headerCtrl.replicationStatus.current.disableSyncButton }">
-            <a role="menuitem" tabindex="-1" ng-click="!headerCtrl.replicationStatus.current.disableSyncButton && headerCtrl.replicate()">
->>>>>>> 0fe371f7bb37e06e1572b57a5674cf57e4f452df
+
+          <li role="presentation disabled" ng-if="!headerCtrl.replicationStatus.disabled"
+            ng-class="{ 'disabled': headerCtrl.replicationStatus.current.disableSyncButton }">
+            <a role="menuitem" tabindex="-1"
+              ng-click="!headerCtrl.replicationStatus.current.disableSyncButton && headerCtrl.replicate()">
+
               <i class="fa fa-fw fa-refresh"></i>
               <span translate>sync.now</span>
             </a>
           </li>
-<<<<<<< HEAD
-          <li role="presentation disabled"
-            ng-if="!headerCtrl.replicationStatus.disabled && headerCtrl.replicationStatus.current" class="sync-status">
-            <a class="no-click" ng-class="headerCtrl.replicationStatus.current.className">
-              <i class="fa fa-fw" ng-class="headerCtrl.replicationStatus.current.icon"></i>
-              <span translate>{{headerCtrl.replicationStatus.current.key}}</span>
-            </a>
-          </li>
-          <li role="presentation disabled"
-            ng-if="!headerCtrl.replicationStatus.disabled && headerCtrl.replicationStatus.lastSuccessTo"
-            class="sync-status">
-            <a class="no-click">
-=======
-
           <li role="separator" class="divider" ng-if="!headerCtrl.replicationStatus.disabled"></li>
 
           <li role="presentation disabled" ng-if="!headerCtrl.replicationStatus.disabled" class="sync-status">
-            <a class="no-click" ng-class="headerCtrl.replicationStatus.current.className" ng-if="headerCtrl.replicationStatus.current">
+            <a class="no-click" ng-class="headerCtrl.replicationStatus.current.className"
+              ng-if="headerCtrl.replicationStatus.current">
               <i class="fa fa-fw" ng-class="headerCtrl.replicationStatus.current.icon"></i>
               <span translate>{{headerCtrl.replicationStatus.current.key}}</span>
             </a>
             <a class="no-click" ng-if="headerCtrl.replicationStatus.lastSuccessTo">
->>>>>>> 0fe371f7bb37e06e1572b57a5674cf57e4f452df
+
               <span translate>sync.last_success</span>
-              <span ng-bind-html="headerCtrl.replicationStatus.lastSuccessTo | relativeDate"/>
+              <span ng-bind-html="headerCtrl.replicationStatus.lastSuccessTo | relativeDate" />
             </a>
           </li>
         </ul>

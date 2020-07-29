@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Contact</h:title>
+    <h:title>Registration</h:title>
     <model>
       <instance>
-        <registration delimiter="#" id="contact" prefix="J1!contact!" version="2020-07-29 17:22:48">
+        <registration delimiter="#" id="registration" prefix="J1!registration!" version="2020-07-29 20:14:26">
           <inputs>
             <meta>
               <location>

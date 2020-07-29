@@ -1,9 +1,0 @@
-{
-  "icon": "icon-mother-child",
-  "title": "HTS Transformed",
-  "context": {
-    "person": true,
-    "place": false,
-    "expression": ""
-  }
-}

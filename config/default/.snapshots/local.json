@@ -9,10 +9,10 @@
     "localhost/medic": "1BoXPHa0srsIBhTZ9hhOvQ=="
   },
   "form:hts_initial_test": {
-    "localhost/medic": "jW3v7hdwrXzAXyqFK2IeyA=="
+    "localhost/medic": "pxbA+iCpKN9DSts+y1UkCQ=="
   },
   "form:hts_retest_test": {
-    "localhost/medic": "BGK0zh5jwZSSIam3ZCWIJg=="
+    "localhost/medic": "4yRbu8sSckH3UJVjTj27ZA=="
   },
   "form:pnc_danger_sign_follow_up_baby": {
     "localhost/medic": "0PJWqSJufMPaKEN3vHYf+Q=="
@@ -66,7 +66,7 @@
     "localhost/medic": "IoFzGpJWPUrLVd+em8fMwQ=="
   },
   "messages-en": {
-    "localhost/medic": "puT2jfuotYb3S+MrXqIx0g=="
+    "localhost/medic": "N80rqMLJiikSnCL7+nElUg=="
   },
   "form:suspected_case:create": {
     "localhost/medic": "cNHXDl/jBpR837JKE6grwQ=="
@@ -87,16 +87,16 @@
     "localhost/medic": "YyltBrYat7j49iPlbj0AJA=="
   },
   "form:hiv_treatment_verification": {
-    "localhost/medic": "O938XyNPqEl/jTcSwhofIQ=="
+    "localhost/medic": "HPRAUX6eGPtEfSL9I+bXLw=="
   },
   "form:peer_calendar": {
-    "localhost/medic": "nglSUoSU2I3YsN7BbP+UHA=="
+    "localhost/medic": "ehL1JGfd+jDMQHS0d1UIzw=="
   },
   "form:prep_treatment_verification": {
-    "localhost/medic": "j5jFSmm70VC5Jg0sx4pCHQ=="
+    "localhost/medic": "xmxRfcfmDlmXrWsLdw7iSQ=="
   },
   "form:tracking": {
-    "localhost/medic": "cXfrOjsKP1Ld1ROs7JoPxA=="
+    "localhost/medic": "NcvgWmCQWKCfYMpq1uKJnQ=="
   },
   "form:contatct": {
     "localhost/medic": "6nzlK/8zonUUOnG8nHFRWg=="
@@ -105,6 +105,12 @@
     "localhost/medic": "AtxB2vk7q2W/LJ0o6Qi5/g=="
   },
   "form:hts_referral": {
-    "localhost/medic": "eSp5gRjnrERXSY6AQQUJzg=="
+    "localhost/medic": "Ll8yoThmHspeqE3q4lI0og=="
+  },
+  "form:hts_referral_transformed": {
+    "localhost/medic": "HWJOM/613QEFrsVnC8TyPQ=="
+  },
+  "form:registration": {
+    "localhost/medic": "J+vme3D7fwYEdanXrBDfdg=="
   }
 }

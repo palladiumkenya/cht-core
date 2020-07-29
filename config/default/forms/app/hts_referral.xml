@@ -1,17 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-<<<<<<< HEAD
     <h:title>HTS Refarral</h:title>
     <model>
       <instance>
         <hts_referral delimiter="#" id="hts_referral" prefix="J1!hts_referral!" version="2020-07-20 13:54:21">
-=======
-    <h:title>Tracking</h:title>
-    <model>
-      <instance>
-        <hts_referral delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-07-15 09:30:21">
->>>>>>> 0fe371f7bb37e06e1572b57a5674cf57e4f452df
           <inputs>
             <meta>
               <location>

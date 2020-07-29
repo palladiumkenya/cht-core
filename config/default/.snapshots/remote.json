@@ -116,6 +116,12 @@
   },
   "form:hts_referral": {
     "surveillance-covid19.health.go.ke/medic": "eSp5gRjnrERXSY6AQQUJzg==",
-    "null--archive%20mode": "mzsiZGeYByfI24YY+jI4RQ=="
+    "null--archive%20mode": "Ll8yoThmHspeqE3q4lI0og=="
+  },
+  "form:hts_referral_transformed": {
+    "null--archive%20mode": "HWJOM/613QEFrsVnC8TyPQ=="
+  },
+  "form:registration": {
+    "null--archive%20mode": "ylgFNp2QUBN2Dw9ADJ6A+A=="
   }
 }
