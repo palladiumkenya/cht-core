@@ -2,12 +2,8 @@
   "icon": "icon-treatment",
   "title": "HTS Referral",
   "context": {
-    "person": true,
-    "place": false,
-<<<<<<< HEAD
-    "expression": "user.role !='pnavigator'"
-=======
-    "expression": ""
->>>>>>> 0fe371f7bb37e06e1572b57a5674cf57e4f452df
+    "person": false,
+    "place": true,
+    "expression": "contact.contact_type === 'clinic' && summary.hts_retest_latest.final_result == 'positive' && !summary.has_hts_linkage && !summary.has_hts_referral"
   }
 }

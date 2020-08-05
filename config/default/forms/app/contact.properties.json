@@ -1,9 +1,0 @@
-{
-  "icon": "medic-person",
-  "title": "Contact",
-  "context": {
-    "person": true,
-    "place": false,
-    "expression": ""
-  }
-}

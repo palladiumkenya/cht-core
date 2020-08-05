@@ -1,45 +1,36 @@
 {
-  "form:death_report": {
-    "localhost/medic": "7fgyHhP+YWaa/vduuAagTg=="
-  },
-  "form:delivery": {
-    "localhost/medic": "BmR50a+GnQXia2zXSPreSQ=="
-  },
-  "form:equity_survey": {
-    "localhost/medic": "1BoXPHa0srsIBhTZ9hhOvQ=="
+  "form:hiv_treatment_verification": {
+    "localhost/medic": "O938XyNPqEl/jTcSwhofIQ=="
   },
   "form:hts_initial_test": {
-    "localhost/medic": "jW3v7hdwrXzAXyqFK2IeyA=="
+    "localhost/medic": "3kGWrTLnCwvfBmCZsksmPw=="
+  },
+  "form:hts_linkage": {
+    "localhost/medic": "IMKqtd7tm6SDAHMhTCnZpQ=="
+  },
+  "form:hts_referral": {
+    "localhost/medic": "xKTdn4gx/z1SDPHirRZI+g=="
   },
   "form:hts_retest_test": {
-    "localhost/medic": "BGK0zh5jwZSSIam3ZCWIJg=="
+    "localhost/medic": "si1O6WGOBfyuRLYh47YgWA=="
   },
-  "form:pnc_danger_sign_follow_up_baby": {
-    "localhost/medic": "0PJWqSJufMPaKEN3vHYf+Q=="
+  "form:peer_calendar": {
+    "localhost/medic": "RWh62lES8h3VTd6QneEOLA=="
   },
-  "form:pnc_danger_sign_follow_up_mother": {
-    "localhost/medic": "5TIGsRIzbjiB6bfRbl2J1g=="
+  "form:prep_treatment_verification": {
+    "localhost/medic": "PI519OuspLfhPvYL26pgeQ=="
   },
-  "form:pregnancy": {
-    "localhost/medic": "RxW4yYlo9iH024GSqsx1lw=="
+  "form:tracking": {
+    "localhost/medic": "6lMtxizj8VJ2UH7zrZMQnQ=="
   },
-  "form:pregnancy_danger_sign": {
-    "localhost/medic": "JWkk9Uk7l1l2SdRt4wz9NQ=="
-  },
-  "form:pregnancy_danger_sign_follow_up": {
-    "localhost/medic": "yuRljWr6x5fapFLZueyNTQ=="
-  },
-  "form:pregnancy_facility_visit_reminder": {
-    "localhost/medic": "v3mp2CxsyXG2UGI09TkBFw=="
-  },
-  "form:pregnancy_home_visit": {
-    "localhost/medic": "ycBYeees+pzSUIt9nQ3FPA=="
-  },
-  "form:undo_death_report": {
-    "localhost/medic": "+8oC/NUC9pBtLqD2281Ktg=="
+  "form:contact:clinic:create.old": {
+    "localhost/medic": "S6Bppq6LjIncyyLnLwqaUA=="
   },
   "form:contact:clinic:create": {
     "localhost/medic": "qNAM2QtFyIDGQLMP1h02Ig=="
+  },
+  "form:contact:clinic:edit.old": {
+    "localhost/medic": "YyltBrYat7j49iPlbj0AJA=="
   },
   "form:contact:clinic:edit": {
     "localhost/medic": "DevDoyoafU9LTJzFIQQqqQ=="
@@ -51,13 +42,19 @@
     "localhost/medic": "3fVFZRNK3g1ula2xTzp3jA=="
   },
   "form:contact:health_center:create": {
-    "localhost/medic": "pug3Pt/dJkpM0K9fXCs52Q=="
+    "localhost/medic": "FbEzQdi2ECPSZ0QmhmMfPA=="
   },
   "form:contact:health_center:edit": {
     "localhost/medic": "5jCMocpeA9Oa6hXlcwtzPQ=="
   },
+  "form:contact:person:create.old": {
+    "localhost/medic": "KHg1JYiPDXiK251PcO7d2w=="
+  },
   "form:contact:person:create": {
-    "localhost/medic": "q47MA4cWkHycH6FmHsUZhw=="
+    "localhost/medic": "4l9D4lvm1Hy1hUkJ/aggrw=="
+  },
+  "form:contact:person:edit.old": {
+    "localhost/medic": "BHGBaI9iO94x8p8760h9Eg=="
   },
   "form:contact:person:edit": {
     "localhost/medic": "942WR450gHeJnVYghaiMcA=="
@@ -66,45 +63,9 @@
     "localhost/medic": "IoFzGpJWPUrLVd+em8fMwQ=="
   },
   "messages-en": {
-    "localhost/medic": "puT2jfuotYb3S+MrXqIx0g=="
-  },
-  "form:suspected_case:create": {
-    "localhost/medic": "cNHXDl/jBpR837JKE6grwQ=="
+    "localhost/medic": "5Fho8CvMS8NvaSbxprNnOA=="
   },
   "form:contact_follow_up": {
-    "localhost/medic": "7IKU4D/drJBA2llzAw50jA=="
-  },
-  "form:contact:person:create.old": {
-    "localhost/medic": "KHg1JYiPDXiK251PcO7d2w=="
-  },
-  "form:contact:person:edit.old": {
-    "localhost/medic": "BHGBaI9iO94x8p8760h9Eg=="
-  },
-  "form:contact:clinic:create.old": {
-    "localhost/medic": "S6Bppq6LjIncyyLnLwqaUA=="
-  },
-  "form:contact:clinic:edit.old": {
-    "localhost/medic": "YyltBrYat7j49iPlbj0AJA=="
-  },
-  "form:hiv_treatment_verification": {
-    "localhost/medic": "O938XyNPqEl/jTcSwhofIQ=="
-  },
-  "form:peer_calendar": {
-    "localhost/medic": "nglSUoSU2I3YsN7BbP+UHA=="
-  },
-  "form:prep_treatment_verification": {
-    "localhost/medic": "j5jFSmm70VC5Jg0sx4pCHQ=="
-  },
-  "form:tracking": {
-    "localhost/medic": "cXfrOjsKP1Ld1ROs7JoPxA=="
-  },
-  "form:contatct": {
-    "localhost/medic": "6nzlK/8zonUUOnG8nHFRWg=="
-  },
-  "form:hts_linkage": {
-    "localhost/medic": "AtxB2vk7q2W/LJ0o6Qi5/g=="
-  },
-  "form:hts_referral": {
-    "localhost/medic": "eSp5gRjnrERXSY6AQQUJzg=="
+    "localhost/medic": "ntq2aefOOdoYSPM6Y8F/Rg=="
   }
 }

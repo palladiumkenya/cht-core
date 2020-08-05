@@ -15,14 +15,16 @@ const context = {
   muted: false,
   show_pregnancy_form: isReadyForNewPregnancy(thisContact, allReports),
   show_delivery_form: isReadyForDelivery(thisContact, allReports),
-  has_hts_initial: allReports.some((report) => report.form === 'hts_initial_form'),
+  has_hts_initial: allReports.some((report) => report.form === 'hts_initial_form' || report.form === 'hts_retest_form'),
+  has_hts_referral: allReports.some((report) => report.form === 'hts_referral'),
+  has_hts_linkage: allReports.some((report) => report.form === 'hts_linkage'),
+  has_hts_contact_followup: allReports.some((report) => report.form === 'contact_follow_up'),
 };
-let mostRecentHtsInitial = {};
-allReports.forEach((report) => {
-  if (report.form === 'hts_initial_form') {
-    mostRecentHtsInitial = report;
-  }
-});
+
+const mostRecentHtsInitial = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form']);
+const mostRecentHtsRetest = getNewestReport(allReports, ['hts_retest_form']);
+const mostRecentHtsContactTracing = getNewestReport(allReports, ['contact_follow_up']);
+
 
 context.hts_initial = {
   population_type:getField(mostRecentHtsInitial, 'hiv_testing.population_type') || '',
@@ -30,6 +32,15 @@ context.hts_initial = {
   disability_type:getField(mostRecentHtsInitial, 'hiv_testing.disability_type') || '',
   ever_tested:getField(mostRecentHtsInitial, 'hiv_testing.ever_tested_by_provider') || '',
 
+};
+
+context.hts_retest_latest = {
+  final_result:getField(mostRecentHtsRetest, 'hiv_testing.final_result') || '',
+};
+
+context.recentHtsTracing = {
+  phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_call') || '',
+  physicalTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_visit') || '',
 };
 
 const fields = [

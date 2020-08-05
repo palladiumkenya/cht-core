@@ -77,16 +77,13 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
             <value>CHW Supervisor</value>
           </text>
           <text id="/data/contact/role/manager:label">
-            <value>Facility Manager</value>
+            <value>Facility In-charge</value>
           </text>
           <text id="/data/contact/role/nurse:label">
             <value>Nurse</value>
           </text>
           <text id="/data/contact/role/other:label">
             <value>Other</value>
-          </text>
-          <text id="/data/contact/role/patient:label">
-            <value>Patient</value>
           </text>
           <text id="/data/contact/role:label">
             <value>Role</value>
@@ -237,9 +234,6 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           <text id="/data/contact/role/other:label">
             <value>Autre</value>
           </text>
-          <text id="/data/contact/role/patient:label">
-            <value>Patient</value>
-          </text>
           <text id="/data/contact/role:label">
             <value>Rôle</value>
           </text>
@@ -388,9 +382,6 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           </text>
           <text id="/data/contact/role/other:label">
             <value>अन्य</value>
-          </text>
-          <text id="/data/contact/role/patient:label">
-            <value>मरीज़</value>
           </text>
           <text id="/data/contact/role:label">
             <value>भूमिका</value>
@@ -541,9 +532,6 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           <text id="/data/contact/role/other:label">
             <value>Lain</value>
           </text>
-          <text id="/data/contact/role/patient:label">
-            <value>Pasien</value>
-          </text>
           <text id="/data/contact/role:label">
             <value>Peran</value>
           </text>
@@ -692,9 +680,6 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           </text>
           <text id="/data/contact/role/other:label">
             <value>अन्य</value>
-          </text>
-          <text id="/data/contact/role/patient:label">
-            <value>बिरामी</value>
           </text>
           <text id="/data/contact/role:label">
             <value>भुमिका</value>
@@ -845,9 +830,6 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           <text id="/data/contact/role/other:label">
             <value>Nyingine</value>
           </text>
-          <text id="/data/contact/role/patient:label">
-            <value>Mgonjwa</value>
-          </text>
           <text id="/data/contact/role:label">
             <value>Namba ya simu Nyingine</value>
           </text>
@@ -917,7 +899,7 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:health_center:create" prefix="J1!contact:health_center:create!" version="2019-10-23  12-01">
+        <data delimiter="#" id="contact:health_center:create" prefix="J1!contact:health_center:create!" version="2020-07-21  15-03">
           <inputs>
             <meta>
               <location>
@@ -1190,10 +1172,6 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
         <item>
           <label ref="jr:itext('/data/contact/role/manager:label')"/>
           <value>manager</value>
-        </item>
-        <item>
-          <label ref="jr:itext('/data/contact/role/patient:label')"/>
-          <value>patient</value>
         </item>
         <item>
           <label ref="jr:itext('/data/contact/role/other:label')"/>

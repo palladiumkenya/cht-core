@@ -2,8 +2,8 @@
         "icon": "icon-mother-child",
         "title": "HTS Retest Form",
         "context": {
-                "person": true,
-                "place": false,
-                "expression": "user.role!='peducator' && user.role!='pnavigator'"
+                "person": false,
+                "place": true,
+                "expression": "contact.contact_type === 'clinic' && summary.hts_retest_latest.final_result != 'positive'"
         }
 }

@@ -2,8 +2,8 @@
     "icon": "icon-treatment",
     "title": "HTS Linkage Form",
     "context": {
-        "person": true,
-        "place": false,
-        "expression": "'"
+      "person": false,
+      "place": true,
+      "expression": "contact.contact_type === 'clinic' && summary.hts_retest_latest.final_result == 'positive' && !summary.has_hts_linkage"
     }
 }
