@@ -4,7 +4,7 @@
     <h:title>HTS Refarral</h:title>
     <model>
       <instance>
-        <hts_referral delimiter="#" id="hts_referral" prefix="J1!hts_referral!" version="2020-07-24 00:04:06">
+        <hts_referral delimiter="#" id="hts_referral" prefix="J1!hts_referral!" version="2020-08-05 10:44:20">
           <inputs>
             <meta>
               <location>
@@ -39,9 +39,8 @@
           <place_name/>
           <head/>
           <referral>
-            <facility_referred_to/>
-            <date_to_enrol/>
-            <remarks/>
+            <_163526_acilityReferred_99DCT/>
+            <_163527_remarks_99DCT/>
           </referral>
           <meta tag="hidden">
             <instanceID/>
@@ -63,9 +62,8 @@
       <bind calculate="../inputs/contact/_id" nodeset="/hts_referral/place_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/hts_referral/place_name" type="string"/>
       <bind calculate="../inputs/contact/contact/name" nodeset="/hts_referral/head" type="string"/>
-      <bind nodeset="/hts_referral/referral/facility_referred_to" required="true()" type="string"/>
-      <bind nodeset="/hts_referral/referral/date_to_enrol" required="true()" type="date"/>
-      <bind nodeset="/hts_referral/referral/remarks" required="false()" type="string"/>
+      <bind nodeset="/hts_referral/referral/_163526_acilityReferred_99DCT" required="false()" type="string"/>
+      <bind nodeset="/hts_referral/referral/_163527_remarks_99DCT" required="false()" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/hts_referral/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -96,14 +94,11 @@
     </group>
     <group appearance="field-list" ref="/hts_referral/referral">
       <label>Referral</label>
-      <input ref="/hts_referral/referral/facility_referred_to">
-        <label>Facility referred to</label>
+      <input ref="/hts_referral/referral/_163526_acilityReferred_99DCT">
+        <label>Facility referred to:</label>
       </input>
-      <input ref="/hts_referral/referral/date_to_enrol">
-        <label>Date to be enrolled</label>
-      </input>
-      <input ref="/hts_referral/referral/remarks">
-        <label>Remarks</label>
+      <input ref="/hts_referral/referral/_163527_remarks_99DCT">
+        <label>Remarks:</label>
       </input>
     </group>
   </h:body>
