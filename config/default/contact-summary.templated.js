@@ -35,7 +35,7 @@ context.hts_initial = {
 };
 
 context.hts_retest_latest = {
-  final_result:getField(mostRecentHtsRetest, 'hiv_testing.final_result') || '',
+  final_result:getField(mostRecentHtsRetest, 'observation._159427_finalResults_99DCT') || '',
 };
 
 context.recentHtsTracing = {
