@@ -1,9 +1,8 @@
-const extras = require('./nools-extras');
-const {
-  getMostRecentLMPDateForPregnancy,
+//const extras = require('./nools-extras');
+/*const {
   isActivePregnancy,
   countANCFacilityVisits,
-} = extras;
+} = extras;*/
 
 module.exports = [
   // HTS tested
@@ -15,10 +14,10 @@ module.exports = [
     translation_key: 'targets.clients_tested.title',
     subtitle_translation_key: 'targets.this_month.subtitle',
     appliesTo: 'reports',
-    appliesToType: ['pregnancy'],
+    appliesToType: ['hts_initial_form', 'hts_retest_form'],
     appliesIf: function (contact, report) {
       if (!report) {return false;}
-      return getMostRecentLMPDateForPregnancy(contact, report);
+      return report.form === 'hts_initial_form' || report.form ==='hts_retest_form';
     },
     date: 'reported',
     idType: 'contact'
@@ -33,11 +32,12 @@ module.exports = [
     translation_key: 'targets.clients_positive.title',
     subtitle_translation_key: 'targets.this_month.subtitle',
     appliesTo: 'reports',
-    appliesToType: ['pregnancy'],
+    appliesToType: ['hts_initial_form','hts_retest_form'],
     appliesIf: function (contact, report) {
-      return isActivePregnancy(contact, report);
+      if (!report) {return false;}
+      return ((report.form === 'hts_initial_form' || report.form ==='hts_retest_form')  &&  Utils.getField(report,'observation._159427_finalResults_99DCT') === '_703_positive_99DCT');
     },
-    date: 'now',
+    date: 'reported',
     idType: 'contact'
   },
 
@@ -50,13 +50,12 @@ module.exports = [
     translation_key: 'targets.clients_linked.title',
     subtitle_translation_key: 'targets.this_month.subtitle',
     appliesTo: 'reports',
-    appliesToType: ['pregnancy'],
+    appliesToType: ['hts_linkage'],
     appliesIf: function (contact, report) {
-      if (!isActivePregnancy(contact, report)) {return false;}
-      const visitCount = countANCFacilityVisits(contact, report);
-      return visitCount > 0;
+      if (!report) {return false;}
+      return ((report.form === 'hts_linkage')  &&  Utils.getField(report,'hts_linkage_assessment._162053_cccNumber_99DCT') !== '');
     },
-    date: 'now',
+    date: 'reported',
     idType: 'contact'
   }
 ];
