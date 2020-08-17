@@ -3,8 +3,21 @@
   <h:head>
     <h:title>HTS Retest Form</h:title>
     <model>
+      <itext>
+        <translation lang="en">
+          <text id="/hts_retest_test/encounter_date:jr:constraintMsg">
+            <value>Encounter date can not be in the future</value>
+          </text>
+          <text id="/hts_retest_test/observation/_164410_firstTest_99DCT/_162502_KitOneExpiry_99DCT:jr:constraintMsg">
+            <value>Expired kits can not be used</value>
+          </text>
+          <text id="/hts_retest_test/observation/_164410_secondTest_99DCT/_162501_KitTwoExpiry_99DCT:jr:constraintMsg">
+            <value>Expired kits can not be used</value>
+          </text>
+        </translation>
+      </itext>
       <instance>
-        <hts_retest_test delimiter="#" id="hts_retest_form" prefix="J1!hts_retest_form!" version="2020-08-12 12:06:27">
+        <hts_retest_test delimiter="#" id="hts_retest_form" prefix="J1!hts_retest_form!" version="2020-08-18 01:36:17">
           <inputs>
             <meta>
               <location>
@@ -40,17 +53,37 @@
           <head/>
           <form_uuid/>
           <encounter_type_uuid/>
+          <previous_disability_response/>
+          <previous_disability_type_response/>
+          <previous_population_type/>
+          <previous_key_population_type/>
+          <previous_priority_population_type/>
+          <encounter_date/>
           <observation>
-            <_164930_poulationType_99DCT/>
+            <population_type/>
+            <pre_existing_population_type/>
+            <_164930_populationType_99DCT/>
+            <kp_type/>
+            <pre_existing_kp_type/>
             <_164929_kpTypeMULTISELECT_99DCT/>
+            <_5622_otherKeyPop_99DCT/>
+            <priority_type/>
+            <pre_existing_priority_type/>
             <_160581_priorityTypeMULTISELECT_99DCT/>
+            <pre_existing_disability/>
+            <disability/>
             <_164951_disability_99DCT/>
+            <disability_type/>
+            <pre_existing_disability_type/>
             <_162558_disabilityTypeMULTISELECT_99DCT/>
+            <_5622_Specify_99DCT/>
             <_164401_everTestedByProvider_99DCT/>
             <_159813_durationSinceLastTest_99DCT/>
             <_164952_HasClientdoneHIVselfTestInlast12months_99DCT/>
             <_164956_htsStrategyUsed_99DCT/>
+            <_5622_otherStrategyUsed_99DCT/>
             <_160540_htsEntryPoint_99DCT/>
+            <_5622_otherEntryPoint_99DCT/>
             <_1710_clientConsented_99DCT/>
             <_164959_clientTestedAs_99DCT/>
             <_164410_firstTest_99DCT>
@@ -62,11 +95,12 @@
             <_164410_secondTest_99DCT>
               <_164962_KitTwoName_99DCT/>
               <_164964_KitTwoLotNumber_99DCT/>
-              <_162502_KitTwoExpiry_99DCT/>
-              <_1040_testTwoResults_99DCT/>
+              <_162501_KitTwoExpiry_99DCT/>
+              <_1326_testTwoResults_99DCT/>
             </_164410_secondTest_99DCT>
             <_159427_finalResults_99DCT/>
-            <_6096_coupleDsicordant_99DCT/>
+            <final_result/>
+            <_6096_coupleDiscordant_99DCT/>
             <_1659_tbScreening_99DCT/>
             <_163042_remarks_99DCT/>
           </observation>
@@ -144,39 +178,62 @@
       <bind calculate="../inputs/contact/contact/name" nodeset="/hts_retest_test/head" type="string"/>
       <bind calculate="'b08471f6-0892-4bf7-ab2b-bf79797b8ea4'" nodeset="/hts_retest_test/form_uuid" type="string"/>
       <bind calculate="'9c0a7a57-62ff-4f75-babe-5835b0e921b7'" nodeset="/hts_retest_test/encounter_type_uuid" type="string"/>
-      <bind nodeset="/hts_retest_test/observation/_164930_poulationType_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hts_retest_test/observation/_164929_kpTypeMULTISELECT_99DCT" relevant="selected( /hts_retest_test/observation/_164930_poulationType_99DCT ,'_164929_keyPopulation_99DCT')" type="select"/>
-      <bind nodeset="/hts_retest_test/observation/_160581_priorityTypeMULTISELECT_99DCT" relevant="selected( /hts_retest_test/observation/_164930_poulationType_99DCT ,'_138643_priorityPopulation_99DCT')" type="select"/>
-      <bind nodeset="/hts_retest_test/observation/_164951_disability_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hts_retest_test/observation/_162558_disabilityTypeMULTISELECT_99DCT" relevant="selected( /hts_retest_test/observation/_164951_disability_99DCT ,'_1065_yes_99DCT')" type="select"/>
+      <bind calculate="instance('contact-summary')/context/hts_initial/disability" nodeset="/hts_retest_test/previous_disability_response" type="string"/>
+      <bind calculate="instance('contact-summary')/context/hts_initial/disability_type" nodeset="/hts_retest_test/previous_disability_type_response" type="string"/>
+      <bind calculate="instance('contact-summary')/context/hts_initial/population_type" nodeset="/hts_retest_test/previous_population_type" type="string"/>
+      <bind calculate="instance('contact-summary')/context/hts_initial/key_population_type" nodeset="/hts_retest_test/previous_key_population_type" type="string"/>
+      <bind calculate="instance('contact-summary')/context/hts_initial/priority_population_type" nodeset="/hts_retest_test/previous_priority_population_type" type="string"/>
+      <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/hts_retest_test/encounter_date:jr:constraintMsg')" nodeset="/hts_retest_test/encounter_date" required="true()" type="date"/>
+      <bind nodeset="/hts_retest_test/observation/population_type" relevant="string-length( /hts_retest_test/previous_population_type )=0" required="true()" type="select1"/>
+      <bind calculate="if( /hts_retest_test/previous_population_type ='','', /hts_retest_test/previous_population_type )" nodeset="/hts_retest_test/observation/pre_existing_population_type" relevant="string-length( /hts_retest_test/previous_population_type )&gt;0" required="true()" type="select1"/>
+      <bind calculate="if( /hts_retest_test/observation/pre_existing_population_type ='', /hts_retest_test/observation/population_type , /hts_retest_test/observation/pre_existing_population_type )" nodeset="/hts_retest_test/observation/_164930_populationType_99DCT" required="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/observation/kp_type" relevant="selected( /hts_retest_test/observation/population_type ,'_164929_keyPopulation_99DCT')" type="select"/>
+      <bind calculate="if( /hts_retest_test/previous_key_population_type ='','', /hts_retest_test/previous_key_population_type )" nodeset="/hts_retest_test/observation/pre_existing_kp_type" relevant="selected( /hts_retest_test/observation/pre_existing_population_type ,'_164929_keyPopulation_99DCT') and string-length( /hts_retest_test/previous_key_population_type ) &gt; 0" type="select"/>
+      <bind calculate="if( /hts_retest_test/observation/pre_existing_kp_type ='', /hts_retest_test/observation/kp_type , /hts_retest_test/observation/pre_existing_kp_type )" nodeset="/hts_retest_test/observation/_164929_kpTypeMULTISELECT_99DCT" relevant="selected( /hts_retest_test/observation/_164930_populationType_99DCT ,'_164929_keyPopulation_99DCT')" type="string"/>
+      <bind nodeset="/hts_retest_test/observation/_5622_otherKeyPop_99DCT" relevant="selected( /hts_retest_test/observation/_164929_kpTypeMULTISELECT_99DCT ,'_5622_other_99DCT')" required="false()" type="string"/>
+      <bind nodeset="/hts_retest_test/observation/priority_type" relevant="selected( /hts_retest_test/observation/population_type ,'_138643_priorityPopulation_99DCT')" type="select"/>
+      <bind calculate="if( /hts_retest_test/previous_priority_population_type ='','', /hts_retest_test/previous_priority_population_type )" nodeset="/hts_retest_test/observation/pre_existing_priority_type" relevant="selected( /hts_retest_test/observation/pre_existing_population_type ,'_138643_priorityPopulation_99DCT') and string-length( /hts_retest_test/previous_priority_population_type ) &gt; 0" type="select"/>
+      <bind calculate="if( /hts_retest_test/observation/pre_existing_priority_type ='', /hts_retest_test/observation/priority_type , /hts_retest_test/observation/pre_existing_priority_type )" nodeset="/hts_retest_test/observation/_160581_priorityTypeMULTISELECT_99DCT" relevant="selected( /hts_retest_test/observation/_164930_populationType_99DCT ,'_138643_priorityPopulation_99DCT')" type="string"/>
+      <bind calculate="if( /hts_retest_test/previous_disability_response ='','', /hts_retest_test/previous_disability_response )" nodeset="/hts_retest_test/observation/pre_existing_disability" relevant="string-length( /hts_retest_test/previous_disability_type_response )&gt;0" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/observation/disability" relevant="string-length( /hts_retest_test/previous_disability_type_response )=0" required="true()" type="select1"/>
+      <bind calculate="if( /hts_retest_test/observation/pre_existing_disability !='', /hts_retest_test/observation/pre_existing_disability , /hts_retest_test/observation/disability )" nodeset="/hts_retest_test/observation/_164951_disability_99DCT" required="true()" type="string"/>
+      <bind nodeset="/hts_retest_test/observation/disability_type" relevant="selected( /hts_retest_test/observation/disability ,'_1065_yes_99DCT')" type="select"/>
+      <bind calculate="if( /hts_retest_test/previous_disability_type_response ='','', /hts_retest_test/previous_disability_type_response )" nodeset="/hts_retest_test/observation/pre_existing_disability_type" relevant="selected( /hts_retest_test/observation/pre_existing_disability ,'_1065_yes_99DCT') and string-length( /hts_retest_test/previous_disability_type_response )&gt;0" type="select"/>
+      <bind calculate="if( /hts_retest_test/observation/pre_existing_disability_type ='', /hts_retest_test/observation/disability_type , /hts_retest_test/observation/pre_existing_disability_type )" nodeset="/hts_retest_test/observation/_162558_disabilityTypeMULTISELECT_99DCT" type="string"/>
+      <bind nodeset="/hts_retest_test/observation/_5622_Specify_99DCT" relevant="selected( /hts_retest_test/observation/_162558_disabilityTypeMULTISELECT_99DCT ,'_5622_other_99DCT')" required="false()" type="string"/>
       <bind nodeset="/hts_retest_test/observation/_164401_everTestedByProvider_99DCT" required="true()" type="select1"/>
       <bind nodeset="/hts_retest_test/observation/_159813_durationSinceLastTest_99DCT" relevant="selected( /hts_retest_test/observation/_164401_everTestedByProvider_99DCT ,'_1065_yes_99DCT')" type="int"/>
       <bind nodeset="/hts_retest_test/observation/_164952_HasClientdoneHIVselfTestInlast12months_99DCT" required="true()" type="select1"/>
       <bind nodeset="/hts_retest_test/observation/_164956_htsStrategyUsed_99DCT" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/observation/_5622_otherStrategyUsed_99DCT" relevant="selected( /hts_retest_test/observation/_164956_htsStrategyUsed_99DCT ,'_5622_otherhts_99DCT')" required="false()" type="string"/>
       <bind nodeset="/hts_retest_test/observation/_160540_htsEntryPoint_99DCT" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/observation/_5622_otherEntryPoint_99DCT" relevant="selected( /hts_retest_test/observation/_160540_htsEntryPoint_99DCT ,'_5622_otherEntry_99DCT')" required="false()" type="string"/>
       <bind nodeset="/hts_retest_test/observation/_1710_clientConsented_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hts_retest_test/observation/_164959_clientTestedAs_99DCT" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/observation/_164959_clientTestedAs_99DCT" relevant="selected( /hts_retest_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/observation/_164410_firstTest_99DCT" relevant="selected( /hts_retest_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')"/>
       <bind nodeset="/hts_retest_test/observation/_164410_firstTest_99DCT/_164962_KitOneName_99DCT" required="true()" type="select1"/>
       <bind nodeset="/hts_retest_test/observation/_164410_firstTest_99DCT/_164964_KitOneLotNumber_99DCT" required="true()" type="string"/>
-      <bind nodeset="/hts_retest_test/observation/_164410_firstTest_99DCT/_162502_KitOneExpiry_99DCT" required="true()" type="date"/>
+      <bind constraint="floor(decimal-date-time(.)) &gt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/hts_retest_test/observation/_164410_firstTest_99DCT/_162502_KitOneExpiry_99DCT:jr:constraintMsg')" nodeset="/hts_retest_test/observation/_164410_firstTest_99DCT/_162502_KitOneExpiry_99DCT" required="true()" type="date"/>
       <bind nodeset="/hts_retest_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hts_retest_test/observation/_164410_secondTest_99DCT" relevant="selected( /hts_retest_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ,'_703_positive_99DCT') or selected( /hts_retest_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ,'_163611_invalid_99DCT')"/>
+      <bind nodeset="/hts_retest_test/observation/_164410_secondTest_99DCT" relevant="selected( /hts_retest_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ,'_703_positive_99DCT') or selected( /hts_retest_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ,'_163611_invalid_99DCT') and selected( /hts_retest_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')"/>
       <bind nodeset="/hts_retest_test/observation/_164410_secondTest_99DCT/_164962_KitTwoName_99DCT" type="select1"/>
       <bind nodeset="/hts_retest_test/observation/_164410_secondTest_99DCT/_164964_KitTwoLotNumber_99DCT" type="string"/>
-      <bind nodeset="/hts_retest_test/observation/_164410_secondTest_99DCT/_162502_KitTwoExpiry_99DCT" type="date"/>
-      <bind nodeset="/hts_retest_test/observation/_164410_secondTest_99DCT/_1040_testTwoResults_99DCT" type="select1"/>
-      <bind nodeset="/hts_retest_test/observation/_159427_finalResults_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hts_retest_test/observation/_6096_coupleDsicordant_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hts_retest_test/observation/_1659_tbScreening_99DCT" required="true()" type="select1"/>
+      <bind constraint="floor(decimal-date-time(.)) &gt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/hts_retest_test/observation/_164410_secondTest_99DCT/_162501_KitTwoExpiry_99DCT:jr:constraintMsg')" nodeset="/hts_retest_test/observation/_164410_secondTest_99DCT/_162501_KitTwoExpiry_99DCT" type="date"/>
+      <bind nodeset="/hts_retest_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT" type="select1"/>
+      <bind calculate="if( /hts_retest_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_664_negative_99DCT','Negative',if( /hts_retest_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_703_positive_99DCT' and  /hts_retest_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT ='_703_positive_99DCT', 'Positive',
+if( /hts_retest_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_703_positive_99DCT' and  /hts_retest_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT ='_664_negative_99DCT', 'Negative', 'Inconclusive')))" nodeset="/hts_retest_test/observation/_159427_finalResults_99DCT" type="string"/>
+      <bind nodeset="/hts_retest_test/observation/final_result" readonly="true()" relevant="selected( /hts_retest_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" type="string"/>
+      <bind nodeset="/hts_retest_test/observation/_6096_coupleDiscordant_99DCT" relevant="selected( /hts_retest_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT') and selected( /hts_retest_test/observation/_164959_clientTestedAs_99DCT ,'_164958_couple_99DCT')" required="true()" type="select1"/>
+      <bind nodeset="/hts_retest_test/observation/_1659_tbScreening_99DCT" relevant="selected( /hts_retest_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" required="true()" type="select1"/>
       <bind nodeset="/hts_retest_test/observation/_163042_remarks_99DCT" type="string"/>
       <bind nodeset="/hts_retest_test/group_review/n_submit" readonly="true()" type="string"/>
       <bind nodeset="/hts_retest_test/group_review/n_household_details_title" readonly="true()" type="string"/>
       <bind nodeset="/hts_retest_test/group_review/n_household_details" readonly="true()" type="string"/>
       <bind nodeset="/hts_retest_test/group_review/n_assessment_findings" readonly="true()" type="string"/>
       <bind nodeset="/hts_retest_test/group_review/n_drinking_water_source" readonly="true()" type="string"/>
-      <bind nodeset="/hts_retest_test/group_review/n_surface_water" readonly="true()" relevant="selected(../../observation/_164930_poulationType_99DCT, '_164928_general_99DCT')" type="string"/>
-      <bind nodeset="/hts_retest_test/group_review/n_uncovered_well_or_spring" readonly="true()" relevant="selected(../../observation/_164930_poulationType_99DCT, '_164929_keyPopulation_99DCT')" type="string"/>
-      <bind nodeset="/hts_retest_test/group_review/n_vendor_provided" readonly="true()" relevant="selected(../../observation/_164930_poulationType_99DCT, '_138643_priorityPopulation_99DCT')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_surface_water" readonly="true()" relevant="selected(../../observation/_164930_populationType_99DCT, '_164928_general_99DCT')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_uncovered_well_or_spring" readonly="true()" relevant="selected(../../observation/_164930_populationType_99DCT, '_164929_keyPopulation_99DCT')" type="string"/>
+      <bind nodeset="/hts_retest_test/group_review/n_vendor_provided" readonly="true()" relevant="selected(../../observation/_164930_populationType_99DCT, '_138643_priorityPopulation_99DCT')" type="string"/>
       <bind nodeset="/hts_retest_test/group_review/n_hts_strategy" readonly="true()" type="string"/>
       <bind nodeset="/hts_retest_test/group_review/n_pitc" readonly="true()" relevant="selected(../../observation/_164956_htsStrategyUsed_99DCT, '_164163_pitc_99DCT')" type="string"/>
       <bind nodeset="/hts_retest_test/group_review/n_client_initiated" readonly="true()" relevant="selected(../../observation/_164956_htsStrategyUsed_99DCT, '_164953_clientInitiated_99DCT')" type="string"/>
@@ -247,9 +304,12 @@
         </group>
       </group>
     </group>
+    <input ref="/hts_retest_test/encounter_date">
+      <label>Date of test</label>
+    </input>
     <group appearance="field-list" ref="/hts_retest_test/observation">
       <label></label>
-      <select1 ref="/hts_retest_test/observation/_164930_poulationType_99DCT">
+      <select1 ref="/hts_retest_test/observation/population_type">
         <label>Population type</label>
         <item>
           <label>General Population</label>
@@ -264,8 +324,23 @@
           <value>_138643_priorityPopulation_99DCT</value>
         </item>
       </select1>
-      <select ref="/hts_retest_test/observation/_164929_kpTypeMULTISELECT_99DCT">
-        <label>Key population type</label>
+      <select1 ref="/hts_retest_test/observation/pre_existing_population_type">
+        <label>Population type</label>
+        <item>
+          <label>General Population</label>
+          <value>_164928_general_99DCT</value>
+        </item>
+        <item>
+          <label>Key Population</label>
+          <value>_164929_keyPopulation_99DCT</value>
+        </item>
+        <item>
+          <label>Priority Population</label>
+          <value>_138643_priorityPopulation_99DCT</value>
+        </item>
+      </select1>
+      <select ref="/hts_retest_test/observation/kp_type">
+        <label>Key Population type</label>
         <item>
           <label>People who inject drugs</label>
           <value>_105_pwid_99DCT</value>
@@ -279,7 +354,25 @@
           <value>_5622_other_99DCT</value>
         </item>
       </select>
-      <select ref="/hts_retest_test/observation/_160581_priorityTypeMULTISELECT_99DCT">
+      <select ref="/hts_retest_test/observation/pre_existing_kp_type">
+        <label>Key Population type</label>
+        <item>
+          <label>People who inject drugs</label>
+          <value>_105_pwid_99DCT</value>
+        </item>
+        <item>
+          <label>Female sex worker</label>
+          <value>_160579_fsw_99DCT</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>_5622_other_99DCT</value>
+        </item>
+      </select>
+      <input ref="/hts_retest_test/observation/_5622_otherKeyPop_99DCT">
+        <label>Other key population</label>
+      </input>
+      <select ref="/hts_retest_test/observation/priority_type">
         <label>Priority population type</label>
         <item>
           <label>Fisherfolk</label>
@@ -302,7 +395,30 @@
           <value>_1175_na_99DCT</value>
         </item>
       </select>
-      <select1 ref="/hts_retest_test/observation/_164951_disability_99DCT">
+      <select ref="/hts_retest_test/observation/pre_existing_priority_type">
+        <label>Priority population type</label>
+        <item>
+          <label>Fisherfolk</label>
+          <value>_159674_fisherfolk_99DCT</value>
+        </item>
+        <item>
+          <label>Truck driver</label>
+          <value>_162198_truckDriver_99DCT</value>
+        </item>
+        <item>
+          <label>Adolescent and young girls</label>
+          <value>_160549_adolecents_99DCT</value>
+        </item>
+        <item>
+          <label>Prisoner</label>
+          <value>_162277_prisoner_99DCT</value>
+        </item>
+        <item>
+          <label>Not applicable</label>
+          <value>_1175_na_99DCT</value>
+        </item>
+      </select>
+      <select1 ref="/hts_retest_test/observation/pre_existing_disability">
         <label>Does client have any disability?</label>
         <item>
           <label>Yes</label>
@@ -313,7 +429,18 @@
           <value>_1066_no_99DCT</value>
         </item>
       </select1>
-      <select ref="/hts_retest_test/observation/_162558_disabilityTypeMULTISELECT_99DCT">
+      <select1 ref="/hts_retest_test/observation/disability">
+        <label>Does client have any disability?</label>
+        <item>
+          <label>Yes</label>
+          <value>_1065_yes_99DCT</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>_1066_no_99DCT</value>
+        </item>
+      </select1>
+      <select ref="/hts_retest_test/observation/disability_type">
         <label>Disability type</label>
         <item>
           <label>Hearing impairment</label>
@@ -336,6 +463,32 @@
           <value>_5622_other_99DCT</value>
         </item>
       </select>
+      <select ref="/hts_retest_test/observation/pre_existing_disability_type">
+        <label>Disability type</label>
+        <item>
+          <label>Hearing impairment</label>
+          <value>_120291_hearing_99DCT</value>
+        </item>
+        <item>
+          <label>Visual impairment</label>
+          <value>_147215_visual_99DCT</value>
+        </item>
+        <item>
+          <label>Mentally challenged</label>
+          <value>_151342_mental_99DCT</value>
+        </item>
+        <item>
+          <label>Physically challenged</label>
+          <value>_164538_physical_99DCT</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>_5622_other_99DCT</value>
+        </item>
+      </select>
+      <input ref="/hts_retest_test/observation/_5622_Specify_99DCT">
+        <label>Specify other disability</label>
+      </input>
       <select1 ref="/hts_retest_test/observation/_164401_everTestedByProvider_99DCT">
         <label>Has the client ever been tested for HIV by a HTS provider?</label>
         <item>
@@ -393,9 +546,12 @@
         </item>
         <item>
           <label>Other</label>
-          <value>_5622_other_99DCT</value>
+          <value>_5622_otherhts_99DCT</value>
         </item>
       </select1>
+      <input ref="/hts_retest_test/observation/_5622_otherStrategyUsed_99DCT">
+        <label>Other strategy used</label>
+      </input>
       <select1 ref="/hts_retest_test/observation/_160540_htsEntryPoint_99DCT">
         <label>Indicate HTS entry point</label>
         <item>
@@ -443,6 +599,9 @@
           <value>_5622_otherEntry_99DCT</value>
         </item>
       </select1>
+      <input ref="/hts_retest_test/observation/_5622_otherEntryPoint_99DCT">
+        <label>Other entry point</label>
+      </input>
       <select1 ref="/hts_retest_test/observation/_1710_clientConsented_99DCT">
         <label>Has client consented?</label>
         <item>
@@ -509,56 +668,36 @@
         <select1 ref="/hts_retest_test/observation/_164410_secondTest_99DCT/_164962_KitTwoName_99DCT">
           <label>Kit name</label>
           <item>
-            <label>Determine</label>
-            <value>_164960_determine_99DCT</value>
-          </item>
-          <item>
             <label>First Response</label>
             <value>_164961_firstResponse_99DCT</value>
-          </item>
-          <item>
-            <label>Dual Kit</label>
-            <value>_165351_dual_99DCT</value>
           </item>
         </select1>
         <input ref="/hts_retest_test/observation/_164410_secondTest_99DCT/_164964_KitTwoLotNumber_99DCT">
           <label>Lot Number</label>
         </input>
-        <input ref="/hts_retest_test/observation/_164410_secondTest_99DCT/_162502_KitTwoExpiry_99DCT">
+        <input ref="/hts_retest_test/observation/_164410_secondTest_99DCT/_162501_KitTwoExpiry_99DCT">
           <label>Expiry Date</label>
         </input>
-        <select1 ref="/hts_retest_test/observation/_164410_secondTest_99DCT/_1040_testTwoResults_99DCT">
+        <select1 ref="/hts_retest_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT">
           <label>HIV Test 2 result</label>
           <item>
             <label>Positive</label>
-            <value>_703_test2positive_99DCT</value>
+            <value>_703_positive_99DCT</value>
           </item>
           <item>
             <label>Negative</label>
-            <value>_664_test2negative_99DCT</value>
+            <value>_664_negative_99DCT</value>
           </item>
           <item>
             <label>N/A</label>
-            <value>_163611_test2invalid_99DCT</value>
+            <value>_163611_invalid_99DCT</value>
           </item>
         </select1>
       </group>
-      <select1 ref="/hts_retest_test/observation/_159427_finalResults_99DCT">
-        <label>Final result</label>
-        <item>
-          <label>Positive</label>
-          <value>_703_positive_99DCT</value>
-        </item>
-        <item>
-          <label>Negative</label>
-          <value>_664_negative_99DCT</value>
-        </item>
-        <item>
-          <label>Invalid</label>
-          <value>_163611_invalid_99DCT</value>
-        </item>
-      </select1>
-      <select1 ref="/hts_retest_test/observation/_6096_coupleDsicordant_99DCT">
+      <input ref="/hts_retest_test/observation/final_result">
+        <label>&lt;h4 style=&quot;text-align:center;&quot;&gt;<output value=" /hts_retest_test/observation/_159427_finalResults_99DCT "/> <output value=" /hts_retest_test/head "/>&lt;/h4&gt;</label>
+      </input>
+      <select1 ref="/hts_retest_test/observation/_6096_coupleDiscordant_99DCT">
         <label>Couple is discordant</label>
         <item>
           <label>Yes</label>

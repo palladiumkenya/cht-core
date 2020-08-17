@@ -59,7 +59,7 @@
         </translation>
       </itext>
       <instance>
-        <contact_follow_up delimiter="#" id="contact_follow_up" prefix="J1!contact_follow_up!" version="2020-07-22">
+        <contact_follow_up delimiter="#" id="contact_follow_up" prefix="J1!contact_follow_up!" version="2020-08-17">
           <inputs>
             <meta>
               <location>
@@ -72,6 +72,9 @@
             <source>user</source>
             <source_id/>
             <t_follow_up_count/>
+            <form_uuid/>
+            <encounter_type_uuid/>
+            <encounterDate/>
             <contact>
               <_id/>
               <type/>
@@ -131,7 +134,7 @@
           <needs_signoff>true</needs_signoff>
           <group_follow_up>
             <n_details/>
-            <date_last_contact>2020-07-22</date_last_contact>
+            <date_last_contact>2020-08-17</date_last_contact>
             <follow_up_type/>
             <call_button/>
             <no_phone/>
@@ -157,6 +160,9 @@
       <bind nodeset="/contact_follow_up/inputs/source" type="string"/>
       <bind nodeset="/contact_follow_up/inputs/source_id" type="string"/>
       <bind nodeset="/contact_follow_up/inputs/t_follow_up_count" type="string"/>
+      <bind calculate="15ed03d2-c972-11e9-a32f-2a2ae2dbcce4'" nodeset="/contact_follow_up/inputs/form_uuid" type="string"/>
+      <bind calculate="'9c0a7a57-62ff-4f75-babe-5835b0e921b7'" nodeset="/contact_follow_up/inputs/encounter_type_uuid" type="string"/>
+      <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="Encounter date can not be in the future" nodeset="/contact_follow_up/inputs/encounterDate" required="true()" type="date"/>
       <bind nodeset="/contact_follow_up/inputs/contact/_id" type="string"/>
       <bind nodeset="/contact_follow_up/inputs/contact/type" type="string"/>
       <bind nodeset="/contact_follow_up/inputs/contact/contact_type" type="string"/>
@@ -211,7 +217,7 @@
  concat( /contact_follow_up/patient_age_in_years , if( /contact_follow_up/patient_age_in_years =1,' year and ',' years and ')),
  concat( /contact_follow_up/patient_age_in_months  mod 12, if(( /contact_follow_up/patient_age_in_months  mod 12)=1,' month old',' months old'))
 )" nodeset="/contact_follow_up/patient_age_display" type="string"/>
-      <bind calculate="2020-07-22" nodeset="/contact_follow_up/last_contact_date" type="string"/>
+      <bind calculate="2020-08-17" nodeset="/contact_follow_up/last_contact_date" type="string"/>
       <bind nodeset="/contact_follow_up/needs_signoff" type="string"/>
       <bind nodeset="/contact_follow_up/group_follow_up/n_details" readonly="true()" required="true()" type="string"/>
       <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today()))" jr:constraintMsg="Date must not be in the future" nodeset="/contact_follow_up/group_follow_up/date_last_contact" readonly="true()" required="true()" type="string"/>
@@ -235,6 +241,9 @@
   <h:body class="pages">
     <group appearance="field-list" ref="/contact_follow_up/inputs">
       <label>Patient</label>
+      <input ref="/contact_follow_up/inputs/encounterDate">
+        <label>Encounter date</label>
+      </input>
       <group ref="/contact_follow_up/inputs/contact">
         <label>Contact</label>
         <group ref="/contact_follow_up/inputs/contact/parent"/>

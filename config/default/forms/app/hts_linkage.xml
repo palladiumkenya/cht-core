@@ -3,8 +3,15 @@
   <h:head>
     <h:title>HTS Linkage</h:title>
     <model>
+      <itext>
+        <translation lang="en">
+          <text id="/hts_linkage/encounter_date:jr:constraintMsg">
+            <value>Encounter date can not be in the future</value>
+          </text>
+        </translation>
+      </itext>
       <instance>
-        <hts_linkage delimiter="#" id="hts_linkage" prefix="J1!hts_linkage!" version="2020-08-11 09:40:31">
+        <hts_linkage delimiter="#" id="hts_linkage" prefix="J1!hts_linkage!" version="2020-08-17 11:56:42">
           <inputs>
             <meta>
               <location>
@@ -38,8 +45,10 @@
           <place_id/>
           <place_name/>
           <head/>
+          <form_uuid/>
+          <encounter_type_uuid/>
+          <encounter_date/>
           <hts_linkage_assessment>
-            <_163137_encounterDAte_99DCT/>
             <_162724_facilityLinkedTo_99DCT/>
             <_162053_cccNumber_99DCT/>
             <_1473_healthWorkerHandedTo_99DCT/>
@@ -69,7 +78,9 @@
       <bind calculate="../inputs/contact/_id" nodeset="/hts_linkage/place_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/hts_linkage/place_name" type="string"/>
       <bind calculate="../inputs/contact/contact/name" nodeset="/hts_linkage/head" type="string"/>
-      <bind nodeset="/hts_linkage/hts_linkage_assessment/_163137_encounterDAte_99DCT" required="true()" type="date"/>
+      <bind calculate="'050a7f12-5c52-4cad-8834-863695af335d'" nodeset="/hts_linkage/form_uuid" type="string"/>
+      <bind calculate="'9c0a7a57-62ff-4f75-babe-5835b0e921b7'" nodeset="/hts_linkage/encounter_type_uuid" type="string"/>
+      <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/hts_linkage/encounter_date:jr:constraintMsg')" nodeset="/hts_linkage/encounter_date" required="true()" type="date"/>
       <bind nodeset="/hts_linkage/hts_linkage_assessment/_162724_facilityLinkedTo_99DCT" required="true()" type="string"/>
       <bind nodeset="/hts_linkage/hts_linkage_assessment/_162053_cccNumber_99DCT" required="true()" type="string"/>
       <bind nodeset="/hts_linkage/hts_linkage_assessment/_1473_healthWorkerHandedTo_99DCT" required="true()" type="string"/>
@@ -106,11 +117,11 @@
         </group>
       </group>
     </group>
+    <input ref="/hts_linkage/encounter_date">
+      <label>Date of linkage</label>
+    </input>
     <group appearance="field-list" ref="/hts_linkage/hts_linkage_assessment">
       <label>Linkage to care</label>
-      <input ref="/hts_linkage/hts_linkage_assessment/_163137_encounterDAte_99DCT">
-        <label>Encounter Date</label>
-      </input>
       <input ref="/hts_linkage/hts_linkage_assessment/_162724_facilityLinkedTo_99DCT">
         <label>Facility linked to:</label>
       </input>

@@ -27,10 +27,12 @@ const mostRecentHtsContactTracing = getNewestReport(allReports, ['contact_follow
 
 
 context.hts_initial = {
-  population_type:getField(mostRecentHtsInitial, 'hiv_testing.population_type') || '',
-  disability:getField(mostRecentHtsInitial, 'hiv_testing.disability') || '',
-  disability_type:getField(mostRecentHtsInitial, 'hiv_testing.disability_type') || '',
-  ever_tested:getField(mostRecentHtsInitial, 'hiv_testing.ever_tested_by_provider') || '',
+  population_type:getField(mostRecentHtsInitial, 'observation._164930_populationType_99DCT') || '',
+  key_population_type:getField(mostRecentHtsInitial, 'observation._164929_kpTypeMULTISELECT_99DCT') || '',
+  priority_population_type:getField(mostRecentHtsInitial, 'observation._160581_priorityTypeMULTISELECT_99DCT') || '',
+  disability:getField(mostRecentHtsInitial, 'observation._164951_disability_99DCT') || '',
+  disability_type:getField(mostRecentHtsInitial, 'observation._162558_disabilityTypeMULTISELECT_99DCT') || '',
+  ever_tested:getField(mostRecentHtsInitial, 'observation._164401_everTestedByProvider_99DCT') || '',
 
 };
 
