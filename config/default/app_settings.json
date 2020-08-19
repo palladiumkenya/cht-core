@@ -451,7 +451,7 @@
     "cht_client_registration": {
       "relevant_to": "doc.type === 'clinic'",
       "destination": {
-        "base_url": "http://localhost:8080",
+        "base_url": "https://data.kenyahmis.org:8400",
         "auth": {
           "type": "basic",
           "username": "admin",
@@ -466,7 +466,7 @@
     "cht_form_data": {
       "relevant_to": "doc.type === 'data_record' && (doc.form ==='hts_initial_form' || doc.form === 'hts_retest_form' || doc.form === 'hts_referral' || doc.form === 'hts_linkage')",
       "destination": {
-        "base_url": "http://localhost:8080",
+        "base_url": "https://data.kenyahmis.org:8400",
         "auth": {
           "type": "basic",
           "username": "admin",
