@@ -38,7 +38,17 @@ context.hts_initial = {
 
 context.hts_retest_latest = {
   final_result:getField(mostRecentHtsRetest, 'observation._159427_finalResults_99DCT') || '',
+  test_date:getField(mostRecentHtsRetest, 'encounter_date') || '',
 };
+
+context.hts_latest_consent = {
+  consent:getField(mostRecentHtsInitial, 'observation._1710_clientConsented_99DCT') || '',
+};
+
+context.hts_latest_form = {
+  form_type:mostRecentHtsInitial ? mostRecentHtsInitial.form : '',
+};
+
 
 context.recentHtsTracing = {
   phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_call') || '',

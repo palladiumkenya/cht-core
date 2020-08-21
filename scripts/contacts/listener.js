@@ -152,6 +152,7 @@ const createNewCaseDocument = item => {
     kemr_uuid: item._id,
     type: 'clinic',//contact
     contact_type: 'clinic',//forwarded_case
+    record_originator: 'kenyaemr',//forwarded_case
     reported_date: item.reported_date
   };
   for (const key of Object.keys(item.fields)) {
@@ -172,7 +173,8 @@ const extractContactDetails = (item, retainReference) => {
   const contact = {
     _id: uuidv4(),
     type: 'person',//contact
-    contact_type: 'person'//trace_contact
+    contact_type: 'person',//trace_contact
+    record_originator: 'kenyaemr'//add discriminator
   };
   for (const key of Object.keys(item)) {
     if (![...EXCLUDED_KEYS, 'contacts'].includes(key) && !!item[key]) {
@@ -265,6 +267,23 @@ const moveCasesToCounty = async (db, newCases, counties) => {
 
       docsToCreate.push(newCase);
 
+      // =================== trying to add contacts
+      //const parentPlace = newCase;
+
+      const clientLineage = minifyLineage(Object.assign({}, { _id: newCase._id, parent: newCase.parent }));
+
+      newCase.contacts.forEach(contactData => {
+        const contact = extractContactDetails(contactData, true);
+        contact.parent = clientLineage;
+        contact.kemr_uuid = newCase.kemr_uuid;
+        docsToCreate.push(contact);
+      });
+
+
+
+
+      // =================== end of adding contacts
+
       console.info(`Effecing move for Case ID: <${newCase._id}> KEMR REF: <${newCase.kemr_uuid}> to <${parent.name}>`);
       const results = await db.bulkDocs(docsToCreate);
       logPouchDBResults(results);
@@ -335,17 +354,17 @@ const createMutingDocument = item => {
 const effectAssignmentOfCases = async (db, cases) => {
   cases.forEach(async item => {
     const docsToCreate = [];
-    if (!item.assignee) {
+    /*if (!item.assignee) {
       console.warn(`Case ID: <${item._id}> KEMR REF: <${item.kemr_uuid}> Case Name: <${item.name}> not yet assined to a tracer`);
       return;
-    }
+    }*/
 
     // delete the case we are moving
     docsToCreate.push({ _id: item._id, _rev: item._rev, _deleted: true });
 
     // get new parent
     //const parentPlace = await db.get(item.assignee);648899fb-ab9f-485c-9295-4734d4153949
-    const parentPlace = await db.get('648899fb-ab9f-485c-9295-4734d4153949');
+    const parentPlace = await db.get(item._id);
 
     const caseLineage = minifyLineage(Object.assign({}, { _id: parentPlace._id, parent: parentPlace.parent }));
 
