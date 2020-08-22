@@ -56,17 +56,25 @@ context.recentHtsTracing = {
 };
 
 const fields = [
-  { appliesToType: 'person', label: 'patient_id', value: thisContact.patient_id, width: 4 },
+  //{ appliesToType: 'person', label: 'patient_id', value: thisContact.patient_id, width: 4 },
   { appliesToType: 'person', label: 'contact.age', value: thisContact.date_of_birth, width: 4, filter: 'age' },
   { appliesToType: 'person', label: 'contact.sex', value: 'contact.sex.' + thisContact.sex, translate: true, width: 4 },
   { appliesToType: 'person', label: 'person.field.phone', value: thisContact.phone, width: 4 },
-  { appliesToType: 'person', label: 'person.field.alternate_phone', value: thisContact.phone_alternate, width: 4 },
-  { appliesToType: 'person', label: 'External ID', value: thisContact.external_id, width: 4 },
-  { appliesToType: 'person', label: 'contact.parent', value: thisLineage, filter: 'lineage' },
-  { appliesToType: '!person', label: 'contact', value: thisContact.contact && thisContact.contact.name, width: 4 },
-  { appliesToType: '!person', label: 'contact.phone', value: thisContact.contact && thisContact.contact.phone, width: 4 },
-  { appliesToType: '!person', label: 'External ID', value: thisContact.external_id, width: 4 },
-  { appliesToType: '!person', appliesIf: function () { return thisContact.parent && thisLineage[0]; }, label: 'contact.parent', value: thisLineage, filter: 'lineage' },
+  { appliesToType: 'person', label: 'person.field.physical_address', value: thisContact.physical_address, width: 4 },
+  { appliesToType: 'person', label: 'person.field.relation_to_index', value: thisContact.contact_relationship, width: 4 },
+  { appliesToType: 'person', label: 'person.field.booking_date', value: thisContact.booking_date, width: 4 },
+  { appliesToType: 'person', label: 'person.field.ipv_outcome', value: thisContact.ipv_outcome, width: 4 },
+  { appliesToType: 'person', label: 'person.field.pns_approach', value: thisContact.pns_approach, width: 4 },
+  { appliesToType: 'person', label: 'contact.index.relationship', value: thisLineage, filter: 'lineage' },
+  { appliesToType: '!person', label: 'contact.age', value: thisContact.patient_birthDate, filter: 'age', width: 4 },
+  { appliesToType: '!person', label: 'contact.sex', value: 'contact.sex.' + thisContact.patient_sex, translate: true, width: 4 },
+  { appliesToType: '!person', label: 'contact.phone', value: thisContact.patient_telephone, width: 4 },
+  { appliesToType: '!person', label: 'person.address.county', value: thisContact.patient_county, width: 4 },
+  { appliesToType: '!person', label: 'person.address.sub_county', value: thisContact.patient_subcounty, width: 4 },
+  { appliesToType: '!person', label: 'person.address.ward', value: thisContact.patient_ward, width: 4 },
+  { appliesToType: '!person', label: 'person.address.village', value: thisContact.patient_village, width: 4 },
+  { appliesToType: '!person', label: 'person.address.landmark', value: thisContact.patient_landmark, width: 4 },
+  { appliesToType: '!person', appliesIf: function () { return thisContact.parent && thisLineage[0]; }, label: 'client.facility', value: thisLineage, filter: 'lineage' },
   { appliesToType: 'person', label: 'contact.notes', value: thisContact.notes, width: 12 },
   { appliesToType: '!person', label: 'contact.notes', value: thisContact.notes, width: 12 }
 ];
@@ -76,6 +84,82 @@ if (thisContact.short_name) {
 }
 
 const cards = [
+  {
+    label: 'HIV Testing profile',
+    appliesToType: 'clinic',
+    appliesIf: function () {
+      return true;
+    },
+    fields: function () {
+      const fields = [];
+      let lastTested;
+      let lastTestResult;
+      let resultTranslated;
+      let linkageDate;
+      let linkageFacility;
+      let linkageCCCNumber;
+
+
+      const testReport = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form']);
+      if (testReport) {
+        lastTested = getField(testReport, 'encounter_date');
+        lastTestResult = getField(testReport, 'observation._159427_finalResults_99DCT');
+        if (lastTestResult) {
+          if (lastTestResult === '_703_positive_99DCT') {
+            resultTranslated = 'Positive';
+          } else if (lastTestResult === '_664_negative_99DCT') {
+            resultTranslated = 'Negative';
+          } else if (lastTestResult === '_1138_inconclusive_99DCT') {
+            resultTranslated = 'Inconclusive';
+          }
+        }
+      }
+
+      if (testReport) {
+        fields.push(
+          {
+            label: 'client.last_tested',
+            value: lastTested ? lastTested : 'contact.profile.value.unknown',
+            filter: lastTested ? 'simpleDate' : '',
+            translate: lastTested ? false : true,
+            width: 4
+          },
+          {
+            label: 'client.last_test_result',
+            value: resultTranslated,
+            width: 6
+          }
+        );
+        if (resultTranslated === 'Positive') {
+          const linkageReport = getNewestReport(allReports, ['hts_linkage']);
+          linkageDate = getField(linkageReport, 'encounter_date');
+          linkageFacility = getField(linkageReport, 'observation._162724_facilityLinkedTo_99DCT');
+          linkageCCCNumber = getField(linkageReport, 'observation._162053_cccNumber_99DCT');
+
+          fields.push(
+            {
+              label: 'client.date_linked',
+              value: linkageDate ? linkageDate : 'Not linked',
+              filter: linkageDate ? 'simpleDate' : '',
+              translate: linkageDate ? false : true,
+              width: 4
+            },
+            {
+              label: 'client.facility_linked',
+              value: linkageFacility,
+              width: 4
+            },
+            {
+              label: 'client.ccc_number',
+              value: linkageCCCNumber,
+              width: 4
+            }
+          );
+        }
+      }
+      return fields;
+    }
+  },
   {
     label: 'contact.profile.pregnancy.active',
     appliesToType: 'report',
