@@ -378,7 +378,7 @@
       "parents": [
         "clinic"
       ],
-      "icon": "medic-person",
+      "icon": "listed-contact",
       "create_form": "form:contact:person:create",
       "edit_form": "form:contact:person:edit",
       "person": true
@@ -442,7 +442,7 @@
   },
   "outbound": {
     "cht_client_registration": {
-      "relevant_to": "doc.type === 'clinic' && (doc.record_originator && doc.record_originator === 'cht')",
+      "relevant_to": "doc.type === 'clinic' && doc.contact_type === 'clinic' && (doc.record_originator && doc.record_originator === 'cht')",
       "destination": {
         "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
@@ -457,7 +457,7 @@
       }
     },
     "cht_form_data": {
-      "relevant_to": "doc.type === 'data_record' && (doc.form ==='hts_initial_form' || doc.form === 'hts_retest_form' || doc.form === 'hts_referral' || doc.form === 'hts_linkage' || doc.form === 'hts_screening_form')",
+      "relevant_to": "doc.type === 'data_record' && ['hts_initial_form','hts_retest_form','hts_referral','hts_linkage','hts_screening_form'].includes(doc.form)",
       "destination": {
         "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
@@ -472,7 +472,7 @@
       }
     },
     "cht_contact_listing": {
-      "relevant_to": "doc.type === 'person' && doc.record_originator === 'cht'",
+      "relevant_to": "doc.type === 'person' && doc.contact_type === 'person' && doc.record_originator === 'cht'",
       "destination": {
         "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
