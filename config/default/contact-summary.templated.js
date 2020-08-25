@@ -21,18 +21,18 @@ const context = {
   has_hts_contact_followup: allReports.some((report) => report.form === 'contact_follow_up'),
 };
 
-const mostRecentHtsInitial = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form']);
+const mostRecentHtsForm = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form']);
 const mostRecentHtsRetest = getNewestReport(allReports, ['hts_retest_form']);
 const mostRecentHtsContactTracing = getNewestReport(allReports, ['contact_follow_up']);
 
 
 context.hts_initial = {
-  population_type:getField(mostRecentHtsInitial, 'observation._164930_populationType_99DCT') || '',
-  key_population_type:getField(mostRecentHtsInitial, 'observation._164929_kpTypeMULTISELECT_99DCT') || '',
-  priority_population_type:getField(mostRecentHtsInitial, 'observation._160581_priorityTypeMULTISELECT_99DCT') || '',
-  disability:getField(mostRecentHtsInitial, 'observation._164951_disability_99DCT') || '',
-  disability_type:getField(mostRecentHtsInitial, 'observation._162558_disabilityTypeMULTISELECT_99DCT') || '',
-  ever_tested:getField(mostRecentHtsInitial, 'observation._164401_everTestedByProvider_99DCT') || '',
+  population_type:getField(mostRecentHtsForm, 'observation._164930_populationType_99DCT') || '',
+  key_population_type:getField(mostRecentHtsForm, 'observation._164929_kpTypeMULTISELECT_99DCT') || '',
+  priority_population_type:getField(mostRecentHtsForm, 'observation._160581_priorityTypeMULTISELECT_99DCT') || '',
+  disability:getField(mostRecentHtsForm, 'observation._164951_disability_99DCT') || '',
+  disability_type:getField(mostRecentHtsForm, 'observation._162558_disabilityTypeMULTISELECT_99DCT') || '',
+  ever_tested:getField(mostRecentHtsForm, 'observation._164401_everTestedByProvider_99DCT') || '',
 
 };
 
@@ -42,13 +42,12 @@ context.hts_retest_latest = {
 };
 
 context.hts_latest_consent = {
-  consent:getField(mostRecentHtsInitial, 'observation._1710_clientConsented_99DCT') || '',
+  consent:getField(mostRecentHtsForm, 'observation._1710_clientConsented_99DCT') || '',
 };
 
 context.hts_latest_form = {
-  form_type:mostRecentHtsInitial ? mostRecentHtsInitial.form : '',
+  form_type:mostRecentHtsForm ? mostRecentHtsForm.form : '',
 };
-
 
 context.recentHtsTracing = {
   phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_call') || '',
