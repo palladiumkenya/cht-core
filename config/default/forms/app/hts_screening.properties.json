@@ -1,9 +1,0 @@
-{
-  "icon": "icon-mother-child",
-  "title": "HTS Screening Form",
-  "context": {
-    "person": false,
-    "place": true,
-    "expression": "contact.contact_type === 'clinic' && (summary.hts_retest_latest.final_result != '_703_positive_99DCT')"
-  }
-}

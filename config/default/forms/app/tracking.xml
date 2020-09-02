@@ -3,8 +3,18 @@
   <h:head>
     <h:title>Tracking</h:title>
     <model>
+      <itext>
+        <translation lang="en">
+          <text id="/tracking/encounter_date:jr:constraintMsg">
+            <value>Encounter date cannot be in the future</value>
+          </text>
+          <text id="/tracking/observation/_160753_dateAttempted_99DCT:jr:constraintMsg">
+            <value>Date tracking attempted can not be in the future</value>
+          </text>
+        </translation>
+      </itext>
       <instance>
-        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-07-21 23:12:05">
+        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-08-25 16:10:55">
           <inputs>
             <meta>
               <location>
@@ -38,21 +48,63 @@
           <place_id/>
           <place_name/>
           <head/>
-          <tracking_nformation>
-            <tracking_attempted/>
-            <why_not/>
-            <Specify/>
-            <number_of_attempt/>
-            <date_attempted/>
-            <tracing_type/>
-            <outcome/>
-            <outcome_status_reached/>
-            <status/>
-            <exit_reason/>
-            <source_of_info/>
-            <status_in_program/>
-            <reason_for_exit/>
-          </tracking_nformation>
+          <form_uuid/>
+          <encounter_type_uuid/>
+          <encounter_date/>
+          <observation>
+            <_165004_trackingAttempted_99DCT/>
+            <_165071_whyNot_99DCT/>
+            <_5622_Specify_99DCT/>
+            <_1639_numberOFattempt_99DCT/>
+            <_160753_dateAttempted_99DCT/>
+            <_164966_tracingType_99DCT/>
+            <_160721_outcome_99DCT/>
+            <_163725_outcomeStatusReached_99DCT/>
+            <_160433_status_99DCT/>
+            <_160716_exitReason_99DCT/>
+            <_162568_sourceOFinfo_99DCT/>
+            <_161641_statusINprogram_99DCT/>
+          </observation>
+          <group_review>
+            <n_submit/>
+            <n_household_details_title/>
+            <n_household_details/>
+            <n_assessment_findings/>
+            <tracking/>
+            <yes/>
+            <no/>
+            <attempt/>
+            <attempt_number/>
+            <n_hts_strategy/>
+            <contactIllegible/>
+            <largeLocation/>
+            <contactMissing/>
+            <n_standalone_vct/>
+            <n_home_based_testing/>
+            <attempt_date/>
+            <dateAttempted/>
+            <tracing/>
+            <phone/>
+            <physical/>
+            <tracing_outcome/>
+            <reached/>
+            <contactReached/>
+            <notReached/>
+            <n_test_1_results/>
+            <dead/>
+            <relocated/>
+            <voluntaryExit/>
+            <enrolledinMAT/>
+            <untraceable/>
+            <bedridden/>
+            <imprisoned/>
+            <found/>
+            <status_inProgramme/>
+            <lostFollowUp/>
+            <defaulted/>
+            <active/>
+            <dead_in_programme/>
+          </group_review>
           <meta tag="hidden">
             <instanceID/>
           </meta>
@@ -73,19 +125,59 @@
       <bind calculate="../inputs/contact/_id" nodeset="/tracking/place_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/tracking/place_name" type="string"/>
       <bind calculate="../inputs/contact/contact/name" nodeset="/tracking/head" type="string"/>
-      <bind nodeset="/tracking/tracking_nformation/tracking_attempted" required="true()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/why_not" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;no&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/Specify" relevant=" /tracking/tracking_nformation/why_not =&quot;other&quot;" required="false()" type="string"/>
-      <bind nodeset="/tracking/tracking_nformation/number_of_attempt" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="string"/>
-      <bind nodeset="/tracking/tracking_nformation/date_attempted" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" type="date"/>
-      <bind nodeset="/tracking/tracking_nformation/tracing_type" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/outcome" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/outcome_status_reached" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/status" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/exit_reason" relevant=" /tracking/tracking_nformation/status =&quot;voluntary_exitt&quot;" type="string"/>
-      <bind nodeset="/tracking/tracking_nformation/source_of_info" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/status_in_program" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/tracking_nformation/reason_for_exit" relevant=" /tracking/tracking_nformation/tracking_attempted =&quot;yes&quot;" required="false()" type="string"/>
+      <bind calculate="'402dc5d7-46da-42d4-b2be-f43ea4ad87b0'" nodeset="/tracking/form_uuid" type="string"/>
+      <bind calculate="'9c0a7a57-62ff-4f75-babe-5835b0e921b7'" nodeset="/tracking/encounter_type_uuid" type="string"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/tracking/encounter_date:jr:constraintMsg')" nodeset="/tracking/encounter_date" required="true()" type="date"/>
+      <bind nodeset="/tracking/observation/_165004_trackingAttempted_99DCT" required="true()" type="select1"/>
+      <bind nodeset="/tracking/observation/_165071_whyNot_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1066_no_99DCT&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/observation/_5622_Specify_99DCT" relevant=" /tracking/observation/_165071_whyNot_99DCT =&quot;_5622_other_99DCT&quot;" required="false()" type="string"/>
+      <bind nodeset="/tracking/observation/_1639_numberOFattempt_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="string"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/tracking/observation/_160753_dateAttempted_99DCT:jr:constraintMsg')" nodeset="/tracking/observation/_160753_dateAttempted_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" type="date"/>
+      <bind nodeset="/tracking/observation/_164966_tracingType_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/observation/_160721_outcome_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/observation/_163725_outcomeStatusReached_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/observation/_160433_status_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/observation/_160716_exitReason_99DCT" relevant=" /tracking/observation/_160433_status_99DCT =&quot;_165219_voluntaryExit_99DCT&quot;" type="string"/>
+      <bind nodeset="/tracking/observation/_162568_sourceOFinfo_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/observation/_161641_statusINprogram_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/group_review/n_submit" readonly="true()" type="string"/>
+      <bind nodeset="/tracking/group_review/n_household_details_title" readonly="true()" type="string"/>
+      <bind nodeset="/tracking/group_review/n_household_details" readonly="true()" type="string"/>
+      <bind nodeset="/tracking/group_review/n_assessment_findings" readonly="true()" type="string"/>
+      <bind nodeset="/tracking/group_review/tracking" readonly="true()" type="string"/>
+      <bind nodeset="/tracking/group_review/yes" readonly="true()" relevant="selected(../../observation/_165004_trackingAttempted_99DCT, '_1065_yes_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/no" readonly="true()" relevant="selected(../../observation/_165004_trackingAttempted_99DCT, '_1066_no_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/attempt" readonly="true()" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" type="string"/>
+      <bind nodeset="/tracking/group_review/attempt_number" readonly="true()" type="string"/>
+      <bind nodeset="/tracking/group_review/n_hts_strategy" readonly="true()" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1066_no_99DCT&quot;" type="string"/>
+      <bind nodeset="/tracking/group_review/contactIllegible" readonly="true()" relevant="selected(../../observation/_165071_whyNot_99DCT, '_165078_infoIllegible_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/largeLocation" readonly="true()" relevant="selected(../../observation/_165071_whyNot_99DCT, '_165073_loctionGeneral_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/contactMissing" readonly="true()" relevant="selected(../../observation/_165071_whyNot_99DCT, '_165072_missingontact_info_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/n_standalone_vct" readonly="true()" relevant="selected(../../observation/_165071_whyNot_99DCT, '_163777_notLostFollowup_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/n_home_based_testing" readonly="true()" relevant="selected(../../observation/_165071_whyNot_99DCT, '_5622_other_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/attempt_date" readonly="true()" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" type="string"/>
+      <bind nodeset="/tracking/group_review/dateAttempted" readonly="true()" type="string"/>
+      <bind nodeset="/tracking/group_review/tracing" readonly="true()" type="string"/>
+      <bind nodeset="/tracking/group_review/phone" readonly="true()" relevant="selected(../../observation/_164966_tracingType_99DCT, '_1650_phone_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/physical" readonly="true()" relevant="selected(../../observation/_164966_tracingType_99DCT, '_164965_physical_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/tracing_outcome" readonly="true()" type="string"/>
+      <bind nodeset="/tracking/group_review/reached" readonly="true()" relevant="selected(../../observation/_160721_outcome_99DCT, '_160718_reached_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/contactReached" readonly="true()" relevant="selected(../../observation/_160721_outcome_99DCT, '_160717_notReachedInfoReached_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/notReached" readonly="true()" relevant="selected(../../observation/_160721_outcome_99DCT, '_160717_notReached_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/n_test_1_results" readonly="true()" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" type="string"/>
+      <bind nodeset="/tracking/group_review/dead" readonly="true()" relevant="selected(../../observation/_160433_status_99DCT, '_160432_dead_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/relocated" readonly="true()" relevant="selected(../../observation/_160433_status_99DCT, '_160415_relocated_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/voluntaryExit" readonly="true()" relevant="selected(../../observation/_160433_status_99DCT, '_165219_voluntaryExit_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/enrolledinMAT" readonly="true()" relevant="selected(../../observation/_160433_status_99DCT, '_134236_endrolledMAT_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/untraceable" readonly="true()" relevant="selected(../../observation/_160433_status_99DCT, '_165067_untraceable_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/bedridden" readonly="true()" relevant="selected(../../observation/_160433_status_99DCT, '_162752_bedridden_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/imprisoned" readonly="true()" relevant="selected(../../observation/_160433_status_99DCT, '_156761_imprisoned_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/found" readonly="true()" relevant="selected(../../observation/_160433_status_99DCT, '_162632_found_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/status_inProgramme" readonly="true()" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" type="string"/>
+      <bind nodeset="/tracking/group_review/lostFollowUp" readonly="true()" relevant="selected(../../observation/_161641_statusINprogram_99DCT, '_5240_lostFollowup_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/defaulted" readonly="true()" relevant="selected(../../observation/_161641_statusINprogram_99DCT, '_160031_defaulted_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/active" readonly="true()" relevant="selected(../../observation/_161641_statusINprogram_99DCT, '_161636_active_99DCT')" type="string"/>
+      <bind nodeset="/tracking/group_review/dead_in_programme" readonly="true()" relevant="selected(../../observation/_161641_statusINprogram_99DCT, '_160432_dead_99DCT')" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/tracking/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -114,162 +206,279 @@
         </group>
       </group>
     </group>
-    <group appearance="field-list" ref="/tracking/tracking_nformation">
+    <input ref="/tracking/encounter_date">
+      <label>Date of test</label>
+    </input>
+    <group appearance="field-list" ref="/tracking/observation">
       <label>Tracking Information</label>
-      <select1 ref="/tracking/tracking_nformation/tracking_attempted">
+      <select1 ref="/tracking/observation/_165004_trackingAttempted_99DCT">
         <label>Tracking Attempted</label>
         <item>
           <label>Yes</label>
-          <value>yes</value>
+          <value>_1065_yes_99DCT</value>
         </item>
         <item>
           <label>No</label>
-          <value>no</value>
+          <value>_1066_no_99DCT</value>
         </item>
       </select1>
-      <select1 ref="/tracking/tracking_nformation/why_not">
+      <select1 ref="/tracking/observation/_165071_whyNot_99DCT">
         <label>Why was tracking not attempted?</label>
         <item>
           <label>Contact information illegible</label>
-          <value>info_illegible</value>
+          <value>_165078_infoIllegible_99DCT</value>
         </item>
         <item>
           <label>Location listed too general to make tracking possible</label>
-          <value>loction_too_general</value>
+          <value>_165073_loctionGeneral_99DCT</value>
         </item>
         <item>
           <label>Contact information missing</label>
-          <value>contact_info_missing</value>
+          <value>_165072_missingontact_info_99DCT</value>
         </item>
         <item>
           <label>Cohort register/peer outreach calendar reviewed and client not lost to followup</label>
-          <value>not_lost_followup</value>
+          <value>_163777_notLostFollowup_99DCT</value>
         </item>
         <item>
           <label>Other (Specify)</label>
-          <value>other</value>
+          <value>_5622_other_99DCT</value>
         </item>
       </select1>
-      <input ref="/tracking/tracking_nformation/Specify">
+      <input ref="/tracking/observation/_5622_Specify_99DCT">
         <label>Specify:</label>
       </input>
-      <input ref="/tracking/tracking_nformation/number_of_attempt">
+      <input ref="/tracking/observation/_1639_numberOFattempt_99DCT">
         <label>Please specify the attempt number since last missed appointment(ie 1,2,3):</label>
       </input>
-      <input ref="/tracking/tracking_nformation/date_attempted">
+      <input ref="/tracking/observation/_160753_dateAttempted_99DCT">
         <label>Date of attempt</label>
       </input>
-      <select1 ref="/tracking/tracking_nformation/tracing_type">
+      <select1 ref="/tracking/observation/_164966_tracingType_99DCT">
         <label>Tracing Type</label>
         <item>
           <label>Phone</label>
-          <value>phone</value>
+          <value>_1650_phone_99DCT</value>
         </item>
         <item>
           <label>Physical</label>
-          <value>physical</value>
+          <value>_164965_physical_99DCT</value>
         </item>
       </select1>
-      <select1 ref="/tracking/tracking_nformation/outcome">
+      <select1 ref="/tracking/observation/_160721_outcome_99DCT">
         <label>Tracing Outcome</label>
         <item>
           <label>KP reached</label>
-          <value>reached</value>
+          <value>_160718_reached_99DCT</value>
         </item>
         <item>
           <label>KP not reached,but rather informant reached</label>
-          <value>not_reached_info_reached</value>
+          <value>_160717_notReachedInfoReached_99DCT</value>
         </item>
         <item>
           <label>KP not reached</label>
-          <value>bar_without_lodging</value>
+          <value>_160717_notReached_99DCT</value>
         </item>
       </select1>
-      <select1 ref="/tracking/tracking_nformation/outcome_status_reached">
+      <select1 ref="/tracking/observation/_163725_outcomeStatusReached_99DCT">
         <label>Was the final outcome reached?</label>
         <item>
           <label>Yes</label>
-          <value>yes</value>
+          <value>_1065_yes_99DCT</value>
         </item>
         <item>
           <label>No</label>
-          <value>no</value>
+          <value>_1066_no_99DCT</value>
         </item>
       </select1>
-      <select1 ref="/tracking/tracking_nformation/status">
+      <select1 ref="/tracking/observation/_160433_status_99DCT">
         <label>Status</label>
         <item>
           <label>Dead</label>
-          <value>dead</value>
+          <value>_160432_dead_99DCT</value>
         </item>
         <item>
           <label>Relocated</label>
-          <value>relocated</value>
+          <value>_160415_relocated_99DCT</value>
         </item>
         <item>
           <label>Voluntary Exit</label>
-          <value>voluntary_exit</value>
+          <value>_165219_voluntaryExit_99DCT</value>
         </item>
         <item>
           <label>Enrolled in MAT</label>
-          <value>endrolled_in_mat</value>
+          <value>_134236_endrolledMAT_99DCT</value>
         </item>
         <item>
           <label>Untraceable</label>
-          <value>untraceable</value>
+          <value>_165067_untraceable_99DCT</value>
         </item>
         <item>
           <label>Bedridden</label>
-          <value>bedridden</value>
+          <value>_162752_bedridden_99DCT</value>
         </item>
         <item>
           <label>Imprisoned</label>
-          <value>imprisoned</value>
+          <value>_156761_imprisoned_99DCT</value>
         </item>
         <item>
           <label>Found</label>
-          <value>found</value>
+          <value>_162632_found_99DCT</value>
         </item>
       </select1>
-      <input ref="/tracking/tracking_nformation/exit_reason">
+      <input ref="/tracking/observation/_160716_exitReason_99DCT">
         <label>Comments explaining the reasons for Voluntary Exit</label>
       </input>
-      <select1 ref="/tracking/tracking_nformation/source_of_info">
+      <select1 ref="/tracking/observation/_162568_sourceOFinfo_99DCT">
         <label>Source of Information</label>
         <item>
           <label>Key Population</label>
-          <value>kp</value>
+          <value>_164929_kp_99DCT</value>
         </item>
         <item>
           <label>Peer Educator</label>
-          <value>pe</value>
+          <value>_165037_pe_99DCT</value>
         </item>
         <item>
           <label>Other Information</label>
-          <value>other_info</value>
+          <value>_5622_otherInfo_99DCT</value>
         </item>
       </select1>
-      <select1 ref="/tracking/tracking_nformation/status_in_program">
+      <select1 ref="/tracking/observation/_161641_statusINprogram_99DCT">
         <label>Status in the programme:</label>
         <item>
           <label>Lost Followup</label>
-          <value>lost_followup</value>
+          <value>_5240_lostFollowup_99DCT</value>
         </item>
         <item>
           <label>Defaulted</label>
-          <value>defaulted</value>
+          <value>_160031_defaulted_99DCT</value>
         </item>
         <item>
           <label>Active</label>
-          <value>active</value>
+          <value>_161636_active_99DCT</value>
         </item>
         <item>
           <label>Dead</label>
-          <value>dead</value>
+          <value>_160432_dead_99DCT</value>
         </item>
       </select1>
-      <input ref="/tracking/tracking_nformation/reason_for_exit">
-        <label>Reasons for voluntary exit:</label>
+    </group>
+    <group appearance="field-list summary" ref="/tracking/group_review">
+      <label>Summary page</label>
+      <input ref="/tracking/group_review/n_submit">
+        <label>_Be sure you submit to complete this action._</label>
+      </input>
+      <input appearance="h1 yellow" ref="/tracking/group_review/n_household_details_title">
+        <label>Client details&lt;I class="fa fa-user"&gt;&lt;/i&gt;</label>
+      </input>
+      <input ref="/tracking/group_review/n_household_details">
+        <label>&lt;h4 style=&quot;text-align:center;&quot;&gt;<output value=" /tracking/place_name "/> <output value=" /tracking/head "/>&lt;/h4&gt;</label>
+      </input>
+      <input appearance="h1 blue" ref="/tracking/group_review/n_assessment_findings">
+        <label>Assessment findings&lt;I class="fa fa-user"&gt;&lt;/i&gt;</label>
+      </input>
+      <input ref="/tracking/group_review/tracking">
+        <label>**_Tracking attempted_**</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/yes">
+        <label>Yes</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/no">
+        <label>No</label>
+      </input>
+      <input ref="/tracking/group_review/attempt">
+        <label>**_Attempt number_**</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/attempt_number">
+        <label><output value=" /tracking/observation/_1639_numberOFattempt_99DCT "/></label>
+      </input>
+      <input ref="/tracking/group_review/n_hts_strategy">
+        <label>**_Why tracing was not attempted_**</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/contactIllegible">
+        <label>Contact information illegible</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/largeLocation">
+        <label>Location listed too general to make tracking possible</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/contactMissing">
+        <label>Contact information missing</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/n_standalone_vct">
+        <label>Cohort register/peer outreach calendar reviewed and client not lost to followup</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/n_home_based_testing">
+        <label>Other (Specify)</label>
+      </input>
+      <input ref="/tracking/group_review/attempt_date">
+        <label>**_Date attempted_**</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/dateAttempted">
+        <label><output value=" /tracking/observation/_160753_dateAttempted_99DCT "/></label>
+      </input>
+      <input ref="/tracking/group_review/tracing">
+        <label>**_Tracing Type_**</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/phone">
+        <label>Phone</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/physical">
+        <label>Physical</label>
+      </input>
+      <input ref="/tracking/group_review/tracing_outcome">
+        <label>**_Tracing outcome_**</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/reached">
+        <label>Reached</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/contactReached">
+        <label>KP not reached,but rather informant reached</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/notReached">
+        <label>KP not reached</label>
+      </input>
+      <input ref="/tracking/group_review/n_test_1_results">
+        <label>**_Status_**</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/dead">
+        <label>Dead</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/relocated">
+        <label>Relocated</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/voluntaryExit">
+        <label>Voluntary Exit</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/enrolledinMAT">
+        <label>Enrolled in MAT</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/untraceable">
+        <label>Untraceable</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/bedridden">
+        <label>Bedridden</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/imprisoned">
+        <label>Imprisoned</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/found">
+        <label>Found</label>
+      </input>
+      <input ref="/tracking/group_review/status_inProgramme">
+        <label>**_Status in the programme_**</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/lostFollowUp">
+        <label>Lost Followup</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/defaulted">
+        <label>Defaulted</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/active">
+        <label>Active</label>
+      </input>
+      <input appearance="li" ref="/tracking/group_review/dead_in_programme">
+        <label>Dead</label>
       </input>
     </group>
   </h:body>

@@ -1,9 +1,0 @@
-{
-        "icon": "icon-mother-child",
-        "title": "HTS Initial Form",
-        "context": {
-                "person": false,
-                "place": true,
-                "expression": "contact.contact_type == 'clinic' && (!summary.has_hts_initial || (summary.hts_latest_form.form_type === 'hts_initial_form' && summary.hts_latest_consent.consent === '_1066_no_99DCT'))"
-        }
-}

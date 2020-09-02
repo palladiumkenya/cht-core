@@ -1,9 +1,0 @@
-{
-  "icon": "icon-treatment",
-  "title": "HTS Referral",
-  "context": {
-    "person": false,
-    "place": true,
-    "expression": "contact.contact_type === 'clinic' && summary.hts_retest_latest.final_result == '_703_positive_99DCT' && !summary.has_hts_linkage && !summary.has_hts_referral"
-  }
-}
