@@ -9,7 +9,7 @@
             <value>Encounter date cannot be in the future</value>
           </text>
           <text id="/prep_treatment_verification/observation/_5096_nextAppointment_99DCT:jr:constraintMsg">
-            <value>Next appointment date can not be in the past</value>
+            <value>Next appointment date can not be before date initiated on PrEP</value>
           </text>
           <text id="/prep_treatment_verification/observation/_5096_verificationDate_99DCT:jr:constraintMsg">
             <value>Can not e in the future</value>
@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <prep_treatment_verification delimiter="#" id="prep_treatment_verification" prefix="J1!prep_treatment_verification!" version="2020-09-02 16:47:07">
+        <prep_treatment_verification delimiter="#" id="prep_treatment_verification" prefix="J1!prep_treatment_verification!" version="2020-09-08 00:17:10">
           <inputs>
             <meta>
               <location>
@@ -54,6 +54,8 @@
           <place_id/>
           <place_name/>
           <head/>
+          <form_uuid/>
+          <encounter_type_uuid/>
           <encounter_date/>
           <observation>
             <_163526_enrollmenetDate_99DCT/>
@@ -130,6 +132,8 @@
       <bind calculate="../inputs/contact/_id" nodeset="/prep_treatment_verification/place_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/prep_treatment_verification/place_name" type="string"/>
       <bind calculate="../inputs/contact/contact/name" nodeset="/prep_treatment_verification/head" type="string"/>
+      <bind calculate="'5c64e61a-7fdc-11ea-bc55-0242ac130003'" nodeset="/prep_treatment_verification/form_uuid" type="string"/>
+      <bind calculate="'5c64e368-7fdc-11ea-bc55-0242ac130003'" nodeset="/prep_treatment_verification/encounter_type_uuid" type="string"/>
       <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/prep_treatment_verification/encounter_date:jr:constraintMsg')" nodeset="/prep_treatment_verification/encounter_date" required="true()" type="date"/>
       <bind jr:constraintMsg="jr:itext('/prep_treatment_verification/observation:jr:constraintMsg')" nodeset="/prep_treatment_verification/observation"/>
       <bind constraint=". &lt;= today()" nodeset="/prep_treatment_verification/observation/_163526_enrollmenetDate_99DCT" required="true()" type="date"/>
@@ -142,7 +146,7 @@
       <bind nodeset="/prep_treatment_verification/observation/_165109_prepStatus_99DCT" required="true()" type="select1"/>
       <bind nodeset="/prep_treatment_verification/observation/_161555_discontinuationReason_99DCT" relevant=" /prep_treatment_verification/observation/_165109_prepStatus_99DCT =&quot;_1260_discontinue_99DCT&quot;" required="false()" type="select1"/>
       <bind nodeset="/prep_treatment_verification/observation/other_reason" relevant=" /prep_treatment_verification/observation/_161555_discontinuationReason_99DCT =&quot;_5622_other_99DCT&quot;" required="false()" type="string"/>
-      <bind constraint=". &gt;= today()" jr:constraintMsg="jr:itext('/prep_treatment_verification/observation/_5096_nextAppointment_99DCT:jr:constraintMsg')" nodeset="/prep_treatment_verification/observation/_5096_nextAppointment_99DCT" relevant=" /prep_treatment_verification/observation/_165109_prepStatus_99DCT =&quot;_1257_continue_99DCT&quot; or  /prep_treatment_verification/observation/_165109_prepStatus_99DCT =&quot;_16290_restart_99DCT&quot; or  /prep_treatment_verification/observation/_165109_prepStatus_99DCT =&quot;_1256_start_99DCT&quot;" required="false()" type="date"/>
+      <bind constraint=". &gt;=_160555_dateInitiatedOnPrEP_99DCT" jr:constraintMsg="jr:itext('/prep_treatment_verification/observation/_5096_nextAppointment_99DCT:jr:constraintMsg')" nodeset="/prep_treatment_verification/observation/_5096_nextAppointment_99DCT" relevant=" /prep_treatment_verification/observation/_165109_prepStatus_99DCT =&quot;_1257_continue_99DCT&quot; or  /prep_treatment_verification/observation/_165109_prepStatus_99DCT =&quot;_16290_restart_99DCT&quot; or  /prep_treatment_verification/observation/_165109_prepStatus_99DCT =&quot;_1256_start_99DCT&quot;" required="false()" type="date"/>
       <bind nodeset="/prep_treatment_verification/observation/_163042_comments_99DCT" required="false()" type="string"/>
       <bind nodeset="/prep_treatment_verification/group_review/n_submit" readonly="true()" type="string"/>
       <bind nodeset="/prep_treatment_verification/group_review/n_household_details_title" readonly="true()" type="string"/>
@@ -212,12 +216,12 @@
       </group>
     </group>
     <input ref="/prep_treatment_verification/encounter_date">
-      <label>Date of test</label>
+      <label>Encounter date</label>
     </input>
     <group appearance="field-list" ref="/prep_treatment_verification/observation">
       <label>PrEP History</label>
       <input ref="/prep_treatment_verification/observation/_163526_enrollmenetDate_99DCT">
-        <label>Enrollment Date</label>
+        <label>Initial visit Date</label>
       </input>
       <select1 appearance="minimal" ref="/prep_treatment_verification/observation/_162724_facilityName_99DCT">
         <label>Name of health facility accessing ART:</label>
@@ -51733,7 +51737,7 @@
         </item>
         <item>
           <label>Restart</label>
-          <value>_16290_restart_99DCT</value>
+          <value>_162904_restart_99DCT</value>
         </item>
         <item>
           <label>Continue</label>

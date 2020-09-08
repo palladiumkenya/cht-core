@@ -8,37 +8,79 @@
           <text id="/hiv_treatment_verification/encounter_date:jr:constraintMsg">
             <value>Encounter date cannot be in the future</value>
           </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI1_99DCT:jr:constraintMsg">
+            <value>Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI2_99DCT:jr:constraintMsg">
+            <value>Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI3_99DCT:jr:constraintMsg">
+            <value>Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI4_99DCT:jr:constraintMsg">
+            <value>Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI5_99DCT:jr:constraintMsg">
+            <value>Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment1_99DCT:jr:constraintMsg">
+            <value>Can not be before date diagnosed .Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment2_99DCT:jr:constraintMsg">
+            <value>Can not be before date diagnosed .Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment3_99DCT:jr:constraintMsg">
+            <value>Can not be before date diagnosed .Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment4_99DCT:jr:constraintMsg">
+            <value>Can not be before date diagnosed .Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment5_99DCT:jr:constraintMsg">
+            <value>Can not be before date diagnosed .Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment1_99DCT:jr:constraintMsg">
+            <value>Can not be before date initiated. Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment2_99DCT:jr:constraintMsg">
+            <value>Can not be before date initiated. Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment3_99DCT:jr:constraintMsg">
+            <value>Can not be before date initiated. Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment4_99DCT:jr:constraintMsg">
+            <value>Can not be before date initiated. Can not be in the future</value>
+          </text>
+          <text id="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment5_99DCT:jr:constraintMsg">
+            <value>Can not be before date initiated. Can not be in the future</value>
+          </text>
           <text id="/hiv_treatment_verification/observation/_159599_dateInitiatedOnArt_99DCT:jr:constraintMsg">
-            <value>Date initiated on ART can not be in the future</value>
+            <value>Date initiated ART cannot be before date Diagnosed HIV Positive and Cannot be in the Future.</value>
           </text>
           <text id="/hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT:jr:constraintMsg">
             <value>Date diagnosed can not be in the future</value>
           </text>
-          <text id="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_159948_whenDiagnosedWithOI_99DCT:jr:constraintMsg">
-            <value>Can not be in the future</value>
+          <text id="/hiv_treatment_verification/observation/_160103_whenFirstTestDone_99DCT:jr:constraintMsg">
+            <value>Date initiated on ART can not be before date diagnosed HIV positive, and can not also be in the future</value>
           </text>
-          <text id="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_160753_whenInitiatedOItreatment_99DCT:jr:constraintMsg">
-            <value>Can not be in the future</value>
+          <text id="/hiv_treatment_verification/observation/_160632_firstLevels_99DCT:jr:constraintMsg">
+            <value>Can not be more than 9999</value>
           </text>
-          <text id="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162279_whenInitiatedOnTreatment_99DCT:jr:constraintMsg">
-            <value>Month and year initiated on OI can not be in the future</value>
+          <text id="/hiv_treatment_verification/observation/_162279_whenFinishedIpt_99DCT:jr:constraintMsg">
+            <value>Month and year finished IPT can not be before month and year started and also can not be in the future</value>
           </text>
-          <text id="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162320_whenStartedIpt_99DCT:jr:constraintMsg">
+          <text id="/hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT:jr:constraintMsg">
             <value>Month and year started IPT can not be in the future</value>
           </text>
-          <text id="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162868_whenCompletedOItreatment_99DCT:jr:constraintMsg">
-            <value>Can not be in the future</value>
+          <text id="/hiv_treatment_verification/observation/_163281_firstdates_99DCT:jr:constraintMsg">
+            <value>VL date can not be before date diagnosed HIV positive, and can not also be in the future</value>
           </text>
-          <text id="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163281_dates_99DCT:jr:constraintMsg">
-            <value>Date viral load was done can not be in the future</value>
-          </text>
-          <text id="/hiv_treatment_verification/observation/_657_hivMonitoring_99DCT/_160103_whenTestDone_99DCT:jr:constraintMsg">
-            <value>Date test was done can not be in the future</value>
+          <text id="/hiv_treatment_verification/observation/_5497_firstlevels_99DCT:jr:constraintMsg">
+            <value>Can not be more than 9999</value>
           </text>
         </translation>
       </itext>
       <instance>
-        <hiv_treatment_verification delimiter="#" id="hiv_treatment_verification" prefix="J1!hiv_treatment_verification!" version="2020-09-02 15:10:04">
+        <hiv_treatment_verification delimiter="#" id="hiv_treatment_verification" prefix="J1!hiv_treatment_verification!" version="2020-09-08 01:57:11">
           <inputs>
             <meta>
               <location>
@@ -72,6 +114,8 @@
           <place_id/>
           <place_name/>
           <head/>
+          <form_uuid/>
+          <encounter_type_uuid/>
           <encounter_date/>
           <observation>
             <_159948_yearDiagonisedHIVpositive_99DCT/>
@@ -80,29 +124,47 @@
             <_159599_dateInitiatedOnArt_99DCT/>
             <_164515_currentRegimen_99DCT/>
             <_162568_sourceOfInformation_99DCT/>
-            <_657_hivMonitoring_99DCT>
-              <_160103_whenTestDone_99DCT/>
-              <_5497_levels_99DCT/>
-            </_657_hivMonitoring_99DCT>
-            <_165246_viralLoad_99DCT>
-              <_163281_dates_99DCT/>
-              <_164126_justification_99DCT/>
-              <_160632_levels_99DCT/>
-              <_163524_disclosedStatus_99DCT/>
-              <_5616_toWho_99DCT/>
-              <_163101_disclosedOther_99DCT/>
-              <_162320_whenStartedIpt_99DCT/>
-              <_162279_whenInitiatedOnTreatment_99DCT/>
-              <_164947_onDifferentiatedCare_99DCT/>
-              <_165302_supprotGroup_99DCT/>
-              <_165137_supportName_99DCT/>
-              <_131768_opportunisticInfection_99DCT/>
-              <_5622_otherOportunistic_99DCT/>
-              <_159948_whenDiagnosedWithOI_99DCT/>
-              <_160753_whenInitiatedOItreatment_99DCT/>
-              <_162868_whenCompletedOItreatment_99DCT/>
-              <_161011_comments_99DCT/>
-            </_165246_viralLoad_99DCT>
+            <_160103_whenFirstTestDone_99DCT/>
+            <_5497_firstlevels_99DCT/>
+            <_163281_firstdates_99DCT/>
+            <_160632_firstLevels_99DCT/>
+            <_164126_firstJustification_99DCT/>
+            <_163524_disclosedStatus_99DCT/>
+            <_5616_toWhoMULTISELECT_99DCT/>
+            <_163101_disclosedOther_99DCT/>
+            <_162320_whenStartedIpt_99DCT/>
+            <_162279_whenFinishedIpt_99DCT/>
+            <_164947_onDifferentiatedCare_99DCT/>
+            <_165302_supprotGroup_99DCT/>
+            <_165137_supportName_99DCT/>
+            <_131768_opprtunisticInfection_99DCT>
+              <_162634_opportunisticInfection1_99DCT/>
+              <_5622_otherOportunistic1_99DCT/>
+              <_159948_whenDiagnosedWithOI1_99DCT/>
+              <_160753_whenInitiatedOItreatment1_99DCT/>
+              <_162868_whenCompletedOItreatment1_99DCT/>
+              <_162634_opportunisticInfection2_99DCT/>
+              <_5622_otherOportunistic2_99DCT/>
+              <_159948_whenDiagnosedWithOI2_99DCT/>
+              <_160753_whenInitiatedOItreatment2_99DCT/>
+              <_162868_whenCompletedOItreatment2_99DCT/>
+              <_162634_opportunisticInfection3_99DCT/>
+              <_5622_otherOportunistic3_99DCT/>
+              <_159948_whenDiagnosedWithOI3_99DCT/>
+              <_160753_whenInitiatedOItreatment3_99DCT/>
+              <_162868_whenCompletedOItreatment3_99DCT/>
+              <_162634_opportunisticInfection4_99DCT/>
+              <_5622_otherOportunistic4_99DCT/>
+              <_159948_whenDiagnosedWithOI4_99DCT/>
+              <_160753_whenInitiatedOItreatment4_99DCT/>
+              <_162868_whenCompletedOItreatment4_99DCT/>
+              <_162634_opportunisticInfection5_99DCT/>
+              <_5622_otherOportunistic5_99DCT/>
+              <_159948_whenDiagnosedWithOI5_99DCT/>
+              <_160753_whenInitiatedOItreatment5_99DCT/>
+              <_162868_whenCompletedOItreatment5_99DCT/>
+            </_131768_opprtunisticInfection_99DCT>
+            <_161011_comments_99DCT/>
           </observation>
           <group_review>
             <n_submit/>
@@ -120,7 +182,36 @@
             <dateInitiated/>
             <date_initiated/>
             <current_regimen/>
-            <currentRegimen/>
+            <regimen1/>
+            <regimen2/>
+            <regimen3/>
+            <regimen4/>
+            <regimen5/>
+            <regimen6/>
+            <regimen7/>
+            <regimen8/>
+            <regimen9/>
+            <regimen10/>
+            <regimen11/>
+            <regimen12/>
+            <regimen13/>
+            <regimen14/>
+            <regimen15/>
+            <regimen16/>
+            <regimen17/>
+            <regimen18/>
+            <regimen19/>
+            <regimen20/>
+            <regimen21/>
+            <regimen22/>
+            <regimen23/>
+            <regimen24/>
+            <regimen25/>
+            <regimen26/>
+            <regimen27/>
+            <regimen28/>
+            <regimen29/>
+            <regimen30/>
             <source_of_info/>
             <Verbal/>
             <AppointmentCard/>
@@ -160,32 +251,54 @@
       <bind calculate="../inputs/contact/_id" nodeset="/hiv_treatment_verification/place_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/hiv_treatment_verification/place_name" type="string"/>
       <bind calculate="../inputs/contact/contact/name" nodeset="/hiv_treatment_verification/head" type="string"/>
+      <bind calculate="'a70a1132-75b3-11ea-bc55-0242ac130003'" nodeset="/hiv_treatment_verification/form_uuid" type="string"/>
+      <bind calculate="'a70a1056-75b3-11ea-bc55-0242ac130003'" nodeset="/hiv_treatment_verification/encounter_type_uuid" type="string"/>
       <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/hiv_treatment_verification/encounter_date:jr:constraintMsg')" nodeset="/hiv_treatment_verification/encounter_date" required="true()" type="date"/>
       <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT" required="true()" type="date"/>
       <bind nodeset="/hiv_treatment_verification/observation/_162724_facilityName_99DCT" required="true()" type="select1"/>
       <bind nodeset="/hiv_treatment_verification/observation/_1768_pepfarSites_99DCT" required="true()" type="select1"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_159599_dateInitiatedOnArt_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_159599_dateInitiatedOnArt_99DCT" type="date"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_164515_currentRegimen_99DCT" type="string"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_159599_dateInitiatedOnArt_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_159599_dateInitiatedOnArt_99DCT" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_164515_currentRegimen_99DCT" type="select1"/>
       <bind nodeset="/hiv_treatment_verification/observation/_162568_sourceOfInformation_99DCT" required="true()" type="select1"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_657_hivMonitoring_99DCT/_160103_whenTestDone_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_657_hivMonitoring_99DCT/_160103_whenTestDone_99DCT" required="false()" type="date"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_657_hivMonitoring_99DCT/_5497_levels_99DCT" required="true()" type="string"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163281_dates_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163281_dates_99DCT" required="true()" type="date"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_164126_justification_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_160632_levels_99DCT" required="true()" type="string"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163524_disclosedStatus_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_5616_toWho_99DCT" relevant=" /hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163524_disclosedStatus_99DCT =&quot;_1065_yes_99DCT&quot;" type="select"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163101_disclosedOther_99DCT" relevant=" /hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_5616_toWho_99DCT =&quot;other&quot;" type="string"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162320_whenStartedIpt_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162320_whenStartedIpt_99DCT" required="true()" type="date"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162279_whenInitiatedOnTreatment_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162279_whenInitiatedOnTreatment_99DCT" required="true()" type="date"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_164947_onDifferentiatedCare_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_165302_supprotGroup_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_165137_supportName_99DCT" required="true()" type="string"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_131768_opportunisticInfection_99DCT" required="false()" type="select1"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_5622_otherOportunistic_99DCT" relevant=" /hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_131768_opportunisticInfection_99DCT =&quot;_5622_other_99DCT&quot;" type="string"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_159948_whenDiagnosedWithOI_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_159948_whenDiagnosedWithOI_99DCT" required="false()" type="date"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_160753_whenInitiatedOItreatment_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_160753_whenInitiatedOItreatment_99DCT" required="false()" type="date"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162868_whenCompletedOItreatment_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162868_whenCompletedOItreatment_99DCT" required="false()" type="date"/>
-      <bind nodeset="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_161011_comments_99DCT" required="false()" type="string"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_160103_whenFirstTestDone_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_160103_whenFirstTestDone_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 9999" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_5497_firstlevels_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_5497_firstlevels_99DCT" required="false()" type="int"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_163281_firstdates_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_163281_firstdates_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 9999" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_160632_firstLevels_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_160632_firstLevels_99DCT" required="false()" type="int"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_164126_firstJustification_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_163524_disclosedStatus_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_5616_toWhoMULTISELECT_99DCT" relevant=" /hiv_treatment_verification/observation/_163524_disclosedStatus_99DCT =&quot;_1065_yes_99DCT&quot;" type="select"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_163101_disclosedOther_99DCT" relevant=" /hiv_treatment_verification/observation/_5616_toWhoMULTISELECT_99DCT =&quot;_5622_disclosedOther_99DCT&quot;" type="string"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_162279_whenFinishedIpt_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_162279_whenFinishedIpt_99DCT" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_164947_onDifferentiatedCare_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_165302_supprotGroup_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_165137_supportName_99DCT" relevant=" /hiv_treatment_verification/observation/_165302_supprotGroup_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection1_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic1_99DCT" relevant=" /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection1_99DCT =&quot;_5622_other_99DCT&quot;" type="string"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI1_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI1_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI1_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment1_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment1_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment1_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment1_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment1_99DCT" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection2_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic2_99DCT" relevant=" /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection2_99DCT =&quot;_5622_other_99DCT&quot;" type="string"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI2_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI2_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI2_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment2_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment2_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment2_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment2_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment2_99DCT" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection3_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic3_99DCT" relevant=" /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection3_99DCT =&quot;_5622_other_99DCT&quot;" type="string"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI3_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI3_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI3_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment3_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment3_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment3_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment3_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment3_99DCT" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection4_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic4_99DCT" relevant=" /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection4_99DCT =&quot;_5622_other_99DCT&quot;" type="string"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI4_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI4_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI4_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment4_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment4_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment4_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment4_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment4_99DCT" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection5_99DCT" required="false()" type="select1"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic5_99DCT" relevant=" /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection5_99DCT =&quot;_5622_other_99DCT&quot;" type="string"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI5_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI5_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI5_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment5_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment5_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment5_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment5_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment5_99DCT" required="false()" type="date"/>
+      <bind nodeset="/hiv_treatment_verification/observation/_161011_comments_99DCT" required="false()" type="string"/>
       <bind nodeset="/hiv_treatment_verification/group_review/n_submit" readonly="true()" type="string"/>
       <bind nodeset="/hiv_treatment_verification/group_review/n_household_details_title" readonly="true()" type="string"/>
       <bind nodeset="/hiv_treatment_verification/group_review/n_household_details" readonly="true()" type="string"/>
@@ -201,7 +314,36 @@
       <bind nodeset="/hiv_treatment_verification/group_review/dateInitiated" readonly="true()" type="string"/>
       <bind nodeset="/hiv_treatment_verification/group_review/date_initiated" readonly="true()" type="string"/>
       <bind nodeset="/hiv_treatment_verification/group_review/current_regimen" readonly="true()" type="string"/>
-      <bind nodeset="/hiv_treatment_verification/group_review/currentRegimen" readonly="true()" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen1" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_162565_TDF/3TC/NVP_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen2" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_164505_TDF/3TC/EFV_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen3" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_1652_AZT/3TC/NVP_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen4" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_160124_AZT/3TC/EFV_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen5" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_792_D4T/3TC/NVP_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen6" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_160104_D4T/3TC/EFV_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen7" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_162561_AZT/3TC/LPV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen8" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_164511_AZT/3TC/ATV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen9" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_162201_TDF/3TC/LPV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen10" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_164512_TDF/3TC/ATV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen11" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_162560_D4T/3TC/LPV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen12" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_162200_ABC/3TC/LPV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen13" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_98e38a9c-435d-4a94-9b66-5ca524159d0e_TDF/3TC/AZT_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen14" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_6dec7d7d-0fda-4e8d-8295-cb6ef426878d_AZT/3TC/DTG_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen15" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_9fb85385-b4fb-468c-b7c1-22f75834b4b0_TDF/3TC/DTG_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen16" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_4dc0119b-b2a6-4565-8d90-174b97ba31db_ABC/3TC/DTG_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen17" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_c421d8e7-4f43-43b4-8d2f-c7d4cfb976a4_AZT/TDF/3TC/LPV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen18" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_337b6cfd-9fa7-47dc-82b4-d479c39ef355_ETR/RAL/DRV/RTV_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen19" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_7a6c51c4-2b68-4d5a-b5a2-7ba420dde203_ETR/TDF/3TC/LPV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen20" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_dddd9cf2-2b9c-4c52-84b3-38cfe652529a_ABC/3TC/ATV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen21" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_6dec7d7d-0fda-4e8d-8295-cb6ef426878d_AZT/3TC/DTG_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen22" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_9fb85385-b4fb-468c-b7c1-22f75834b4b0_TDF/3TC/DTG_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen23" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_4dc0119b-b2a6-4565-8d90-174b97ba31db_ABC/3TC/DTG_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen24" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_5b8e4955-897a-423b-ab66-7e202b9c304c_RAL/3TC/DRV/RTV_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen25" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_092604d3-e9cb-4589-824e-9e17e3cb4f5e_RAL/3TC/DRV/RTV/AZT_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen26" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_c6372744-9e06-40cf-83e5-c794c985b6bf_RAL/3TC/DRV/RTV/TDF_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen27" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_1995c4a1-a625-4449-ab28-aae88d0f80e6_ETV/3TC/DRV/RTV_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen28" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_5f429c76-2976-4374-a69e-d2d138dd16bf_TDF/3TC/DTG/DRV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen29" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_9b9817dd-4c84-4093-95c3-690d65d24b99_TDF/3TC/RAL/DRV/r_99DCT')" type="string"/>
+      <bind nodeset="/hiv_treatment_verification/group_review/regimen30" readonly="true()" relevant="selected(../../observation/_164515_currentRegimen_99DCT, '_f2acaf9b-3da9-4d71-b0cf-fd6af1073c9e_TDF/3TC/DTG/EFV/DRV/r_99DCT')" type="string"/>
       <bind nodeset="/hiv_treatment_verification/group_review/source_of_info" readonly="true()" type="string"/>
       <bind nodeset="/hiv_treatment_verification/group_review/Verbal" readonly="true()" relevant="selected(../../observation/_162568_sourceOfInformation_99DCT, '_163787_verbalReport_99DCT')" type="string"/>
       <bind nodeset="/hiv_treatment_verification/group_review/AppointmentCard" readonly="true()" relevant="selected(../../observation/_162568_sourceOfInformation_99DCT, '_165048_appointmentCard_99DCT')" type="string"/>
@@ -249,7 +391,7 @@
       </group>
     </group>
     <input ref="/hiv_treatment_verification/encounter_date">
-      <label>Date of test</label>
+      <label>Encounter date</label>
     </input>
     <group appearance="field-list" ref="/hiv_treatment_verification/observation">
       <label>ART/HIV History</label>
@@ -51717,9 +51859,129 @@
       <input ref="/hiv_treatment_verification/observation/_159599_dateInitiatedOnArt_99DCT">
         <label>Date initiated on ART?</label>
       </input>
-      <input ref="/hiv_treatment_verification/observation/_164515_currentRegimen_99DCT">
+      <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_164515_currentRegimen_99DCT">
         <label>Current Regimen</label>
-      </input>
+        <item>
+          <label>TDF/3TC/NVP</label>
+          <value>_162565_TDF/3TC/NVP_99DCT</value>
+        </item>
+        <item>
+          <label>TDF/3TC/EFV</label>
+          <value>_164505_TDF/3TC/EFV_99DCT</value>
+        </item>
+        <item>
+          <label>AZT/3TC/NVP</label>
+          <value>_1652_AZT/3TC/NVP_99DCT</value>
+        </item>
+        <item>
+          <label>AZT/3TC/EFV</label>
+          <value>_160124_AZT/3TC/EFV_99DCT</value>
+        </item>
+        <item>
+          <label>D4T/3TC/NVP</label>
+          <value>_792_D4T/3TC/NVP_99DCT</value>
+        </item>
+        <item>
+          <label>D4T/3TC/EFV</label>
+          <value>_160104_D4T/3TC/EFV_99DCT</value>
+        </item>
+        <item>
+          <label>AZT/3TC/LPV/r</label>
+          <value>_162561_AZT/3TC/LPV/r_99DCT</value>
+        </item>
+        <item>
+          <label>AZT/3TC/ATV/r</label>
+          <value>_164511_AZT/3TC/ATV/r_99DCT</value>
+        </item>
+        <item>
+          <label>TDF/3TC/LPV/r</label>
+          <value>_162201_TDF/3TC/LPV/r_99DCT</value>
+        </item>
+        <item>
+          <label>TDF/3TC/ATV/r</label>
+          <value>_164512_TDF/3TC/ATV/r_99DCT</value>
+        </item>
+        <item>
+          <label>D4T/3TC/LPV/r</label>
+          <value>_162560_D4T/3TC/LPV/r_99DCT</value>
+        </item>
+        <item>
+          <label>ABC/3TC/LPV/r</label>
+          <value>_162200_ABC/3TC/LPV/r_99DCT</value>
+        </item>
+        <item>
+          <label>TDF/3TC/AZT</label>
+          <value>_164971_TDF/3TC/AZT_99DCT</value>
+        </item>
+        <item>
+          <label>AZT/3TC/DTG</label>
+          <value>_164968_AZT/3TC/DTG_99DCT</value>
+        </item>
+        <item>
+          <label>TDF/3TC/DTG</label>
+          <value>_164969_TDF/3TC/DTG_99DCT</value>
+        </item>
+        <item>
+          <label>ABC/3TC/DTG</label>
+          <value>_164970_ABC/3TC/DTG_99DCT</value>
+        </item>
+        <item>
+          <label>AZT/TDF/3TC/LPV/r</label>
+          <value>_164972_AZT/TDF/3TC/LPV/r_99DCT</value>
+        </item>
+        <item>
+          <label>ETR/RAL/DRV/RTV</label>
+          <value>_164973_ETR/RAL/DRV/RTV_99DCT</value>
+        </item>
+        <item>
+          <label>ETR/TDF/3TC/LPV/r</label>
+          <value>_164974_ETR/TDF/3TC/LPV/r_99DCT</value>
+        </item>
+        <item>
+          <label>ABC/3TC/ATV/r</label>
+          <value>_165357_ABC/3TC/ATV/r_99DCT</value>
+        </item>
+        <item>
+          <label>AZT/3TC/DTG</label>
+          <value>_164968_AZT/3TC/DTG_99DCT</value>
+        </item>
+        <item>
+          <label>TDF/3TC/DTG</label>
+          <value>_164969_TDF/3TC/DTG_99DCT</value>
+        </item>
+        <item>
+          <label>ABC/3TC/DTG</label>
+          <value>_164970_ABC/3TC/DTG_99DCT</value>
+        </item>
+        <item>
+          <label>RAL/3TC/DRV/RTV</label>
+          <value>_165375_RAL/3TC/DRV/RTV_99DCT</value>
+        </item>
+        <item>
+          <label>RAL/3TC/DRV/RTV/AZT</label>
+          <value>_165376_RAL/3TC/DRV/RTV/AZT_99DCT</value>
+        </item>
+        <item>
+          <label>RAL/3TC/DRV/RTV/TDF</label>
+          <value>_165379_RAL/3TC/DRV/RTV/TDF_99DCT</value>
+        </item>
+        <item>
+          <label>ETV/3TC/DRV/RTV</label>
+          <value>_165378_ETV/3TC/DRV/RTV_99DCT</value>
+        </item>
+        <item>
+          <label>TDF/3TC/DTG/DRV/r</label>
+          <value>_165369_TDF/3TC/DTG/DRV/r_99DCT</value>
+        </item>
+        <item>
+          <label>TDF/3TC/RAL/DRV/r</label>
+          <value>_165370_TDF/3TC/RAL/DRV/r_99DCT</value>
+        </item>
+        <item>
+          <label>TDF/3TC/DTG/EFV/DRV/r</label>
+          <value>_165371_TDF/3TC/DTG/EFV/DRV/r_99DCT</value>
+        </item>
+      </select1>
       <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_162568_sourceOfInformation_99DCT">
         <label>Source of Information:</label>
         <item>
@@ -51747,116 +52009,117 @@
           <value>_160526_eidDashboard_99DCT</value>
         </item>
       </select1>
-      <group appearance="field-list" ref="/hiv_treatment_verification/observation/_657_hivMonitoring_99DCT">
-        <label>HIV Monitoring</label>
-        <input ref="/hiv_treatment_verification/observation/_657_hivMonitoring_99DCT/_160103_whenTestDone_99DCT">
-          <label>Month and Year test done:</label>
-        </input>
-        <input ref="/hiv_treatment_verification/observation/_657_hivMonitoring_99DCT/_5497_levels_99DCT">
-          <label>Levels:</label>
-        </input>
-      </group>
-      <group appearance="field-list" ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT">
-        <label>Viral Load</label>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163281_dates_99DCT">
-          <label>Dates:</label>
-        </input>
-        <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_164126_justification_99DCT">
-          <label>Justification:</label>
-          <item>
-            <label>Baseline VL</label>
-            <value>_1115_baselinevl_99DCT</value>
-          </item>
-          <item>
-            <label>Routine VL</label>
-            <value>_161236_routineVL_99DCT</value>
-          </item>
-          <item>
-            <label>Repeat VL</label>
-            <value>_162081_repeatvl_99DCT</value>
-          </item>
-          <item>
-            <label>Substitution of Drugs</label>
-            <value>_164517_substitutionDrug_99DCT</value>
-          </item>
-          <item>
-            <label>Clinical Failure</label>
-            <value>_163523_clinicalFailure_99DCT</value>
-          </item>
-          <item>
-            <label>Single Drug Substitution</label>
-            <value>_162325_singledrug_99DCT</value>
-          </item>
-        </select1>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_160632_levels_99DCT">
-          <label>Levels:</label>
-        </input>
-        <select1 ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163524_disclosedStatus_99DCT">
-          <label>Disclosed_status?</label>
-          <item>
-            <label>Yes</label>
-            <value>_1065_yes_99DCT</value>
-          </item>
-          <item>
-            <label>No</label>
-            <value>_1066_no_99DCT</value>
-          </item>
-        </select1>
-        <select ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_5616_toWho_99DCT">
-          <label>To Who?</label>
-          <item>
-            <label>Sexual Partner</label>
-            <value>_163568_sexualPartner_99DCT</value>
-          </item>
-          <item>
-            <label>Family Member</label>
-            <value>_1560_familyMember_99DCT</value>
-          </item>
-          <item>
-            <label>Treatment Partner</label>
-            <value>_163561_treatmentPartner_99DCT</value>
-          </item>
-          <item>
-            <label>Spiritual Leader</label>
-            <value>_78706_spiritualLeader_99DCT</value>
-          </item>
-        </select>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163101_disclosedOther_99DCT">
-          <label>Specify to who:</label>
-        </input>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162320_whenStartedIpt_99DCT">
-          <label>Month and Year started IPT:</label>
-        </input>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162279_whenInitiatedOnTreatment_99DCT">
-          <label>Month and Year initiated on OI treatment:</label>
-        </input>
-        <select1 ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_164947_onDifferentiatedCare_99DCT">
-          <label>On differentiated care?</label>
-          <item>
-            <label>Yes</label>
-            <value>_1065_yes_99DCT</value>
-          </item>
-          <item>
-            <label>No</label>
-            <value>_1066_no_99DCT</value>
-          </item>
-        </select1>
-        <select1 ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_165302_supprotGroup_99DCT">
-          <label>Support Group?</label>
-          <item>
-            <label>Yes</label>
-            <value>_1065_yes_99DCT</value>
-          </item>
-          <item>
-            <label>No</label>
-            <value>_1066_no_99DCT</value>
-          </item>
-        </select1>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_165137_supportName_99DCT">
-          <label>Name of Support Group:</label>
-        </input>
-        <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_131768_opportunisticInfection_99DCT">
-          <label>Opportunistic Infections:</label>
+      <input ref="/hiv_treatment_verification/observation/_160103_whenFirstTestDone_99DCT">
+        <label>CD4 Test date:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/observation/_5497_firstlevels_99DCT">
+        <label>CD4 Count (C/MM3)</label>
+      </input>
+      <input ref="/hiv_treatment_verification/observation/_163281_firstdates_99DCT">
+        <label>Viral load test dates:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/observation/_160632_firstLevels_99DCT">
+        <label>VL Count (C/MM3):</label>
+      </input>
+      <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_164126_firstJustification_99DCT">
+        <label>VL Justification:</label>
+        <item>
+          <label>Baseline VL</label>
+          <value>_1115_baselinevl_99DCT</value>
+        </item>
+        <item>
+          <label>Routine VL</label>
+          <value>_161236_routineVL_99DCT</value>
+        </item>
+        <item>
+          <label>Repeat VL</label>
+          <value>_162081_repeatvl_99DCT</value>
+        </item>
+        <item>
+          <label>Substitution of Drugs</label>
+          <value>_164517_substitutionDrug_99DCT</value>
+        </item>
+        <item>
+          <label>Clinical Failure</label>
+          <value>_163523_clinicalFailure_99DCT</value>
+        </item>
+        <item>
+          <label>Single Drug Substitution</label>
+          <value>_162325_singledrug_99DCT</value>
+        </item>
+      </select1>
+      <select1 ref="/hiv_treatment_verification/observation/_163524_disclosedStatus_99DCT">
+        <label>Disclosed_status?</label>
+        <item>
+          <label>Yes</label>
+          <value>_1065_yes_99DCT</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>_1066_no_99DCT</value>
+        </item>
+      </select1>
+      <select ref="/hiv_treatment_verification/observation/_5616_toWhoMULTISELECT_99DCT">
+        <label>To Who?</label>
+        <item>
+          <label>Sexual Partner</label>
+          <value>_163568_sexualPartner_99DCT</value>
+        </item>
+        <item>
+          <label>Family Member</label>
+          <value>_1560_familyMember_99DCT</value>
+        </item>
+        <item>
+          <label>Treatment Partner</label>
+          <value>_163561_treatmentPartner_99DCT</value>
+        </item>
+        <item>
+          <label>Spiritual Leader</label>
+          <value>_78706_spiritualLeader_99DCT</value>
+        </item>
+        <item>
+          <label>Other (Specify)</label>
+          <value>_5622_disclosedOther_99DCT</value>
+        </item>
+      </select>
+      <input ref="/hiv_treatment_verification/observation/_163101_disclosedOther_99DCT">
+        <label>Specify to who:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT">
+        <label>Date started IPT:</label>
+      </input>
+      <input ref="/hiv_treatment_verification/observation/_162279_whenFinishedIpt_99DCT">
+        <label>Date completed IPT:</label>
+      </input>
+      <select1 ref="/hiv_treatment_verification/observation/_164947_onDifferentiatedCare_99DCT">
+        <label>On differentiated care?</label>
+        <item>
+          <label>Yes</label>
+          <value>_1065_yes_99DCT</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>_1066_no_99DCT</value>
+        </item>
+      </select1>
+      <select1 ref="/hiv_treatment_verification/observation/_165302_supprotGroup_99DCT">
+        <label>Support Group?</label>
+        <item>
+          <label>Yes</label>
+          <value>_1065_yes_99DCT</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>_1066_no_99DCT</value>
+        </item>
+      </select1>
+      <input ref="/hiv_treatment_verification/observation/_165137_supportName_99DCT">
+        <label>Name of Support Group:</label>
+      </input>
+      <group appearance="field-list" ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT">
+        <label>Opportunistic infection</label>
+        <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection1_99DCT">
+          <label>Opportunistic Infections (1):</label>
           <item>
             <label>Candididiasis</label>
             <value>_120939_candididiasis_99DCT</value>
@@ -51866,7 +52129,7 @@
             <value>_1219_cryptococcosis_99DCT</value>
           </item>
           <item>
-            <label>Cytomegalovisus Infection (CMV)</label>
+            <label>Cytomegalovirus Infection (CMV)</label>
             <value>_154119_cytomegalovisus_99DCT</value>
           </item>
           <item>
@@ -51882,11 +52145,11 @@
             <value>_136326_kaposiSarcoma_99DCT</value>
           </item>
           <item>
-            <label>Lymhoma</label>
+            <label>Lymphoma</label>
             <value>_116104_lymhoma_99DCT</value>
           </item>
           <item>
-            <label>Pneumocystosis carinii pneumonia</label>
+            <label>Pneumocystis carinii pneumonia</label>
             <value>_130021_pneumonystisCariniiPneumonia_99DCT</value>
           </item>
           <item>
@@ -51906,22 +52169,274 @@
             <value>_5622_other_99DCT</value>
           </item>
         </select1>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_5622_otherOportunistic_99DCT">
-          <label>Specify other oportunistic infections</label>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic1_99DCT">
+          <label>Specify other opportunistic infections (1):</label>
         </input>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_159948_whenDiagnosedWithOI_99DCT">
-          <label>Month and Year diagnosed with OI:</label>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI1_99DCT">
+          <label>Date diagnosed with OI (1):</label>
         </input>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_160753_whenInitiatedOItreatment_99DCT">
-          <label>Month and Year Initiated OI treatment:</label>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment1_99DCT">
+          <label>Date Initiated OI treatment (1):</label>
         </input>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_162868_whenCompletedOItreatment_99DCT">
-          <label>Month and Year completed OI treatment:</label>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment1_99DCT">
+          <label>Date completed OI treatment (1):</label>
         </input>
-        <input ref="/hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_161011_comments_99DCT">
-          <label>Comments:</label>
+        <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection2_99DCT">
+          <label>Opportunistic Infections (2):</label>
+          <item>
+            <label>Candididiasis</label>
+            <value>_120939_candididiasis_99DCT</value>
+          </item>
+          <item>
+            <label>Cryptococcosis</label>
+            <value>_1219_cryptococcosis_99DCT</value>
+          </item>
+          <item>
+            <label>Cytomegalovirus Infection (CMV)</label>
+            <value>_154119_cytomegalovisus_99DCT</value>
+          </item>
+          <item>
+            <label>Herpes Zoster</label>
+            <value>_117543_herpes_99DCT</value>
+          </item>
+          <item>
+            <label>HIV Encephalitis</label>
+            <value>_123118_HIVEncephalitis_99DCT</value>
+          </item>
+          <item>
+            <label>Kaposi sarcoma</label>
+            <value>_136326_kaposiSarcoma_99DCT</value>
+          </item>
+          <item>
+            <label>Lymphoma</label>
+            <value>_116104_lymhoma_99DCT</value>
+          </item>
+          <item>
+            <label>Pneumocystis carinii pneumonia</label>
+            <value>_130021_pneumonystisCariniiPneumonia_99DCT</value>
+          </item>
+          <item>
+            <label>Pneumonia</label>
+            <value>_114100_pneumonia_99DCT</value>
+          </item>
+          <item>
+            <label>Toxoplasmosis</label>
+            <value>_990_toxoplasmosis_99DCT</value>
+          </item>
+          <item>
+            <label>Tuberculosis</label>
+            <value>_112141_tuberculosis_99DCT</value>
+          </item>
+          <item>
+            <label>Other (Specify)</label>
+            <value>_5622_other_99DCT</value>
+          </item>
+        </select1>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic2_99DCT">
+          <label>Specify other oportunistic infections (2):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI2_99DCT">
+          <label>Date diagnosed with OI (2):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment2_99DCT">
+          <label>Date Initiated OI treatment (2):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment2_99DCT">
+          <label>Date completed OI treatment (2):</label>
+        </input>
+        <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection3_99DCT">
+          <label>Opportunistic Infections (3):</label>
+          <item>
+            <label>Candididiasis</label>
+            <value>_120939_candididiasis_99DCT</value>
+          </item>
+          <item>
+            <label>Cryptococcosis</label>
+            <value>_1219_cryptococcosis_99DCT</value>
+          </item>
+          <item>
+            <label>Cytomegalovirus Infection (CMV)</label>
+            <value>_154119_cytomegalovisus_99DCT</value>
+          </item>
+          <item>
+            <label>Herpes Zoster</label>
+            <value>_117543_herpes_99DCT</value>
+          </item>
+          <item>
+            <label>HIV Encephalitis</label>
+            <value>_123118_HIVEncephalitis_99DCT</value>
+          </item>
+          <item>
+            <label>Kaposi sarcoma</label>
+            <value>_136326_kaposiSarcoma_99DCT</value>
+          </item>
+          <item>
+            <label>Lymphoma</label>
+            <value>_116104_lymhoma_99DCT</value>
+          </item>
+          <item>
+            <label>Pneumocystis carinii pneumonia</label>
+            <value>_130021_pneumonystisCariniiPneumonia_99DCT</value>
+          </item>
+          <item>
+            <label>Pneumonia</label>
+            <value>_114100_pneumonia_99DCT</value>
+          </item>
+          <item>
+            <label>Toxoplasmosis</label>
+            <value>_990_toxoplasmosis_99DCT</value>
+          </item>
+          <item>
+            <label>Tuberculosis</label>
+            <value>_112141_tuberculosis_99DCT</value>
+          </item>
+          <item>
+            <label>Other (Specify)</label>
+            <value>_5622_other_99DCT</value>
+          </item>
+        </select1>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic3_99DCT">
+          <label>Specify other oportunistic infections (3):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI3_99DCT">
+          <label>Date diagnosed with OI (3):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment3_99DCT">
+          <label>Date Initiated OI treatment (3):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment3_99DCT">
+          <label>Date completed OI treatment (3):</label>
+        </input>
+        <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection4_99DCT">
+          <label>Opportunistic Infections (4):</label>
+          <item>
+            <label>Candididiasis</label>
+            <value>_120939_candididiasis_99DCT</value>
+          </item>
+          <item>
+            <label>Cryptococcosis</label>
+            <value>_1219_cryptococcosis_99DCT</value>
+          </item>
+          <item>
+            <label>Cytomegalovirus Infection (CMV)</label>
+            <value>_154119_cytomegalovisus_99DCT</value>
+          </item>
+          <item>
+            <label>Herpes Zoster</label>
+            <value>_117543_herpes_99DCT</value>
+          </item>
+          <item>
+            <label>HIV Encephalitis</label>
+            <value>_123118_HIVEncephalitis_99DCT</value>
+          </item>
+          <item>
+            <label>Kaposi sarcoma</label>
+            <value>_136326_kaposiSarcoma_99DCT</value>
+          </item>
+          <item>
+            <label>Lymphoma</label>
+            <value>_116104_lymhoma_99DCT</value>
+          </item>
+          <item>
+            <label>Pneumocystis carinii pneumonia</label>
+            <value>_130021_pneumonystisCariniiPneumonia_99DCT</value>
+          </item>
+          <item>
+            <label>Pneumonia</label>
+            <value>_114100_pneumonia_99DCT</value>
+          </item>
+          <item>
+            <label>Toxoplasmosis</label>
+            <value>_990_toxoplasmosis_99DCT</value>
+          </item>
+          <item>
+            <label>Tuberculosis</label>
+            <value>_112141_tuberculosis_99DCT</value>
+          </item>
+          <item>
+            <label>Other (Specify)</label>
+            <value>_5622_other_99DCT</value>
+          </item>
+        </select1>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic4_99DCT">
+          <label>Specify other oportunistic infections (4):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI4_99DCT">
+          <label>Date diagnosed with OI (4):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment4_99DCT">
+          <label>Date Initiated OI treatment (4):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment4_99DCT">
+          <label>Date completed OI treatment (4):</label>
+        </input>
+        <select1 appearance="minimal" ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162634_opportunisticInfection5_99DCT">
+          <label>Opportunistic Infections (5):</label>
+          <item>
+            <label>Candididiasis</label>
+            <value>_120939_candididiasis_99DCT</value>
+          </item>
+          <item>
+            <label>Cryptococcosis</label>
+            <value>_1219_cryptococcosis_99DCT</value>
+          </item>
+          <item>
+            <label>Cytomegalovirus Infection (CMV)</label>
+            <value>_154119_cytomegalovisus_99DCT</value>
+          </item>
+          <item>
+            <label>Herpes Zoster</label>
+            <value>_117543_herpes_99DCT</value>
+          </item>
+          <item>
+            <label>HIV Encephalitis</label>
+            <value>_123118_HIVEncephalitis_99DCT</value>
+          </item>
+          <item>
+            <label>Kaposi sarcoma</label>
+            <value>_136326_kaposiSarcoma_99DCT</value>
+          </item>
+          <item>
+            <label>Lymphoma</label>
+            <value>_116104_lymhoma_99DCT</value>
+          </item>
+          <item>
+            <label>Pneumocystis carinii pneumonia</label>
+            <value>_130021_pneumonystisCariniiPneumonia_99DCT</value>
+          </item>
+          <item>
+            <label>Pneumonia</label>
+            <value>_114100_pneumonia_99DCT</value>
+          </item>
+          <item>
+            <label>Toxoplasmosis</label>
+            <value>_990_toxoplasmosis_99DCT</value>
+          </item>
+          <item>
+            <label>Tuberculosis</label>
+            <value>_112141_tuberculosis_99DCT</value>
+          </item>
+          <item>
+            <label>Other (Specify)</label>
+            <value>_5622_other_99DCT</value>
+          </item>
+        </select1>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_5622_otherOportunistic5_99DCT">
+          <label>Specify other oportunistic infections (5):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_159948_whenDiagnosedWithOI5_99DCT">
+          <label>Date diagnosed with OI (5):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_160753_whenInitiatedOItreatment5_99DCT">
+          <label>Date Initiated OI treatment (5):</label>
+        </input>
+        <input ref="/hiv_treatment_verification/observation/_131768_opprtunisticInfection_99DCT/_162868_whenCompletedOItreatment5_99DCT">
+          <label>Date completed OI treatment (5):</label>
         </input>
       </group>
+      <input ref="/hiv_treatment_verification/observation/_161011_comments_99DCT">
+        <label>Comments:</label>
+      </input>
     </group>
     <group appearance="field-list summary" ref="/hiv_treatment_verification/group_review">
       <label>Summary page</label>
@@ -51970,8 +52485,95 @@
       <input ref="/hiv_treatment_verification/group_review/current_regimen">
         <label>**_Current regimen_**</label>
       </input>
-      <input appearance="li" ref="/hiv_treatment_verification/group_review/currentRegimen">
-        <label><output value=" /hiv_treatment_verification/observation/_164515_currentRegimen_99DCT "/></label>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen1">
+        <label>TDF/3TC/NVP</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen2">
+        <label>TDF/3TC/EFV</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen3">
+        <label>AZT/3TC/NVP</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen4">
+        <label>AZT/3TC/EFV</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen5">
+        <label>D4T/3TC/NVP</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen6">
+        <label>D4T/3TC/EFV</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen7">
+        <label>AZT/3TC/LPV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen8">
+        <label>AZT/3TC/ATV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen9">
+        <label>TDF/3TC/LPV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen10">
+        <label>TDF/3TC/ATV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen11">
+        <label>D4T/3TC/LPV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen12">
+        <label>ABC/3TC/LPV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen13">
+        <label>TDF/3TC/AZT</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen14">
+        <label>AZT/3TC/DTG</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen15">
+        <label>TDF/3TC/DTG</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen16">
+        <label>ABC/3TC/DTG</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen17">
+        <label>AZT/TDF/3TC/LPV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen18">
+        <label>ETR/RAL/DRV/RTV</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen19">
+        <label>ETR/TDF/3TC/LPV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen20">
+        <label>ABC/3TC/ATV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen21">
+        <label>AZT/3TC/DTG</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen22">
+        <label>TDF/3TC/DTG</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen23">
+        <label>ABC/3TC/DTG</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen24">
+        <label>RAL/3TC/DRV/RTV</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen25">
+        <label>RAL/3TC/DRV/RTV/AZT</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen26">
+        <label>RAL/3TC/DRV/RTV/TDF</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen27">
+        <label>ETV/3TC/DRV/RTV</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen28">
+        <label>TDF/3TC/DTG/DRV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen29">
+        <label>TDF/3TC/RAL/DRV/r</label>
+      </input>
+      <input appearance="li" ref="/hiv_treatment_verification/group_review/regimen30">
+        <label>TDF/3TC/DTG/EFV/DRV/r</label>
       </input>
       <input ref="/hiv_treatment_verification/group_review/source_of_info">
         <label>**_Source of information_**</label>
@@ -51995,10 +52597,10 @@
         <label>EID Dashboard</label>
       </input>
       <input ref="/hiv_treatment_verification/group_review/viral_date">
-        <label>**_Viral load date_**</label>
+        <label>**_First Viral load date_**</label>
       </input>
       <input appearance="li" ref="/hiv_treatment_verification/group_review/viralDate">
-        <label><output value=" /hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_163281_dates_99DCT "/></label>
+        <label><output value=" /hiv_treatment_verification/observation/_163281_firstdates_99DCT "/></label>
       </input>
       <input ref="/hiv_treatment_verification/group_review/tracing_outcome">
         <label>**_Justification_**</label>
@@ -52022,10 +52624,10 @@
         <label>Single Drug Substitution</label>
       </input>
       <input ref="/hiv_treatment_verification/group_review/viral_level">
-        <label>**_Viral level_**</label>
+        <label>**_First Viral level_**</label>
       </input>
       <input appearance="li" ref="/hiv_treatment_verification/group_review/viralLevel">
-        <label><output value=" /hiv_treatment_verification/observation/_165246_viralLoad_99DCT/_160632_levels_99DCT "/></label>
+        <label><output value=" /hiv_treatment_verification/observation/_160632_firstLevels_99DCT "/></label>
       </input>
     </group>
   </h:body>

@@ -2,8 +2,8 @@
         "icon": "icon-healthcare",
         "title": "PrEP Treatment Verification",
         "context": {
-                "person": true,
-                "place": false,
+                "person": false,
+                "place": true,
                 "expression": ""
         }
 }

@@ -2,8 +2,8 @@
     "icon": "icon-treatment",
     "title": "  HIV Treatment Verification",
     "context": {
-        "person": true,
-        "place": false,
+        "person": false,
+        "place": true,
         "expression": ""
     }
 }
