@@ -1,6 +1,6 @@
 {
   "icon": "icon-follow-up",
-  "title": "Tracking",
+  "title": "Key population contact",
   "context": {
     "person": false,
     "place": true,

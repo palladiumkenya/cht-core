@@ -11,10 +11,13 @@
           <text id="/tracking/observation/_160753_dateAttempted_99DCT:jr:constraintMsg">
             <value>Date tracking attempted can not be in the future</value>
           </text>
+          <text id="/tracking/observation/_1639_numberOFattempt_99DCT:jr:constraintMsg">
+            <value>Can not be more than 10</value>
+          </text>
         </translation>
       </itext>
       <instance>
-        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-08-25 16:10:55">
+        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-09-07 17:46:17">
           <inputs>
             <meta>
               <location>
@@ -63,6 +66,7 @@
             <_160433_status_99DCT/>
             <_160716_exitReason_99DCT/>
             <_162568_sourceOFinfo_99DCT/>
+            <_160632_otherSource_99DCT/>
             <_161641_statusINprogram_99DCT/>
           </observation>
           <group_review>
@@ -125,13 +129,13 @@
       <bind calculate="../inputs/contact/_id" nodeset="/tracking/place_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/tracking/place_name" type="string"/>
       <bind calculate="../inputs/contact/contact/name" nodeset="/tracking/head" type="string"/>
-      <bind calculate="'402dc5d7-46da-42d4-b2be-f43ea4ad87b0'" nodeset="/tracking/form_uuid" type="string"/>
-      <bind calculate="'9c0a7a57-62ff-4f75-babe-5835b0e921b7'" nodeset="/tracking/encounter_type_uuid" type="string"/>
+      <bind calculate="'63917c60-3fea-11e9-b210-d663bd873d93'" nodeset="/tracking/form_uuid" type="string"/>
+      <bind calculate="'ce841b19-0acd-46fd-b223-2ca9b5356237'" nodeset="/tracking/encounter_type_uuid" type="string"/>
       <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/tracking/encounter_date:jr:constraintMsg')" nodeset="/tracking/encounter_date" required="true()" type="date"/>
       <bind nodeset="/tracking/observation/_165004_trackingAttempted_99DCT" required="true()" type="select1"/>
       <bind nodeset="/tracking/observation/_165071_whyNot_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1066_no_99DCT&quot;" required="false()" type="select1"/>
       <bind nodeset="/tracking/observation/_5622_Specify_99DCT" relevant=" /tracking/observation/_165071_whyNot_99DCT =&quot;_5622_other_99DCT&quot;" required="false()" type="string"/>
-      <bind nodeset="/tracking/observation/_1639_numberOFattempt_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="string"/>
+      <bind constraint=".&lt;=9" jr:constraintMsg="jr:itext('/tracking/observation/_1639_numberOFattempt_99DCT:jr:constraintMsg')" nodeset="/tracking/observation/_1639_numberOFattempt_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="int"/>
       <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/tracking/observation/_160753_dateAttempted_99DCT:jr:constraintMsg')" nodeset="/tracking/observation/_160753_dateAttempted_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" type="date"/>
       <bind nodeset="/tracking/observation/_164966_tracingType_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
       <bind nodeset="/tracking/observation/_160721_outcome_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
@@ -139,6 +143,7 @@
       <bind nodeset="/tracking/observation/_160433_status_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
       <bind nodeset="/tracking/observation/_160716_exitReason_99DCT" relevant=" /tracking/observation/_160433_status_99DCT =&quot;_165219_voluntaryExit_99DCT&quot;" type="string"/>
       <bind nodeset="/tracking/observation/_162568_sourceOFinfo_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/observation/_160632_otherSource_99DCT" relevant=" /tracking/observation/_162568_sourceOFinfo_99DCT =&quot;_5622_otherInfo_99DCT&quot;" type="string"/>
       <bind nodeset="/tracking/observation/_161641_statusINprogram_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
       <bind nodeset="/tracking/group_review/n_submit" readonly="true()" type="string"/>
       <bind nodeset="/tracking/group_review/n_household_details_title" readonly="true()" type="string"/>
@@ -207,7 +212,7 @@
       </group>
     </group>
     <input ref="/tracking/encounter_date">
-      <label>Date of test</label>
+      <label>Encounter date</label>
     </input>
     <group appearance="field-list" ref="/tracking/observation">
       <label>Tracking Information</label>
@@ -294,6 +299,10 @@
       <select1 ref="/tracking/observation/_160433_status_99DCT">
         <label>Status</label>
         <item>
+          <label>Found</label>
+          <value>_162632_found_99DCT</value>
+        </item>
+        <item>
           <label>Dead</label>
           <value>_160432_dead_99DCT</value>
         </item>
@@ -321,10 +330,6 @@
           <label>Imprisoned</label>
           <value>_156761_imprisoned_99DCT</value>
         </item>
-        <item>
-          <label>Found</label>
-          <value>_162632_found_99DCT</value>
-        </item>
       </select1>
       <input ref="/tracking/observation/_160716_exitReason_99DCT">
         <label>Comments explaining the reasons for Voluntary Exit</label>
@@ -340,12 +345,19 @@
           <value>_165037_pe_99DCT</value>
         </item>
         <item>
-          <label>Other Information</label>
+          <label>Other informant</label>
           <value>_5622_otherInfo_99DCT</value>
         </item>
       </select1>
+      <input ref="/tracking/observation/_160632_otherSource_99DCT">
+        <label>Specify other informant</label>
+      </input>
       <select1 ref="/tracking/observation/_161641_statusINprogram_99DCT">
         <label>Status in the programme:</label>
+        <item>
+          <label>Active</label>
+          <value>_161636_active_99DCT</value>
+        </item>
         <item>
           <label>Lost Followup</label>
           <value>_5240_lostFollowup_99DCT</value>
@@ -353,10 +365,6 @@
         <item>
           <label>Defaulted</label>
           <value>_160031_defaulted_99DCT</value>
-        </item>
-        <item>
-          <label>Active</label>
-          <value>_161636_active_99DCT</value>
         </item>
         <item>
           <label>Dead</label>

@@ -2,8 +2,8 @@
   "icon": "icon-calendar",
   "title": "Peer Calendar",
   "context": {
-    "person": true,
-    "place": false,
+    "person": false,
+    "place": true,
     "expression": ""
   }
 }
