@@ -7,7 +7,7 @@ PouchDB.plugin(require('pouchdb-adapter-http'));
 PouchDB.plugin(require('pouchdb-mapreduce'));
 
 const CONTACT_TYPES = {
-  case: 'trace_case', // trace_case
+  case: 'clinic', // trace_case
   suspected_case: 'clinic', // suspected_case
   parent_health_facility: 'health_center',
   forwarded_case: 'clinic',// forward_case

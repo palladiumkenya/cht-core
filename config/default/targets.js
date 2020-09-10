@@ -10,7 +10,7 @@ module.exports = [
     id: 'hts-number-tested-this-month',
     type: 'count',
     icon: 'icon-person',
-    goal: 100,
+    goal: -1,
     translation_key: 'targets.clients_tested.title',
     subtitle_translation_key: 'targets.this_month.subtitle',
     appliesTo: 'reports',
