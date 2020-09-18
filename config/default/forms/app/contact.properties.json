@@ -1,9 +1,9 @@
 {
-  "icon": "icon-follow-up",
-  "title": "KP LTFU Tracking",
+  "icon": "listed-contact",
+  "title": "Contact Form",
   "context": {
-    "person": true,
-    "place": false,
+    "person": false,
+    "place": true,
     "expression": "(user.role === 'kp_peer_educator' || user.role === 'clinician')"
   }
 }

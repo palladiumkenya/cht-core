@@ -2,8 +2,8 @@
   "icon": "icon-calendar",
   "title": "Peer Calendar",
   "context": {
-    "person": true,
-    "place": false,
-    "expression": "user.role=='peducator'"
+    "person": false,
+    "place": true,
+    "expression": "(user.role === 'kp_peer_educator' || user.role === 'clinician')"
   }
 }
