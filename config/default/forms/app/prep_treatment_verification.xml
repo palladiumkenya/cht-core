@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <prep_treatment_verification delimiter="#" id="prep_treatment_verification" prefix="J1!prep_treatment_verification!" version="2020-09-08 00:17:10">
+        <prep_treatment_verification delimiter="#" id="prep_treatment_verification" prefix="J1!prep_treatment_verification!" version="2020-09-17 10:03:45">
           <inputs>
             <meta>
               <location>
@@ -219,9 +219,9 @@
       <label>Encounter date</label>
     </input>
     <group appearance="field-list" ref="/prep_treatment_verification/observation">
-      <label>PrEP History</label>
+      <label>PrEP history</label>
       <input ref="/prep_treatment_verification/observation/_163526_enrollmenetDate_99DCT">
-        <label>Initial visit Date</label>
+        <label>Initial visit date</label>
       </input>
       <select1 appearance="minimal" ref="/prep_treatment_verification/observation/_162724_facilityName_99DCT">
         <label>Name of health facility accessing ART:</label>
@@ -51685,7 +51685,7 @@
         <label>Date initiated on PrEP?</label>
       </input>
       <select1 ref="/prep_treatment_verification/observation/_164515_prepRegimen_99DCT">
-        <label>PrEP Regimen</label>
+        <label>PrEP regimen</label>
         <item>
           <label>TDF+3TC</label>
           <value>_161364_tdf3tc99DCT</value>
@@ -51700,7 +51700,7 @@
         </item>
       </select1>
       <select1 ref="/prep_treatment_verification/observation/_162568_sourceOfInformation_99DCT">
-        <label>Source of Information:</label>
+        <label>Source of information:</label>
         <item>
           <label>Verbal Report</label>
           <value>_163787_verbalReport_99DCT</value>
@@ -51727,10 +51727,10 @@
         </item>
       </select1>
       <input ref="/prep_treatment_verification/observation/_5096_verificationDate_99DCT">
-        <label>Appointment Verification Date:</label>
+        <label>Appointment verification date:</label>
       </input>
       <select1 ref="/prep_treatment_verification/observation/_165109_prepStatus_99DCT">
-        <label>PrEP Status</label>
+        <label>PrEP status</label>
         <item>
           <label>Start</label>
           <value>_1256_start_99DCT</value>
@@ -51749,7 +51749,7 @@
         </item>
       </select1>
       <select1 ref="/prep_treatment_verification/observation/_161555_discontinuationReason_99DCT">
-        <label>PrEP Discontinuation Reason</label>
+        <label>PrEP discontinuation reason</label>
         <item>
           <label>Tested HIV Positive</label>
           <value>_138571_testedHIVpositive_99DCT</value>
@@ -51776,10 +51776,10 @@
         </item>
       </select1>
       <input ref="/prep_treatment_verification/observation/other_reason">
-        <label>Other Specify:</label>
+        <label>Other specify:</label>
       </input>
       <input ref="/prep_treatment_verification/observation/_5096_nextAppointment_99DCT">
-        <label>Next Appointment Date:</label>
+        <label>Next appointment date:</label>
       </input>
       <input ref="/prep_treatment_verification/observation/_163042_comments_99DCT">
         <label>Comments:</label>

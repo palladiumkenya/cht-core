@@ -1,9 +1,9 @@
 {
   "icon": "icon-follow-up",
-  "title": "Tracking",
+  "title": "KP LTFU Tracking",
   "context": {
     "person": false,
     "place": true,
-    "expression": ""
+    "expression": "(user.role === 'kp_peer_educator' || user.role === 'clinician') && (!(summary.screenedToday && summary.lastHtsService !== ''))"
   }
 }
