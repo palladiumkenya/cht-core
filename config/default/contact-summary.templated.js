@@ -4,7 +4,7 @@ const { today, MAX_DAYS_IN_PREGNANCY, isHighRiskPregnancy, getNewestReport, getS
   getSubsequentDeliveries, isAlive, isReadyForNewPregnancy, isReadyForDelivery, isActivePregnancy, countANCFacilityVisits,
   getAllRiskFactors, getLatestDangerSignsForPregnancy, getNextANCVisitDate,
   getMostRecentLMPDateForPregnancy, getMostRecentEDDForPregnancy, getDeliveryDate, getFormArraySubmittedInWindow,
-  getRecentANCVisitWithEvent, getAllRiskFactorExtra, getField } = extras;
+  getRecentANCVisitWithEvent, getAllRiskFactorExtra, getLastScreeningDate, getField } = extras;
 
 //contact, reports, lineage are globally available for contact-summary
 const thisContact = contact;
@@ -22,9 +22,22 @@ const context = {
 };
 
 const mostRecentHtsForm = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form']);
+const latestHtsForm = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form', 'hts_screening_form']);
 const mostRecentHtsRetest = getNewestReport(allReports, ['hts_retest_form']);
 const mostRecentHtsContactTracing = getNewestReport(allReports, ['contact_follow_up']);
 
+let lastScreeningDate = null;
+let lastHtsService = null;
+
+const mostRecentScreeningForm = getNewestReport(allReports, ['hts_screening_form']);
+if (mostRecentScreeningForm) {
+  lastScreeningDate = getLastScreeningDate(mostRecentScreeningForm);
+  lastHtsService = getField(mostRecentScreeningForm, 'hts_service') || '';
+}
+const durationSinceLastScreen = lastScreeningDate ? today.diff(lastScreeningDate, 'days') : null;
+
+context.screenedToday = durationSinceLastScreen === 0 ? true : false;
+context.lastHtsService = lastHtsService;
 
 context.hts_initial = {
   population_type:getField(mostRecentHtsForm, 'observation._164930_populationType_99DCT') || '',
@@ -46,9 +59,10 @@ context.hts_latest_consent = {
 };
 
 context.hts_latest_form = {
-  form_type:mostRecentHtsForm ? mostRecentHtsForm.form : '',
+  form_type:latestHtsForm ? latestHtsForm.form : '',
+  //form_type:mostRecentHtsForm ? mostRecentHtsForm.form : '',
 };
-
+console.log('latest form: ' + context.hts_latest_form.form_type);
 context.recentHtsTracing = {
   phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_call') || '',
   physicalTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_visit') || '',

@@ -48,6 +48,10 @@ function getLMPDateFromPregnancy(report) {
   return isPregnancyForm(report) && getField(report, 'lmp_date_8601') && moment(getField(report, 'lmp_date_8601'));
 }
 
+function getLastScreeningDate(report) {
+  return getField(report, 'encounter_date') && moment(getField(report, 'encounter_date'));
+}
+
 function getLMPDateFromPregnancyFollowUp(report) {
   return isPregnancyFollowUpForm(report) && getField(report, 'lmp_date_8601') && moment(getField(report, 'lmp_date_8601'));
 }
@@ -404,5 +408,6 @@ module.exports = {
   getDeliveryDate,
   getFormArraySubmittedInWindow,
   getRecentANCVisitWithEvent,
+  getLastScreeningDate,
   getField
 };

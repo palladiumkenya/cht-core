@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Tracking</h:title>
+    <h:title>KP LTFU tracking Form</h:title>
     <model>
       <itext>
         <translation lang="en">
@@ -17,7 +17,7 @@
         </translation>
       </itext>
       <instance>
-        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-09-07 17:46:17">
+        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-09-17 12:50:02">
           <inputs>
             <meta>
               <location>
@@ -62,7 +62,6 @@
             <_160753_dateAttempted_99DCT/>
             <_164966_tracingType_99DCT/>
             <_160721_outcome_99DCT/>
-            <_163725_outcomeStatusReached_99DCT/>
             <_160433_status_99DCT/>
             <_160716_exitReason_99DCT/>
             <_162568_sourceOFinfo_99DCT/>
@@ -135,16 +134,15 @@
       <bind nodeset="/tracking/observation/_165004_trackingAttempted_99DCT" required="true()" type="select1"/>
       <bind nodeset="/tracking/observation/_165071_whyNot_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1066_no_99DCT&quot;" required="false()" type="select1"/>
       <bind nodeset="/tracking/observation/_5622_Specify_99DCT" relevant=" /tracking/observation/_165071_whyNot_99DCT =&quot;_5622_other_99DCT&quot;" required="false()" type="string"/>
-      <bind constraint=".&lt;=9" jr:constraintMsg="jr:itext('/tracking/observation/_1639_numberOFattempt_99DCT:jr:constraintMsg')" nodeset="/tracking/observation/_1639_numberOFattempt_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="int"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/tracking/observation/_160753_dateAttempted_99DCT:jr:constraintMsg')" nodeset="/tracking/observation/_160753_dateAttempted_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" type="date"/>
-      <bind nodeset="/tracking/observation/_164966_tracingType_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/observation/_160721_outcome_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/observation/_163725_outcomeStatusReached_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/observation/_160433_status_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
+      <bind constraint=".&gt;=1 and .&lt;=3" jr:constraintMsg="jr:itext('/tracking/observation/_1639_numberOFattempt_99DCT:jr:constraintMsg')" nodeset="/tracking/observation/_1639_numberOFattempt_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="int"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/tracking/observation/_160753_dateAttempted_99DCT:jr:constraintMsg')" nodeset="/tracking/observation/_160753_dateAttempted_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="true()" type="date"/>
+      <bind nodeset="/tracking/observation/_164966_tracingType_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="true()" type="select1"/>
+      <bind nodeset="/tracking/observation/_160721_outcome_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="true()" type="select1"/>
+      <bind nodeset="/tracking/observation/_160433_status_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="true()" type="select1"/>
       <bind nodeset="/tracking/observation/_160716_exitReason_99DCT" relevant=" /tracking/observation/_160433_status_99DCT =&quot;_165219_voluntaryExit_99DCT&quot;" type="string"/>
-      <bind nodeset="/tracking/observation/_162568_sourceOFinfo_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
-      <bind nodeset="/tracking/observation/_160632_otherSource_99DCT" relevant=" /tracking/observation/_162568_sourceOFinfo_99DCT =&quot;_5622_otherInfo_99DCT&quot;" type="string"/>
-      <bind nodeset="/tracking/observation/_161641_statusINprogram_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="false()" type="select1"/>
+      <bind nodeset="/tracking/observation/_162568_sourceOFinfo_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="true()" type="select1"/>
+      <bind nodeset="/tracking/observation/_160632_otherSource_99DCT" relevant=" /tracking/observation/_162568_sourceOFinfo_99DCT =&quot;_5622_otherInfo_99DCT&quot;" required="false()" type="string"/>
+      <bind nodeset="/tracking/observation/_161641_statusINprogram_99DCT" relevant=" /tracking/observation/_165004_trackingAttempted_99DCT =&quot;_1065_yes_99DCT&quot;" required="true()" type="select1"/>
       <bind nodeset="/tracking/group_review/n_submit" readonly="true()" type="string"/>
       <bind nodeset="/tracking/group_review/n_household_details_title" readonly="true()" type="string"/>
       <bind nodeset="/tracking/group_review/n_household_details" readonly="true()" type="string"/>
@@ -217,7 +215,7 @@
     <group appearance="field-list" ref="/tracking/observation">
       <label>Tracking Information</label>
       <select1 ref="/tracking/observation/_165004_trackingAttempted_99DCT">
-        <label>Tracking Attempted</label>
+        <label>Tracking attempted</label>
         <item>
           <label>Yes</label>
           <value>_1065_yes_99DCT</value>
@@ -254,13 +252,13 @@
         <label>Specify:</label>
       </input>
       <input ref="/tracking/observation/_1639_numberOFattempt_99DCT">
-        <label>Please specify the attempt number since last missed appointment(ie 1,2,3):</label>
+        <label>Tracing attempt number (ie 1,2,3):</label>
       </input>
       <input ref="/tracking/observation/_160753_dateAttempted_99DCT">
         <label>Date of attempt</label>
       </input>
       <select1 ref="/tracking/observation/_164966_tracingType_99DCT">
-        <label>Tracing Type</label>
+        <label>Tracing type</label>
         <item>
           <label>Phone</label>
           <value>_1650_phone_99DCT</value>
@@ -271,29 +269,18 @@
         </item>
       </select1>
       <select1 ref="/tracking/observation/_160721_outcome_99DCT">
-        <label>Tracing Outcome</label>
+        <label>Tracing outcome</label>
         <item>
           <label>KP reached</label>
           <value>_160718_reached_99DCT</value>
         </item>
         <item>
-          <label>KP not reached,but rather informant reached</label>
+          <label>Informant reached</label>
           <value>_160717_notReachedInfoReached_99DCT</value>
         </item>
         <item>
           <label>KP not reached</label>
           <value>_160717_notReached_99DCT</value>
-        </item>
-      </select1>
-      <select1 ref="/tracking/observation/_163725_outcomeStatusReached_99DCT">
-        <label>Was the final outcome reached?</label>
-        <item>
-          <label>Yes</label>
-          <value>_1065_yes_99DCT</value>
-        </item>
-        <item>
-          <label>No</label>
-          <value>_1066_no_99DCT</value>
         </item>
       </select1>
       <select1 ref="/tracking/observation/_160433_status_99DCT">
@@ -332,10 +319,10 @@
         </item>
       </select1>
       <input ref="/tracking/observation/_160716_exitReason_99DCT">
-        <label>Comments explaining the reasons for Voluntary Exit</label>
+        <label>Comments explaining the reasons for voluntary exit</label>
       </input>
       <select1 ref="/tracking/observation/_162568_sourceOFinfo_99DCT">
-        <label>Source of Information</label>
+        <label>Source of information</label>
         <item>
           <label>Key Population</label>
           <value>_164929_kp_99DCT</value>

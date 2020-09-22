@@ -1823,7 +1823,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:clinic:edit" prefix="J1!contact:clinic:edit!" version="2020-08-24 11:15:29">
+        <data delimiter="#" id="contact:clinic:edit" prefix="J1!contact:clinic:edit!" version="2020-09-07 11:27:39">
           <inputs>
             <meta>
               <location>
@@ -4680,7 +4680,7 @@
       <bind nodeset="/data/clinic/demographics_delimiter" readonly="true()" type="string"/>
       <bind nodeset="/data/clinic/n_address" readonly="true()" type="string"/>
       <bind nodeset="/data/clinic/patient_nationality" type="select1"/>
-      <bind constraint="regex(.,'^([+]?[1-9]{3})([0-9]{9})$') or regex(.,'^[0-9]{10}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_telephone:jr:constraintMsg')" nodeset="/data/clinic/patient_telephone" required="true()" type="string"/>
+      <bind constraint="regex(.,'^([+]?[1-9]{3})([0-9]{9})$') or regex(.,'^[0-9]{10}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_telephone:jr:constraintMsg')" nodeset="/data/clinic/patient_telephone" required="false()" type="string"/>
       <bind constraint="regex(.,'^([+]?[1-9]{3})([0-9]{9})$') or regex(.,'^[0-9]{10}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_alternatePhone:jr:constraintMsg')" nodeset="/data/clinic/patient_alternatePhone" required="false()" type="string"/>
       <bind nodeset="/data/clinic/patient_postalAddress" required="false()" type="string"/>
       <bind nodeset="/data/clinic/patient_emailAddress" required="false()" type="string"/>
@@ -4866,7 +4866,7 @@
         <label>**&lt;span style="color:blue"&gt;Address&lt;/span&gt;**</label>
       </input>
       <select1 appearance="minimal" ref="/data/clinic/patient_nationality">
-        <label>Nationality</label>
+        <label>Country of origin</label>
         <item>
           <label>Afghanistan</label>
           <value>Afghanistan</value>

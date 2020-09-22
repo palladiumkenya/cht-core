@@ -76,6 +76,18 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           <text id="/data/contact/role/chw_supervisor:label">
             <value>CHW Supervisor</value>
           </text>
+          <text id="/data/contact/role/clinician:label">
+            <value>Clinician</value>
+          </text>
+          <text id="/data/contact/role/hts_provider:label">
+            <value>HTS provider</value>
+          </text>
+          <text id="/data/contact/role/kp_case_manager:label">
+            <value>KP Case manager</value>
+          </text>
+          <text id="/data/contact/role/kp_peer_educator:label">
+            <value>KP Peer educator</value>
+          </text>
           <text id="/data/contact/role/manager:label">
             <value>Facility Manager</value>
           </text>
@@ -227,6 +239,18 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           </text>
           <text id="/data/contact/role/chw_supervisor:label">
             <value>Superviseur ASC</value>
+          </text>
+          <text id="/data/contact/role/clinician:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/hts_provider:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_case_manager:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_peer_educator:label">
+            <value>-</value>
           </text>
           <text id="/data/contact/role/manager:label">
             <value>Staff médical</value>
@@ -380,6 +404,18 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           <text id="/data/contact/role/chw_supervisor:label">
             <value>सामुदायिक स्वास्थ्य कर्मी के मैनेजर</value>
           </text>
+          <text id="/data/contact/role/clinician:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/hts_provider:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_case_manager:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_peer_educator:label">
+            <value>-</value>
+          </text>
           <text id="/data/contact/role/manager:label">
             <value>स्वास्थ्य केंद्र के मैनजर</value>
           </text>
@@ -531,6 +567,18 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           </text>
           <text id="/data/contact/role/chw_supervisor:label">
             <value>Kader Pengawas</value>
+          </text>
+          <text id="/data/contact/role/clinician:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/hts_provider:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_case_manager:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_peer_educator:label">
+            <value>-</value>
           </text>
           <text id="/data/contact/role/manager:label">
             <value>Manajer Fasilitas</value>
@@ -684,6 +732,18 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           <text id="/data/contact/role/chw_supervisor:label">
             <value>महिला स्वास्थ्य स्वयम् सेविकाको सुपरभाइजर</value>
           </text>
+          <text id="/data/contact/role/clinician:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/hts_provider:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_case_manager:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_peer_educator:label">
+            <value>-</value>
+          </text>
           <text id="/data/contact/role/manager:label">
             <value>स्वास्थ्य सस्था प्रमुख</value>
           </text>
@@ -836,6 +896,18 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
           <text id="/data/contact/role/chw_supervisor:label">
             <value>Mkuu wa wahudumu wa afya</value>
           </text>
+          <text id="/data/contact/role/clinician:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/hts_provider:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_case_manager:label">
+            <value>-</value>
+          </text>
+          <text id="/data/contact/role/kp_peer_educator:label">
+            <value>-</value>
+          </text>
           <text id="/data/contact/role/manager:label">
             <value>Meneja wa Kituo cha afya</value>
           </text>
@@ -917,7 +989,7 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:district_hospital:create" prefix="J1!contact:district_hospital:create!" version="2019-10-23  12-01">
+        <data delimiter="#" id="contact:district_hospital:create" prefix="J1!contact:district_hospital:create!" version="2020-09-16  22-17">
           <inputs>
             <meta>
               <location>
@@ -1194,6 +1266,22 @@ DOB ISO: <output value=" /data/contact/ephemeral_dob/dob_iso "/></value></text>
         <item>
           <label ref="jr:itext('/data/contact/role/patient:label')"/>
           <value>patient</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/contact/role/kp_case_manager:label')"/>
+          <value>kp_case_manager</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/contact/role/kp_peer_educator:label')"/>
+          <value>kp_peer_educator</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/contact/role/hts_provider:label')"/>
+          <value>hts_provider</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/contact/role/clinician:label')"/>
+          <value>clinician</value>
         </item>
         <item>
           <label ref="jr:itext('/data/contact/role/other:label')"/>

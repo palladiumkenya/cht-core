@@ -1,9 +1,9 @@
 {
-    "icon": "icon-treatment",
-    "title": "  HIV Treatment Verification",
-    "context": {
-        "person": false,
-        "place": true,
-        "expression": ""
-    }
+        "icon": "icon-treatment",
+        "title": "  HIV Treatment Verification",
+        "context": {
+                "person": false,
+                "place": true,
+                "expression": "(user.role === 'kp_case_manager' || user.role === 'clinician') && (!(summary.screenedToday && summary.lastHtsService !== ''))"
+        }
 }

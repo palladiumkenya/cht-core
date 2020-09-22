@@ -1856,7 +1856,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:clinic:create" prefix="J1!contact:clinic:create!" version="2020-09-08 10:21:55">
+        <data delimiter="#" id="contact:clinic:create" prefix="J1!contact:clinic:create!" version="2020-09-20 18:03:18">
           <inputs>
             <meta>
               <location>
@@ -1878,16 +1878,16 @@
             <parent>PARENT</parent>
             <role>person</role>
             <record_originator>cht</record_originator>
-            <patient_idNumbers/>
-            <patient_identifierType_nationalId_49af6cdc-7968-4abb-bf46-de10d7f4859f/>
-            <patient_identifierType_clinicNumber_b4d66522-11fc-45c7-83e3-39a1af21ae0d/>
-            <id_delimiter/>
             <n_demographics/>
             <patient_familyName/>
             <patient_firstName/>
             <patient_middleName/>
             <name/>
             <patient_name/>
+            <patient_idNumbers/>
+            <patient_identifierType_nationalId_49af6cdc-7968-4abb-bf46-de10d7f4859f/>
+            <patient_identifierType_clinicNumber_b4d66522-11fc-45c7-83e3-39a1af21ae0d/>
+            <id_delimiter/>
             <patient_sex/>
             <patient_dobKnown/>
             <patient_dateOfBirth/>
@@ -4732,16 +4732,16 @@
       <bind nodeset="/data/clinic/parent" type="string"/>
       <bind nodeset="/data/clinic/role" type="string"/>
       <bind nodeset="/data/clinic/record_originator" type="string"/>
-      <bind nodeset="/data/clinic/patient_idNumbers" readonly="true()" type="string"/>
-      <bind constraint="regex(.,'^[0-9]{5,10}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_identifierType_nationalId_49af6cdc-7968-4abb-bf46-de10d7f4859f:jr:constraintMsg')" nodeset="/data/clinic/patient_identifierType_nationalId_49af6cdc-7968-4abb-bf46-de10d7f4859f" required="false()" type="string"/>
-      <bind constraint="regex(., '^[A-Za-z0-9._%+-]{1,15}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_identifierType_clinicNumber_b4d66522-11fc-45c7-83e3-39a1af21ae0d:jr:constraintMsg')" nodeset="/data/clinic/patient_identifierType_clinicNumber_b4d66522-11fc-45c7-83e3-39a1af21ae0d" required="false()" type="string"/>
-      <bind nodeset="/data/clinic/id_delimiter" readonly="true()" type="string"/>
       <bind nodeset="/data/clinic/n_demographics" readonly="true()" type="string"/>
       <bind constraint="regex(., '^[A-Z]{1}[a-z]{1,14}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_familyName:jr:constraintMsg')" nodeset="/data/clinic/patient_familyName" required="true()" type="string"/>
       <bind constraint="regex(., '^[A-Z]{1}[a-z]{1,14}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_firstName:jr:constraintMsg')" nodeset="/data/clinic/patient_firstName" required="true()" type="string"/>
       <bind constraint="regex(., '^[A-Z]{1}[a-z]{1,14}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_middleName:jr:constraintMsg')" nodeset="/data/clinic/patient_middleName" type="string"/>
       <bind calculate="concat( /data/clinic/patient_familyName , ' ',  /data/clinic/patient_middleName , ' ',  /data/clinic/patient_firstName )" nodeset="/data/clinic/name" type="string"/>
       <bind calculate="../name" nodeset="/data/clinic/patient_name" type="string"/>
+      <bind nodeset="/data/clinic/patient_idNumbers" readonly="true()" type="string"/>
+      <bind constraint="regex(.,'^[0-9]{5,10}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_identifierType_nationalId_49af6cdc-7968-4abb-bf46-de10d7f4859f:jr:constraintMsg')" nodeset="/data/clinic/patient_identifierType_nationalId_49af6cdc-7968-4abb-bf46-de10d7f4859f" required="false()" type="string"/>
+      <bind constraint="regex(., '^[A-Za-z0-9._%+-]{1,15}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_identifierType_clinicNumber_b4d66522-11fc-45c7-83e3-39a1af21ae0d:jr:constraintMsg')" nodeset="/data/clinic/patient_identifierType_clinicNumber_b4d66522-11fc-45c7-83e3-39a1af21ae0d" required="false()" type="string"/>
+      <bind nodeset="/data/clinic/id_delimiter" readonly="true()" type="string"/>
       <bind nodeset="/data/clinic/patient_sex" required="true()" type="select1"/>
       <bind nodeset="/data/clinic/patient_dobKnown" required="true()" type="select1"/>
       <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/data/clinic/patient_dateOfBirth:jr:constraintMsg')" nodeset="/data/clinic/patient_dateOfBirth" relevant=" /data/clinic/patient_dobKnown  = '_1065_Yes_99DCT'" required="true()" type="date"/>
@@ -4780,8 +4780,8 @@
       <bind nodeset="/data/clinic/address_delimiter" readonly="true()" type="string"/>
       <bind nodeset="/data/clinic/n_next_of_kin_details" readonly="true()" type="string"/>
       <bind constraint="regex(.,'[a-zA-Z][a-zA-Z\s]') and string-length(.) &lt;=50" jr:constraintMsg="jr:itext('/data/clinic/patient_nextofkin:jr:constraintMsg')" nodeset="/data/clinic/patient_nextofkin" required="false()" type="string"/>
-      <bind nodeset="/data/clinic/patient_nextofkinRelationshipUnder15" relevant=" /data/clinic/age_in_years  &lt;15 or  /data/clinic/patient_ageYears  &lt;15" required="false()" type="select1"/>
-      <bind nodeset="/data/clinic/patient_nextofkinRelation" relevant=" /data/clinic/age_in_years  &gt;=15 or  /data/clinic/patient_ageYears  &gt;=15" required="false()" type="select1"/>
+      <bind nodeset="/data/clinic/patient_nextofkinRelationshipUnder15" relevant=" /data/clinic/age_in_years  &lt;15" required="false()" type="select1"/>
+      <bind nodeset="/data/clinic/patient_nextofkinRelation" relevant=" /data/clinic/age_in_years  &gt;=15" required="false()" type="select1"/>
       <bind calculate="if( /data/clinic/patient_nextofkinRelationshipUnder15  != '',  /data/clinic/patient_nextofkinRelationshipUnder15 , /data/clinic/patient_nextofkinRelation )" nodeset="/data/clinic/patient_nextofkinRelationship" type="string"/>
       <bind nodeset="/data/clinic/patient_nextOfKinPhonenumber" type="string"/>
       <bind nodeset="/data/clinic/patient_nextOfKinPostaladdress" type="string"/>
@@ -4809,19 +4809,7 @@
       </group>
     </group>
     <group appearance="field-list" ref="/data/clinic">
-      <label>Registration Details</label>
-      <input ref="/data/clinic/patient_idNumbers">
-        <label>**&lt;span style="color:blue"&gt;Client Identification Numbers&lt;/span&gt;**</label>
-      </input>
-      <input ref="/data/clinic/patient_identifierType_nationalId_49af6cdc-7968-4abb-bf46-de10d7f4859f">
-        <label>National ID No</label>
-      </input>
-      <input ref="/data/clinic/patient_identifierType_clinicNumber_b4d66522-11fc-45c7-83e3-39a1af21ae0d">
-        <label>Clinic No</label>
-      </input>
-      <input ref="/data/clinic/id_delimiter">
-        <label>&lt;hr style="margin:0 auto;"&gt;</label>
-      </input>
+      <label>Registration details</label>
       <input ref="/data/clinic/n_demographics">
         <label>**&lt;span style="color:blue"&gt;Demographics&lt;/span&gt;**</label>
       </input>
@@ -4833,6 +4821,18 @@
       </input>
       <input ref="/data/clinic/patient_middleName">
         <label>Other name(s)</label>
+      </input>
+      <input ref="/data/clinic/patient_idNumbers">
+        <label>**&lt;span style="color:blue"&gt;Client Identification Numbers&lt;/span&gt;**</label>
+      </input>
+      <input ref="/data/clinic/patient_identifierType_nationalId_49af6cdc-7968-4abb-bf46-de10d7f4859f">
+        <label>National ID No</label>
+      </input>
+      <input ref="/data/clinic/patient_identifierType_clinicNumber_b4d66522-11fc-45c7-83e3-39a1af21ae0d">
+        <label>Clinic No</label>
+      </input>
+      <input ref="/data/clinic/id_delimiter">
+        <label>&lt;hr style="margin:0 auto;"&gt;</label>
       </input>
       <select1 ref="/data/clinic/patient_sex">
         <label>Sex</label>
@@ -4857,7 +4857,7 @@
         </item>
       </select1>
       <input ref="/data/clinic/patient_dateOfBirth">
-        <label>Date of Birth</label>
+        <label>Date of birth</label>
       </input>
       <input ref="/data/clinic/patient_ageYears">
         <label>Age (years)</label>
@@ -4869,7 +4869,7 @@
         <label>DOB ISO: <output value=" /data/clinic/dob_iso "/></label>
       </input>
       <select1 appearance="minimal" ref="/data/clinic/patient_marital_status">
-        <label>Marital Status</label>
+        <label>Marital status</label>
         <item>
           <label>Married polygamous</label>
           <value>_159715_marriedPolygamous_99DCT</value>
@@ -4896,7 +4896,7 @@
         </item>
       </select1>
       <select1 appearance="minimal" ref="/data/clinic/patient_occupation">
-        <label>Primary Occupation</label>
+        <label>Primary 0ccupation</label>
         <item>
           <label>Farmer</label>
           <value>_1538_farmer_99DCT</value>
@@ -5750,7 +5750,7 @@
         <label>Postal address</label>
       </input>
       <input ref="/data/clinic/patient_emailAddress">
-        <label>Email Address</label>
+        <label>Email address</label>
       </input>
       <select1 appearance="minimal" ref="/data/clinic/patient_county">
         <label>County of residence</label>

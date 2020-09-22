@@ -9,7 +9,7 @@
             <value>Encounter date cannot be in the future</value>
           </text>
           <text id="/contact/observation/_160638_altContact_99DCT:jr:constraintMsg">
-            <value>Accepts only alphabets with the first letter capitalized</value>
+            <value>Accepts only three names alphabets with the first letter capitalized.</value>
           </text>
           <text id="/contact/observation/_160642_altContactPhone_99DCT:jr:constraintMsg">
             <value>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</value>
@@ -35,7 +35,7 @@
         </translation>
       </itext>
       <instance>
-        <contact delimiter="#" id="contact" prefix="J1!contact!" version="2020-09-20 17:09:55">
+        <contact delimiter="#" id="contact" prefix="J1!contact!" version="2020-09-21 08:46:57">
           <inputs>
             <meta>
               <location>
@@ -117,7 +117,7 @@
       <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/contact/encounter_date:jr:constraintMsg')" nodeset="/contact/encounter_date" required="true()" type="date"/>
       <bind nodeset="/contact/observation/_164929_populationType_99DCT" required="true()" type="select1"/>
       <bind nodeset="/contact/observation/_165028_alias_99DCT" required="false()" type="string"/>
-      <bind constraint="regex(., '^[A-Z]{1}[a-z]{1,14}$')" jr:constraintMsg="jr:itext('/contact/observation/_160638_altContact_99DCT:jr:constraintMsg')" nodeset="/contact/observation/_160638_altContact_99DCT" required="false()" type="string"/>
+      <bind constraint="regex(., '^[A-Z]{1}[a-z]{1,14}(?: [A-Za-z]+){0,2}$')" jr:constraintMsg="jr:itext('/contact/observation/_160638_altContact_99DCT:jr:constraintMsg')" nodeset="/contact/observation/_160638_altContact_99DCT" required="false()" type="string"/>
       <bind constraint="regex(.,'^([+]?[1-9]{3})([0-9]{9})$') or regex(.,'^[0-9]{10}$')" jr:constraintMsg="jr:itext('/contact/observation/_160642_altContactPhone_99DCT:jr:constraintMsg')" nodeset="/contact/observation/_160642_altContactPhone_99DCT" required="false()" type="string"/>
       <bind nodeset="/contact/observation/_165004_contactedByPeerEductor_99DCT" required="false()" type="select1"/>
       <bind nodeset="/contact/observation/_165137_programReceivingServiceFrom_99DCT" relevant=" /contact/observation/_165004_contactedByPeerEductor_99DCT =&quot;_1065_yes_99DCT&quot;" type="string"/>

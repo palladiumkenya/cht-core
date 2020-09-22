@@ -21,69 +21,69 @@
             <value>Can not be less than one or more than 1000</value>
           </text>
           <text id="/peer_calendar/observation/_165304_weekOne_99DCT/_165055_noOfCondomsDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 pieces.</value>
           </text>
           <text id="/peer_calendar/observation/_165304_weekOne_99DCT/_165056_noFemaleCondoms_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 pieces.</value>
           </text>
           <text id="/peer_calendar/observation/_165304_weekOne_99DCT/_165057_noOfLubesDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 sachets.</value>
           </text>
           <text id="/peer_calendar/observation/_165304_weekOne_99DCT/_165058_noOfNeedlesDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 Kits.</value>
           </text>
           <text id="/peer_calendar/observation/_165304_weekOne_99DCT/_165222_noOfHIVKitsDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 Kits.</value>
           </text>
           <text id="/peer_calendar/observation/_165305_weekTwo_99DCT/_165055_noOfCondomsDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 pieces.</value>
           </text>
           <text id="/peer_calendar/observation/_165305_weekTwo_99DCT/_165056_noFemaleCondoms_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 pieces.</value>
           </text>
           <text id="/peer_calendar/observation/_165305_weekTwo_99DCT/_165057_noOfLubesDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 sachets.</value>
           </text>
           <text id="/peer_calendar/observation/_165305_weekTwo_99DCT/_165058_noOfNeedlesDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 Kits.</value>
           </text>
           <text id="/peer_calendar/observation/_165305_weekTwo_99DCT/_165222_noOfHIVKitsDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 Kits.</value>
           </text>
           <text id="/peer_calendar/observation/_165306_weekThree_99DCT/_165055_noOfCondomsDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 pieces.</value>
           </text>
           <text id="/peer_calendar/observation/_165306_weekThree_99DCT/_165056_noFemaleCondoms_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 pieces.</value>
           </text>
           <text id="/peer_calendar/observation/_165306_weekThree_99DCT/_165057_noOfLubesDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 sachets.</value>
           </text>
           <text id="/peer_calendar/observation/_165306_weekThree_99DCT/_165058_noOfNeedlesDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 Kits.</value>
           </text>
           <text id="/peer_calendar/observation/_165306_weekThree_99DCT/_165222_noOfHIVKitsDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 Kits.</value>
           </text>
           <text id="/peer_calendar/observation/_165307_weekFour_99DCT/_165055_noOfCondomsDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 pieces.</value>
           </text>
           <text id="/peer_calendar/observation/_165307_weekFour_99DCT/_165056_noFemaleCondoms_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 pieces.</value>
           </text>
           <text id="/peer_calendar/observation/_165307_weekFour_99DCT/_165057_noOfLubesDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 sachets.</value>
           </text>
           <text id="/peer_calendar/observation/_165307_weekFour_99DCT/_165058_noOfNeedlesDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 Kits.</value>
           </text>
           <text id="/peer_calendar/observation/_165307_weekFour_99DCT/_165222_noOfHIVKitsDistributed_99DCT:jr:constraintMsg">
-            <value>Can not be less than one or more than 1000</value>
+            <value>Value cannot be more than 1000 Kits.</value>
           </text>
         </translation>
       </itext>
       <instance>
-        <peer_calendar delimiter="#" id="peer_calendar" prefix="J1!peer_calendar!" version="2020-09-08 01:30:42">
+        <peer_calendar delimiter="#" id="peer_calendar" prefix="J1!peer_calendar!" version="2020-09-18 12:53:38">
           <inputs>
             <meta>
               <location>
@@ -123,7 +123,6 @@
           <observation>
             <_165006_hotspotName_99DCT/>
             <_165005_typology_99DCT/>
-            <_165356_selectMonth_99DCT/>
             <_165007_sexActPerWeek_99DCT/>
             <_165299_condomsPerMonth_99DCT/>
             <_165008_averageAnalPerWeek_99DCT/>
@@ -134,7 +133,7 @@
             <_123160_everExperiencedViolence_99DCT/>
             <_165302_servicesReceivedMULTISELECT_99DCT/>
             <_5622_Specify_99DCT/>
-            <_165304_weekToFillServicesMULTISELECT_99DCT/>
+            <_1732_weekToFillServicesMULTISELECT_99DCT/>
             <_165304_weekOne_99DCT>
               <_165058_noOfNeedlesDistributed_99DCT/>
               <_165055_noOfCondomsDistributed_99DCT/>
@@ -258,7 +257,6 @@
       <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/peer_calendar/encounter_date:jr:constraintMsg')" nodeset="/peer_calendar/encounter_date" required="true()" type="date"/>
       <bind nodeset="/peer_calendar/observation/_165006_hotspotName_99DCT" required="false()" type="string"/>
       <bind nodeset="/peer_calendar/observation/_165005_typology_99DCT" required="false()" type="select1"/>
-      <bind nodeset="/peer_calendar/observation/_165356_selectMonth_99DCT" required="true()" type="select1"/>
       <bind constraint=". &gt;= 1 and . &lt;= 200" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165007_sexActPerWeek_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165007_sexActPerWeek_99DCT" type="int"/>
       <bind calculate="( /peer_calendar/observation/_165007_sexActPerWeek_99DCT  )* 4" nodeset="/peer_calendar/observation/_165299_condomsPerMonth_99DCT" readonly="true()" type="string"/>
       <bind constraint=". &gt;= 1 and . &lt;= 200" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165008_averageAnalPerWeek_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165008_averageAnalPerWeek_99DCT" type="int"/>
@@ -269,8 +267,8 @@
       <bind nodeset="/peer_calendar/observation/_123160_everExperiencedViolence_99DCT" type="select1"/>
       <bind nodeset="/peer_calendar/observation/_165302_servicesReceivedMULTISELECT_99DCT" required="true()" type="select"/>
       <bind nodeset="/peer_calendar/observation/_5622_Specify_99DCT" relevant="selected( /peer_calendar/observation/_165302_servicesReceivedMULTISELECT_99DCT ,'_5622_other_99DCT')" required="false()" type="string"/>
-      <bind nodeset="/peer_calendar/observation/_165304_weekToFillServicesMULTISELECT_99DCT" required="true()" type="select"/>
-      <bind nodeset="/peer_calendar/observation/_165304_weekOne_99DCT" relevant="selected( /peer_calendar/observation/_165304_weekToFillServicesMULTISELECT_99DCT ,'_165304_firstWeek_99DCT')"/>
+      <bind nodeset="/peer_calendar/observation/_1732_weekToFillServicesMULTISELECT_99DCT" required="true()" type="select"/>
+      <bind nodeset="/peer_calendar/observation/_165304_weekOne_99DCT" relevant="selected( /peer_calendar/observation/_1732_weekToFillServicesMULTISELECT_99DCT ,'_165304_firstWeek_99DCT')"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165304_weekOne_99DCT/_165058_noOfNeedlesDistributed_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165304_weekOne_99DCT/_165058_noOfNeedlesDistributed_99DCT" type="int"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165304_weekOne_99DCT/_165055_noOfCondomsDistributed_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165304_weekOne_99DCT/_165055_noOfCondomsDistributed_99DCT" type="int"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165304_weekOne_99DCT/_165056_noFemaleCondoms_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165304_weekOne_99DCT/_165056_noFemaleCondoms_99DCT" type="int"/>
@@ -281,7 +279,7 @@
       <bind nodeset="/peer_calendar/observation/_165304_weekOne_99DCT/_1774_receivedClinicalService_99DCT" required="false()" type="select1"/>
       <bind nodeset="/peer_calendar/observation/_165304_weekOne_99DCT/_1272_clinicalService_99DCT" relevant=" /peer_calendar/observation/_165304_weekOne_99DCT/_1774_receivedClinicalService_99DCT =&quot;_1066_no_99DCT&quot;" required="true()" type="select1"/>
       <bind nodeset="/peer_calendar/observation/_165304_weekOne_99DCT/_123160_violenceReported_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/peer_calendar/observation/_165305_weekTwo_99DCT" relevant="selected( /peer_calendar/observation/_165304_weekToFillServicesMULTISELECT_99DCT ,'_165305_secondWeek_99DCT')"/>
+      <bind nodeset="/peer_calendar/observation/_165305_weekTwo_99DCT" relevant="selected( /peer_calendar/observation/_1732_weekToFillServicesMULTISELECT_99DCT ,'_165305_secondWeek_99DCT')"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165305_weekTwo_99DCT/_165058_noOfNeedlesDistributed_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165305_weekTwo_99DCT/_165058_noOfNeedlesDistributed_99DCT" type="int"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165305_weekTwo_99DCT/_165055_noOfCondomsDistributed_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165305_weekTwo_99DCT/_165055_noOfCondomsDistributed_99DCT" type="int"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165305_weekTwo_99DCT/_165056_noFemaleCondoms_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165305_weekTwo_99DCT/_165056_noFemaleCondoms_99DCT" type="int"/>
@@ -292,7 +290,7 @@
       <bind nodeset="/peer_calendar/observation/_165305_weekTwo_99DCT/_1774_receivedClinicalService2_99DCT" required="false()" type="select1"/>
       <bind nodeset="/peer_calendar/observation/_165305_weekTwo_99DCT/_1272_clinicalService_99DCT" relevant=" /peer_calendar/observation/_165305_weekTwo_99DCT/_1774_receivedClinicalService2_99DCT =&quot;_1066_no_99DCT&quot;" required="true()" type="select1"/>
       <bind nodeset="/peer_calendar/observation/_165305_weekTwo_99DCT/_123160_violenceReported_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/peer_calendar/observation/_165306_weekThree_99DCT" relevant="selected( /peer_calendar/observation/_165304_weekToFillServicesMULTISELECT_99DCT ,'_165306_thirdWeek_99DCT')"/>
+      <bind nodeset="/peer_calendar/observation/_165306_weekThree_99DCT" relevant="selected( /peer_calendar/observation/_1732_weekToFillServicesMULTISELECT_99DCT ,'_165306_thirdWeek_99DCT')"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165306_weekThree_99DCT/_165058_noOfNeedlesDistributed_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165306_weekThree_99DCT/_165058_noOfNeedlesDistributed_99DCT" type="int"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165306_weekThree_99DCT/_165055_noOfCondomsDistributed_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165306_weekThree_99DCT/_165055_noOfCondomsDistributed_99DCT" type="int"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165306_weekThree_99DCT/_165056_noFemaleCondoms_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165306_weekThree_99DCT/_165056_noFemaleCondoms_99DCT" type="int"/>
@@ -303,7 +301,7 @@
       <bind nodeset="/peer_calendar/observation/_165306_weekThree_99DCT/_1774_receivedClinicalService3_99DCT" required="false()" type="select1"/>
       <bind nodeset="/peer_calendar/observation/_165306_weekThree_99DCT/_1272_clinicalService_99DCT" relevant=" /peer_calendar/observation/_165306_weekThree_99DCT/_1774_receivedClinicalService3_99DCT =&quot;_1066_no_99DCT&quot;" required="true()" type="select1"/>
       <bind nodeset="/peer_calendar/observation/_165306_weekThree_99DCT/_123160_violenceReported_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/peer_calendar/observation/_165307_weekFour_99DCT" relevant="selected( /peer_calendar/observation/_165304_weekToFillServicesMULTISELECT_99DCT ,'_165307_fourthWeek_99DCT')"/>
+      <bind nodeset="/peer_calendar/observation/_165307_weekFour_99DCT" relevant="selected( /peer_calendar/observation/_1732_weekToFillServicesMULTISELECT_99DCT ,'_165307_fourthWeek_99DCT')"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165307_weekFour_99DCT/_165058_noOfNeedlesDistributed_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165307_weekFour_99DCT/_165058_noOfNeedlesDistributed_99DCT" type="int"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165307_weekFour_99DCT/_165055_noOfCondomsDistributed_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165307_weekFour_99DCT/_165055_noOfCondomsDistributed_99DCT" type="int"/>
       <bind constraint=". &gt;=1 and . &lt;= 1000" jr:constraintMsg="jr:itext('/peer_calendar/observation/_165307_weekFour_99DCT/_165056_noFemaleCondoms_99DCT:jr:constraintMsg')" nodeset="/peer_calendar/observation/_165307_weekFour_99DCT/_165056_noFemaleCondoms_99DCT" type="int"/>
@@ -389,16 +387,15 @@
         </group>
       </group>
     </group>
-    <input ref="/peer_calendar/encounter_date">
-      <label>Encounter date</label>
+    <input appearance="month-year" ref="/peer_calendar/encounter_date">
+      <label>Select which month you will be filling peer calendar:</label>
     </input>
     <group appearance="field-list" ref="/peer_calendar/observation">
-      <label>DISC History Information</label>
       <input ref="/peer_calendar/observation/_165006_hotspotName_99DCT">
         <label>Name of hotspot</label>
       </input>
       <select1 appearance="minimal" ref="/peer_calendar/observation/_165005_typology_99DCT">
-        <label>Hotspot Type:</label>
+        <label>Typology:</label>
         <item>
           <label>Street</label>
           <value>_165011_street_99DCT</value>
@@ -468,74 +465,23 @@
           <value>_165026_barbershopSalon_99DCT</value>
         </item>
       </select1>
-      <select1 appearance="minimal" ref="/peer_calendar/observation/_165356_selectMonth_99DCT">
-        <label>Select which month you will be filling Peer Calendar:</label>
-        <item>
-          <label>January</label>
-          <value>_165356_january_99DCT</value>
-        </item>
-        <item>
-          <label>February</label>
-          <value>_165356_february_99DCT</value>
-        </item>
-        <item>
-          <label>March</label>
-          <value>_165356_march_99DCT</value>
-        </item>
-        <item>
-          <label>April</label>
-          <value>_165356_april_99DCT</value>
-        </item>
-        <item>
-          <label>May</label>
-          <value>_165356_may_99DCT</value>
-        </item>
-        <item>
-          <label>June</label>
-          <value>_165356_june_99DCT</value>
-        </item>
-        <item>
-          <label>July</label>
-          <value>_165356_july_99DCT</value>
-        </item>
-        <item>
-          <label>August</label>
-          <value>_165356_august_99DCT</value>
-        </item>
-        <item>
-          <label>September</label>
-          <value>_165356_september_99DCT</value>
-        </item>
-        <item>
-          <label>October</label>
-          <value>_165356_october_99DCT</value>
-        </item>
-        <item>
-          <label>November</label>
-          <value>_165356_november_99DCT</value>
-        </item>
-        <item>
-          <label>December</label>
-          <value>_165356_december_99DCT</value>
-        </item>
-      </select1>
       <input ref="/peer_calendar/observation/_165007_sexActPerWeek_99DCT">
         <label>Average number of sex acts per week</label>
       </input>
       <input ref="/peer_calendar/observation/_165299_condomsPerMonth_99DCT">
-        <label>Condom Requirements per month:</label>
+        <label>Condom requirements per month (Pieces):</label>
       </input>
       <input ref="/peer_calendar/observation/_165008_averageAnalPerWeek_99DCT">
-        <label>Average no. of Anal sex acts per week</label>
+        <label>Average number of anal sex acts per week</label>
       </input>
       <input ref="/peer_calendar/observation/_165300_lubricantRequiredPerMonth_99DCT">
-        <label>Lubricant requirements per month:</label>
+        <label>Lubricant requirements per month (Sachets):</label>
       </input>
       <input ref="/peer_calendar/observation/_165009_injectionPerDay_99DCT">
-        <label>Average no. of Injecting episodes per day</label>
+        <label>Average number of Injecting episodes per day</label>
       </input>
       <input ref="/peer_calendar/observation/_165308_needlesPerMonth_99DCT">
-        <label>Needle and syringe requirements per month</label>
+        <label>Needle and syringe requirements per month (Kits):</label>
       </input>
       <input ref="/peer_calendar/observation/_165301_durationOfSexWork_99DCT">
         <label>Duration in sex work/injecting(Years)</label>
@@ -552,7 +498,7 @@
         </item>
       </select1>
       <select ref="/peer_calendar/observation/_165302_servicesReceivedMULTISELECT_99DCT">
-        <label>What services/goods did you receive last month?</label>
+        <label>What services/goods did you receive last month?*</label>
         <item>
           <label>Condoms</label>
           <value>_159777_condoms_99DCT</value>
@@ -581,7 +527,7 @@
       <input ref="/peer_calendar/observation/_5622_Specify_99DCT">
         <label>Other services / goods received last month:</label>
       </input>
-      <select ref="/peer_calendar/observation/_165304_weekToFillServicesMULTISELECT_99DCT">
+      <select ref="/peer_calendar/observation/_1732_weekToFillServicesMULTISELECT_99DCT">
         <label>Which week would you like to fill the monthly service uptake:</label>
         <item>
           <label>1 Week</label>
@@ -606,13 +552,13 @@
           <label>No. of needles &amp; Syringes distributed</label>
         </input>
         <input ref="/peer_calendar/observation/_165304_weekOne_99DCT/_165055_noOfCondomsDistributed_99DCT">
-          <label>No. of male condoms distributed:</label>
+          <label>No. of male condoms distributed (Pieces):</label>
         </input>
         <input ref="/peer_calendar/observation/_165304_weekOne_99DCT/_165056_noFemaleCondoms_99DCT">
-          <label>No. of female condoms distributed:</label>
+          <label>No. of female condoms distributed (Pieces):</label>
         </input>
         <input ref="/peer_calendar/observation/_165304_weekOne_99DCT/_165057_noOfLubesDistributed_99DCT">
-          <label>No. of lubes distributed:</label>
+          <label>No. of lubes distributed (Sachets):</label>
         </input>
         <select ref="/peer_calendar/observation/_165304_weekOne_99DCT/_165147_healthEducationMULTISELECT_99DCT">
           <label>Health Education:</label>
@@ -649,7 +595,7 @@
           <label>Other health education message:</label>
         </input>
         <input ref="/peer_calendar/observation/_165304_weekOne_99DCT/_165222_noOfHIVKitsDistributed_99DCT">
-          <label>No of HIV test kits distributed</label>
+          <label>Number of HIV self-test kits distributed (Kits):</label>
         </input>
         <select1 ref="/peer_calendar/observation/_165304_weekOne_99DCT/_1774_receivedClinicalService_99DCT">
           <label>Received clinical services</label>
@@ -691,13 +637,13 @@
           <label>No. of needles &amp; Syringes distributed</label>
         </input>
         <input ref="/peer_calendar/observation/_165305_weekTwo_99DCT/_165055_noOfCondomsDistributed_99DCT">
-          <label>No. of male condoms distributed:</label>
+          <label>No. of male condoms distributed (Pieces):</label>
         </input>
         <input ref="/peer_calendar/observation/_165305_weekTwo_99DCT/_165056_noFemaleCondoms_99DCT">
-          <label>No. of female condoms distributed:</label>
+          <label>No. of female condoms distributed (Pieces):</label>
         </input>
         <input ref="/peer_calendar/observation/_165305_weekTwo_99DCT/_165057_noOfLubesDistributed_99DCT">
-          <label>No. of lubes distributed:</label>
+          <label>No. of lubes distributed (Sachets):</label>
         </input>
         <select ref="/peer_calendar/observation/_165305_weekTwo_99DCT/_165147_healthEducation2MULTISELECT_99DCT">
           <label>Health Education:</label>
@@ -734,7 +680,7 @@
           <label>Other health education message:</label>
         </input>
         <input ref="/peer_calendar/observation/_165305_weekTwo_99DCT/_165222_noOfHIVKitsDistributed_99DCT">
-          <label>No of HIV test kits distributed</label>
+          <label>Number of HIV self-test kits distributed (Kits):</label>
         </input>
         <select1 ref="/peer_calendar/observation/_165305_weekTwo_99DCT/_1774_receivedClinicalService2_99DCT">
           <label>Received clinical services</label>
@@ -776,13 +722,13 @@
           <label>No. of needles &amp; Syringes distributed</label>
         </input>
         <input ref="/peer_calendar/observation/_165306_weekThree_99DCT/_165055_noOfCondomsDistributed_99DCT">
-          <label>No. of male condoms distributed:</label>
+          <label>No. of male condoms distributed (Pieces):</label>
         </input>
         <input ref="/peer_calendar/observation/_165306_weekThree_99DCT/_165056_noFemaleCondoms_99DCT">
-          <label>No. of female condoms distributed:</label>
+          <label>No. of female condoms distributed (Pieces):</label>
         </input>
         <input ref="/peer_calendar/observation/_165306_weekThree_99DCT/_165057_noOfLubesDistributed_99DCT">
-          <label>No. of lubes distributed:</label>
+          <label>No. of lubes distributed (Sachets):</label>
         </input>
         <select ref="/peer_calendar/observation/_165306_weekThree_99DCT/_165147_healthEducation3MULTISELECT_99DCT">
           <label>Health Education:</label>
@@ -819,7 +765,7 @@
           <label>Other health education message:</label>
         </input>
         <input ref="/peer_calendar/observation/_165306_weekThree_99DCT/_165222_noOfHIVKitsDistributed_99DCT">
-          <label>No of HIV test kits distributed</label>
+          <label>Number of HIV self-test kits distributed (Kits):</label>
         </input>
         <select1 ref="/peer_calendar/observation/_165306_weekThree_99DCT/_1774_receivedClinicalService3_99DCT">
           <label>Received clinical services</label>
@@ -861,13 +807,13 @@
           <label>No. of needles &amp; Syringes distributed</label>
         </input>
         <input ref="/peer_calendar/observation/_165307_weekFour_99DCT/_165055_noOfCondomsDistributed_99DCT">
-          <label>No. of male condoms distributed:</label>
+          <label>No. of male condoms distributed (Pieces):</label>
         </input>
         <input ref="/peer_calendar/observation/_165307_weekFour_99DCT/_165056_noFemaleCondoms_99DCT">
-          <label>No. of female condoms distributed:</label>
+          <label>No. of female condoms distributed (boxes):</label>
         </input>
         <input ref="/peer_calendar/observation/_165307_weekFour_99DCT/_165057_noOfLubesDistributed_99DCT">
-          <label>No. of lubes distributed:</label>
+          <label>No. of lubes distributed (Sachets):</label>
         </input>
         <select ref="/peer_calendar/observation/_165307_weekFour_99DCT/_165147_healthEducation4MULTISELECT_99DCT">
           <label>Health Education:</label>
@@ -904,7 +850,7 @@
           <label>Specify:</label>
         </input>
         <input ref="/peer_calendar/observation/_165307_weekFour_99DCT/_165222_noOfHIVKitsDistributed_99DCT">
-          <label>No of HIV test kits distributed</label>
+          <label>Number of HIV self-test kits distributed (Kits):</label>
         </input>
         <select1 ref="/peer_calendar/observation/_165307_weekFour_99DCT/_1774_receivedClinicalService4_99DCT">
           <label>Received clinical services</label>
