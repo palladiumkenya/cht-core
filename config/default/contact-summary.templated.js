@@ -17,6 +17,7 @@ const context = {
   show_delivery_form: isReadyForDelivery(thisContact, allReports),
   has_hts_initial: allReports.some((report) => report.form === 'hts_initial_form' || report.form === 'hts_retest_form'),
   has_hts_referral: allReports.some((report) => report.form === 'hts_referral'),
+  has_kp_contact_form: allReports.some((report) => report.form === 'contact'),
   has_hts_linkage: allReports.some((report) => report.form === 'hts_linkage'),
   has_hts_contact_followup: allReports.some((report) => report.form === 'contact_follow_up'),
 };
