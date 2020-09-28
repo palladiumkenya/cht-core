@@ -374,15 +374,16 @@
       "create_key": "contact.type.facility_employee.new",
       "edit_key": "contact.type.facility_employee.edit",
       "parents": [
-        "ahealth_facility"
+        "ahealth_facility",
+        "patient_support_group"
       ],
-      "icon": "medic-health-center",
+      "icon": "medic-person",
       "create_form": "form:contact:facility_employee:create",
       "edit_form": "form:contact:facility_employee:edit",
       "person": true
     },
     {
-      "id": "cassigned_group",
+      "id": "patient_support_group",
       "name_key": "contact.type.assigned_group",
       "group_key": "contact.type.assigned_group.plural",
       "create_key": "contact.type.assigned_group.new",
@@ -391,8 +392,8 @@
         "ahealth_facility"
       ],
       "icon": "medic-health-center",
-      "create_form": "form:contact:assigned_group:create",
-      "edit_form": "form:contact:assigned_group:edit"
+      "create_form": "form:contact:patient_support_group:create",
+      "edit_form": "form:contact:patient_support_group:edit"
     },
     {
       "id": "client",
@@ -401,7 +402,7 @@
       "create_key": "contact.type.clinic.new",
       "edit_key": "contact.type.place.edit",
       "parents": [
-        "bassigned_group",
+        "patient_support_group",
         "ahealth_facility"
       ],
       "icon": "medic-person",
@@ -409,7 +410,7 @@
       "edit_form": "form:contact:client:edit"
     },
     {
-      "id": "dpatient_contact",
+      "id": "patient_contact",
       "name_key": "contact.type.person",
       "group_key": "contact.type.person.plural",
       "create_key": "contact.type.person.new",
