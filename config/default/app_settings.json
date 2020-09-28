@@ -27,8 +27,10 @@
   "reported_date_format": "DD-MMM-YYYY HH:mm:ss",
   "forms_only_mode": false,
   "place_hierarchy_types": [
-    "district_hospital",
-    "health_center"
+    "health_facility",
+    "patient_support_group",
+    "patient_contact",
+    "client"
   ],
   "default_responses": {
     "start_date": ""
@@ -358,55 +360,70 @@
   },
   "contact_types": [
     {
-      "id": "district_hospital",
+      "id": "ahealth_facility",
       "name_key": "contact.type.district_hospital",
       "group_key": "contact.type.district_hospital.plural",
       "create_key": "contact.type.district_hospital.new",
       "edit_key": "contact.type.place.edit",
       "icon": "medic-district-hospital",
-      "create_form": "form:contact:district_hospital:create",
-      "edit_form": "form:contact:district_hospital:edit"
+      "create_form": "form:contact:health_facility:create",
+      "edit_form": "form:contact:health_facility:edit"
     },
     {
-      "id": "health_center",
-      "name_key": "contact.type.health_center",
-      "group_key": "contact.type.health_center.plural",
-      "create_key": "contact.type.health_center.new",
+      "id": "bfacility_employee",
+      "name_key": "contact.type.facility_employee",
+      "group_key": "contact.type.facility_employee.plural",
+      "create_key": "contact.type.facility_employee.new",
+      "edit_key": "contact.type.facility_employee.edit",
+      "parents": [
+        "ahealth_facility",
+        "patient_support_group"
+      ],
+      "icon": "medic-person",
+      "create_form": "form:contact:facility_employee:create",
+      "edit_form": "form:contact:facility_employee:edit",
+      "person": true
+    },
+    {
+      "id": "patient_support_group",
+      "name_key": "contact.type.assigned_group",
+      "group_key": "contact.type.assigned_group.plural",
+      "create_key": "contact.type.assigned_group.new",
       "edit_key": "contact.type.health_center.edit",
       "parents": [
-        "district_hospital"
+        "ahealth_facility"
       ],
       "icon": "medic-health-center",
-      "create_form": "form:contact:health_center:create",
-      "edit_form": "form:contact:health_center:edit"
+      "create_form": "form:contact:patient_support_group:create",
+      "edit_form": "form:contact:patient_support_group:edit"
     },
     {
-      "id": "clinic",
+      "id": "client",
       "name_key": "contact.type.clinic",
       "group_key": "contact.type.clinic.plural",
       "create_key": "contact.type.clinic.new",
       "edit_key": "contact.type.place.edit",
       "parents": [
-        "health_center",
-        "district_hospital"
+        "patient_support_group",
+        "ahealth_facility"
       ],
       "icon": "medic-person",
-      "create_form": "form:contact:clinic:create",
-      "edit_form": "form:contact:clinic:edit"
+      "create_form": "form:contact:client:create",
+      "edit_form": "form:contact:client:edit"
     },
     {
-      "id": "person",
+      "id": "patient_contact",
       "name_key": "contact.type.person",
       "group_key": "contact.type.person.plural",
       "create_key": "contact.type.person.new",
       "edit_key": "contact.type.person.edit",
       "primary_contact_key": "clinic.field.contact",
       "parents": [
-        "clinic"
+        "client"
       ],
       "icon": "listed-contact",
-      "create_form": "form:contact:person:create",
-      "edit_form": "form:contact:person:edit",
+      "create_form": "form:contact:patient_contact:create",
+      "edit_form": "form:contact:patient_contact:edit",
       "person": true
     }
   ],
@@ -470,7 +487,7 @@
     "cht_client_registration": {
       "relevant_to": "doc.type === 'clinic' && doc.new_registration === 'yes' && doc.contact_type === 'clinic' && (doc.record_originator && doc.record_originator === 'cht')",
       "destination": {
-        "base_url": "http://localhost:8080",
+        "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
           "type": "basic",
           "username": "admin",
@@ -483,9 +500,9 @@
       }
     },
     "cht_client_registration_update": {
-      "relevant_to": "doc.type === 'clinic' && doc.new_registration === 'no' && doc.contact_type === 'clinic' && (doc.record_originator && doc.record_originator === 'cht')",
+      "relevant_to": "doc.type === 'clinic' && doc.new_registration === 'false' && doc.contact_type === 'clinic' && (doc.record_originator && doc.record_originator === 'cht')",
       "destination": {
-        "base_url": "http://localhost:8080",
+        "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
           "type": "basic",
           "username": "admin",
@@ -494,13 +511,13 @@
         "path": "/openmrs/ws/rest/v1/edata/medicdemographicupdates"
       },
       "mapping": {
-        "registration": "doc"
+        "demographicUpdate": "doc"
       }
     },
     "cht_form_data": {
       "relevant_to": "doc.type === 'data_record' && ['hts_initial_form','hts_retest_form','hts_referral','hts_linkage','hiv_treatment_verification','contact','prep_treatment_verification','tracking'].includes(doc.form)",
       "destination": {
-        "base_url": "http://localhost:8080",
+        "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
           "type": "basic",
           "username": "admin",
@@ -515,7 +532,7 @@
     "cht_kp_peer_calendar_form_data": {
       "relevant_to": "doc.type === 'data_record' && doc.form === 'peer_calendar'",
       "destination": {
-        "base_url": "http://localhost:8080",
+        "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
           "type": "basic",
           "username": "admin",
@@ -530,7 +547,7 @@
     "cht_hts_screening_form": {
       "relevant_to": "doc.type === 'data_record' && ['hts_screening_form'].includes(doc.form) && doc.fields.hts_service !== 'confirmPositiveResult'",
       "destination": {
-        "base_url": "http://localhost:8080",
+        "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
           "type": "basic",
           "username": "admin",
@@ -545,7 +562,7 @@
     "cht_contact_listing": {
       "relevant_to": "doc.type === 'person' && doc.contact_type === 'person' && doc.record_originator === 'cht'",
       "destination": {
-        "base_url": "http://localhost:8080",
+        "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
           "type": "basic",
           "username": "admin",
@@ -560,7 +577,7 @@
     "contact_follow_up": {
       "relevant_to": "doc.type === 'data_record' && doc.form === 'contact_follow_up'",
       "destination": {
-        "base_url": "http://localhost:8080",
+        "base_url": "https://data.kenyahmis.org:9100",
         "auth": {
           "type": "basic",
           "username": "admin",

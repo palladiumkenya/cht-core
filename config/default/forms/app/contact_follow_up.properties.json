@@ -4,6 +4,6 @@
     "context": {
         "place": false,
         "person": true,
-        "expression": "(user.role === 'hts_provider' || user.role === 'clinician') && !contact.muted  && contact.contact_type =='person' && (summary.recentHtsTracing.phoneTraceOutcome != 'responded' && summary.recentHtsTracing.physicalTraceOutcome != 'available')"
+        "expression": "(user.role === 'hts_provider' || user.role === 'clinician') && !contact.muted  && contact.contact_type =='patient_contact' && (summary.recentHtsTracing.phoneTraceOutcome != 'responded' && summary.recentHtsTracing.physicalTraceOutcome != 'available')"
     }
 }
