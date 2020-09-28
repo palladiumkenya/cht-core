@@ -35,7 +35,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2020-09-01 12:30:37">
+        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2020-09-28 14:16:07">
           <inputs>
             <meta>
               <location>
@@ -136,7 +136,7 @@
       <bind calculate="date(concat(string( /data/person/ephemeral_years ),'-','06','-','16'))" nodeset="/data/person/dob_approx" type="string"/>
       <bind calculate="if( /data/person/dob_known  = 'yes',  /data/person/dob_calendar , /data/person/dob_approx )" nodeset="/data/person/dob_raw" type="string"/>
       <bind calculate="format-date(decimal-date-time(../dob_raw),&quot;%Y-%m-%d&quot;)" nodeset="/data/person/dob_iso" type="string"/>
-      <bind nodeset="/data/person/dob_note" readonly="true()" relevant="0" type="string"/>
+      <bind nodeset="/data/person/dob_note" readonly="true()" relevant="false()" type="string"/>
       <bind calculate="floor( difference-in-months(  /data/person/date_of_birth , today() ) div 12 )" nodeset="/data/person/age_in_years" type="string"/>
       <bind calculate="difference-in-months(  /data/person/date_of_birth , today() )" nodeset="/data/person/age_in_months" type="string"/>
       <bind calculate=" /data/person/dob_iso " constraint=". &lt; today()" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')" nodeset="/data/person/date_of_birth" type="string"/>
@@ -384,7 +384,7 @@
           <value>negative</value>
         </item>
         <item>
-          <label>Exposed Infant</label>
+          <label>Exposed infant</label>
           <value>exposed_infant</value>
         </item>
       </select1>
@@ -394,19 +394,19 @@
       <select1 ref="/data/person/pns_approach">
         <label>Preferred PNS Approach</label>
         <item>
-          <label>Dual Referral</label>
+          <label>Dual referral</label>
           <value>dual_referral</value>
         </item>
         <item>
-          <label>Provider Referral</label>
+          <label>Provider referral</label>
           <value>provider_referral</value>
         </item>
         <item>
-          <label>Passive Referral</label>
+          <label>Client referral</label>
           <value>passive_referral</value>
         </item>
         <item>
-          <label>Contact Referral</label>
+          <label>Contract referral</label>
           <value>contract_referral</value>
         </item>
       </select1>

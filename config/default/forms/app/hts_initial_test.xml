@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <hts_initial_test delimiter="#" id="hts_initial_form" prefix="J1!hts_initial_form!" version="2020-09-10 15:25:32">
+        <hts_initial_test delimiter="#" id="hts_initial_form" prefix="J1!hts_initial_form!" version="2020-09-24 12:53:50">
           <inputs>
             <meta>
               <location>
@@ -219,26 +219,26 @@
       <bind calculate="if( /hts_initial_test/observation/facility_sdp  !='',  /hts_initial_test/observation/facility_sdp ,  /hts_initial_test/observation/community_sdp )" nodeset="/hts_initial_test/observation/_160540_htsEntryPoint_99DCT" required="true()" type="string"/>
       <bind nodeset="/hts_initial_test/observation/_5622_otherEntryPoint_99DCT" relevant="selected( /hts_initial_test/observation/_160540_htsEntryPoint_99DCT ,'_5622_otherEntry_99DCT')" required="false()" type="string"/>
       <bind nodeset="/hts_initial_test/observation/_1710_clientConsented_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/hts_initial_test/observation/_164959_clientTestedAs_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" required="true()" type="select1"/>
-      <bind nodeset="/hts_initial_test/observation/_164410_firstTest_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" required="true()"/>
+      <bind nodeset="/hts_initial_test/observation/_164959_clientTestedAs_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1')" required="true()" type="select1"/>
+      <bind nodeset="/hts_initial_test/observation/_164410_firstTest_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1')" required="true()"/>
       <bind nodeset="/hts_initial_test/observation/_164410_firstTest_99DCT/_164962_KitOneName_99DCT" required="true()" type="select1"/>
       <bind nodeset="/hts_initial_test/observation/_164410_firstTest_99DCT/_164964_KitOneLotNumber_99DCT" required="true()" type="string"/>
       <bind constraint="floor(decimal-date-time(.)) &gt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/hts_initial_test/observation/_164410_firstTest_99DCT/_162502_KitOneExpiry_99DCT:jr:constraintMsg')" nodeset="/hts_initial_test/observation/_164410_firstTest_99DCT/_162502_KitOneExpiry_99DCT" required="true()" type="date"/>
       <bind nodeset="/hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT" required="true()" type="select1"/>
       <bind nodeset="/hts_initial_test/observation/_164410_firstTest_99DCT/_163626_syphilisResults_99DCT" relevant="selected( /hts_initial_test/observation/_164410_firstTest_99DCT/_164962_KitOneName_99DCT ,'_165351_dual_99DCT')" required="true()" type="select1"/>
-      <bind nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT" relevant="selected( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ,'_703_positive_99DCT') or selected( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ,'_163611_invalid_99DCT') and selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')"/>
-      <bind nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT/_164962_KitTwoName_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" type="select1"/>
-      <bind nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT/_164964_KitTwoLotNumber_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" type="string"/>
-      <bind constraint="floor(decimal-date-time(.)) &gt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/hts_initial_test/observation/_164410_secondTest_99DCT/_162501_KitTwoExpiry_99DCT:jr:constraintMsg')" nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT/_162501_KitTwoExpiry_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" type="date"/>
-      <bind nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" type="select1"/>
+      <bind nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT" relevant="selected( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ,'_703_positive_99DCT') or selected( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ,'_163611_invalid_99DCT') and selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1')"/>
+      <bind nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT/_164962_KitTwoName_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1')" type="select1"/>
+      <bind nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT/_164964_KitTwoLotNumber_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1')" type="string"/>
+      <bind constraint="floor(decimal-date-time(.)) &gt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/hts_initial_test/observation/_164410_secondTest_99DCT/_162501_KitTwoExpiry_99DCT:jr:constraintMsg')" nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT/_162501_KitTwoExpiry_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1')" type="date"/>
+      <bind nodeset="/hts_initial_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1')" type="select1"/>
       <bind calculate="if( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_664_negative_99DCT','Negative',if( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_703_positive_99DCT' and  /hts_initial_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT ='_703_positive_99DCT', 'Positive',
 if( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_703_positive_99DCT' and  /hts_initial_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT ='_664_negative_99DCT', 'Inconclusive', if( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_703_positive_99DCT' and  /hts_initial_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT ='_163611_invalid_99DCT','Inconclusive',''))))" nodeset="/hts_initial_test/observation/final_result" type="string"/>
       <bind calculate="if( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_664_negative_99DCT','_664_negative_99DCT',if( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_703_positive_99DCT' and  /hts_initial_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT ='_703_positive_99DCT', '_703_positive_99DCT',
 if( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_703_positive_99DCT' and  /hts_initial_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT ='_664_negative_99DCT', '_1138_inconclusive_99DCT', if( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ='_703_positive_99DCT' and  /hts_initial_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT ='_163611_invalid_99DCT','_1138_inconclusive_99DCT',''))))" nodeset="/hts_initial_test/observation/_159427_finalResults_99DCT" type="string"/>
-      <bind nodeset="/hts_initial_test/observation/final_result_note" readonly="true()" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" type="string"/>
+      <bind nodeset="/hts_initial_test/observation/final_result_note" readonly="true()" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1')" type="string"/>
       <bind nodeset="/hts_initial_test/observation/_164848_resultGiven_99DCT" relevant="selected( /hts_initial_test/observation/final_result ,'Positive') or selected( /hts_initial_test/observation/final_result ,'Negative') or selected( /hts_initial_test/observation/final_result ,'Inconclusive')" required="true()" type="select1"/>
-      <bind nodeset="/hts_initial_test/observation/_6096_coupleDsicordant_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT') and selected( /hts_initial_test/observation/_164959_clientTestedAs_99DCT ,'_164958_couple_99DCT')" required="true()" type="select1"/>
-      <bind nodeset="/hts_initial_test/observation/_1659_tbScreening_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'_1065_yes_99DCT')" required="true()" type="select1"/>
+      <bind nodeset="/hts_initial_test/observation/_6096_coupleDsicordant_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1') and selected( /hts_initial_test/observation/_164959_clientTestedAs_99DCT ,'_164958_couple_99DCT')" required="true()" type="select1"/>
+      <bind nodeset="/hts_initial_test/observation/_1659_tbScreening_99DCT" relevant="selected( /hts_initial_test/observation/_1710_clientConsented_99DCT ,'1')" required="true()" type="select1"/>
       <bind nodeset="/hts_initial_test/observation/client_referral" relevant="selected( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_99DCT ,'_703_positive_99DCT') and selected( /hts_initial_test/observation/_164410_secondTest_99DCT/_1326_testTwoResults_99DCT ,'_703_positive_99DCT')" required="true()"/>
       <bind nodeset="/hts_initial_test/observation/client_referral/_1887_referralReason_99DCT" required="true()" type="select1"/>
       <bind nodeset="/hts_initial_test/observation/client_referral/_160481_referralFacility_99DCT" required="true()" type="select1"/>
@@ -589,11 +589,11 @@ if( /hts_initial_test/observation/_164410_firstTest_99DCT/_1040_testOneResults_9
         <label>Has client consented?</label>
         <item>
           <label>Yes</label>
-          <value>_1065_yes_99DCT</value>
+          <value>1</value>
         </item>
         <item>
           <label>No</label>
-          <value>_1066_no_99DCT</value>
+          <value>2</value>
         </item>
       </select1>
       <select1 ref="/hts_initial_test/observation/_164959_clientTestedAs_99DCT">

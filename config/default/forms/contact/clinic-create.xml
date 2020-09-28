@@ -1856,7 +1856,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:clinic:create" prefix="J1!contact:clinic:create!" version="2020-09-20 18:03:18">
+        <data delimiter="#" id="contact:clinic:create" prefix="J1!contact:clinic:create!" version="2020-09-24 15:59:47">
           <inputs>
             <meta>
               <location>
@@ -1878,6 +1878,7 @@
             <parent>PARENT</parent>
             <role>person</role>
             <record_originator>cht</record_originator>
+            <new_registration>yes</new_registration>
             <n_demographics/>
             <patient_familyName/>
             <patient_firstName/>
@@ -4732,6 +4733,7 @@
       <bind nodeset="/data/clinic/parent" type="string"/>
       <bind nodeset="/data/clinic/role" type="string"/>
       <bind nodeset="/data/clinic/record_originator" type="string"/>
+      <bind nodeset="/data/clinic/new_registration" type="string"/>
       <bind nodeset="/data/clinic/n_demographics" readonly="true()" type="string"/>
       <bind constraint="regex(., '^[A-Z]{1}[a-z]{1,14}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_familyName:jr:constraintMsg')" nodeset="/data/clinic/patient_familyName" required="true()" type="string"/>
       <bind constraint="regex(., '^[A-Z]{1}[a-z]{1,14}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_firstName:jr:constraintMsg')" nodeset="/data/clinic/patient_firstName" required="true()" type="string"/>
@@ -4750,9 +4752,9 @@
       <bind calculate="if(format-date-time(today(),&quot;%m&quot;) -  /data/clinic/patient_ageMonths  &lt; 0, format-date-time(today(),&quot;%m&quot;) -  /data/clinic/patient_ageMonths  + 12, format-date-time(today(),&quot;%m&quot;) -  /data/clinic/patient_ageMonths )" nodeset="/data/clinic/ephemeral_months" type="string"/>
       <bind calculate="if(format-date-time(today(),&quot;%y&quot;) -  /data/clinic/patient_ageYears  &lt; 0, format-date-time(today(),&quot;%Y&quot;) -  /data/clinic/patient_ageYears  - 1, format-date-time(today(),&quot;%Y&quot;) -  /data/clinic/patient_ageYears )" nodeset="/data/clinic/ephemeral_years" type="string"/>
       <bind calculate="date(concat(string( /data/clinic/ephemeral_years ),'-','06','-','16'))" nodeset="/data/clinic/dob_approx" type="string"/>
-      <bind calculate="if( /data/clinic/patient_dobKnown  = 'yes',  /data/clinic/patient_dateOfBirth , /data/clinic/dob_approx )" nodeset="/data/clinic/dob_raw" type="string"/>
+      <bind calculate="if( /data/clinic/patient_dobKnown  = '_1065_Yes_99DCT',  /data/clinic/patient_dateOfBirth , /data/clinic/dob_approx )" nodeset="/data/clinic/dob_raw" type="string"/>
       <bind calculate="format-date(decimal-date-time(../dob_raw),&quot;%Y-%m-%d&quot;)" nodeset="/data/clinic/dob_iso" type="string"/>
-      <bind nodeset="/data/clinic/dob_note" readonly="true()" relevant="false()" type="string"/>
+      <bind nodeset="/data/clinic/dob_note" readonly="true()" relevant="0" type="string"/>
       <bind calculate="floor( difference-in-months(  /data/clinic/patient_dateOfBirth , today() ) div 12 )" nodeset="/data/clinic/age_in_years" type="string"/>
       <bind calculate="difference-in-months(  /data/clinic/patient_birthDate , today() )" nodeset="/data/clinic/age_in_months" type="string"/>
       <bind calculate=" /data/clinic/dob_iso " constraint=". &lt; today()" jr:constraintMsg="jr:itext('/data/clinic/patient_birthDate:jr:constraintMsg')" nodeset="/data/clinic/patient_birthDate" type="string"/>
@@ -4763,7 +4765,7 @@
       <bind nodeset="/data/clinic/demographics_delimiter" readonly="true()" type="string"/>
       <bind nodeset="/data/clinic/n_address" readonly="true()" type="string"/>
       <bind nodeset="/data/clinic/patient_nationality" type="select1"/>
-      <bind constraint="regex(.,'^([+]?[1-9]{3})([0-9]{9})$') or regex(.,'^[0-9]{10}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_telephone:jr:constraintMsg')" nodeset="/data/clinic/patient_telephone" required="true()" type="string"/>
+      <bind constraint="regex(.,'^([+]?[1-9]{3})([0-9]{9})$') or regex(.,'^[0-9]{10}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_telephone:jr:constraintMsg')" nodeset="/data/clinic/patient_telephone" required="false()" type="string"/>
       <bind constraint="regex(.,'^([+]?[1-9]{3})([0-9]{9})$') or regex(.,'^[0-9]{10}$')" jr:constraintMsg="jr:itext('/data/clinic/patient_alternatePhone:jr:constraintMsg')" nodeset="/data/clinic/patient_alternatePhone" required="false()" type="string"/>
       <bind nodeset="/data/clinic/patient_postalAddress" required="false()" type="string"/>
       <bind nodeset="/data/clinic/patient_emailAddress" required="false()" type="string"/>

@@ -60,7 +60,7 @@
             <value>Date diagnosed can not be in the future</value>
           </text>
           <text id="/hiv_treatment_verification/observation/_160103_whenFirstTestDone_99DCT:jr:constraintMsg">
-            <value>Date initiated on ART can not be before date diagnosed HIV positive, and can not also be in the future</value>
+            <value>CD4 test date can not be before date diagnosed HIV positive, and can not also be in the future</value>
           </text>
           <text id="/hiv_treatment_verification/observation/_160632_firstLevels_99DCT:jr:constraintMsg">
             <value>Can not be more than 9999</value>
@@ -69,7 +69,7 @@
             <value>Month and year finished IPT can not be before month and year started and also can not be in the future</value>
           </text>
           <text id="/hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT:jr:constraintMsg">
-            <value>Month and year started IPT can not be in the future</value>
+            <value>Date started on IPT should not be before date diagnosed HIV+;</value>
           </text>
           <text id="/hiv_treatment_verification/observation/_163281_firstdates_99DCT:jr:constraintMsg">
             <value>VL date can not be before date diagnosed HIV positive, and can not also be in the future</value>
@@ -80,7 +80,7 @@
         </translation>
       </itext>
       <instance>
-        <hiv_treatment_verification delimiter="#" id="hiv_treatment_verification" prefix="J1!hiv_treatment_verification!" version="2020-09-18 11:41:50">
+        <hiv_treatment_verification delimiter="#" id="hiv_treatment_verification" prefix="J1!hiv_treatment_verification!" version="2020-09-28 15:12:43">
           <inputs>
             <meta>
               <location>
@@ -255,7 +255,7 @@
       <bind calculate="'a70a1132-75b3-11ea-bc55-0242ac130003'" nodeset="/hiv_treatment_verification/form_uuid" type="string"/>
       <bind calculate="'a70a1056-75b3-11ea-bc55-0242ac130003'" nodeset="/hiv_treatment_verification/encounter_type_uuid" type="string"/>
       <bind constraint="floor(decimal-date-time(.)) &lt;= floor(decimal-date-time(today())) and floor( difference-in-months( . , today() ) div 12 ) &lt;= 100" jr:constraintMsg="jr:itext('/hiv_treatment_verification/encounter_date:jr:constraintMsg')" nodeset="/hiv_treatment_verification/encounter_date" required="true()" type="date"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT" required="true()" type="date"/>
+      <bind constraint=". &lt;=  /hiv_treatment_verification/encounter_date  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT" required="true()" type="date"/>
       <bind nodeset="/hiv_treatment_verification/observation/_162724_facilityName_99DCT" required="true()" type="select1"/>
       <bind nodeset="/hiv_treatment_verification/observation/_1768_pepfarSites_99DCT" required="true()" type="select1"/>
       <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_159599_dateInitiatedOnArt_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_159599_dateInitiatedOnArt_99DCT" type="date"/>
@@ -269,7 +269,7 @@
       <bind nodeset="/hiv_treatment_verification/observation/_163524_disclosedStatus_99DCT" required="false()" type="select1"/>
       <bind nodeset="/hiv_treatment_verification/observation/_5616_toWhoMULTISELECT_99DCT" relevant=" /hiv_treatment_verification/observation/_163524_disclosedStatus_99DCT =&quot;_1065_yes_99DCT&quot;" type="select"/>
       <bind nodeset="/hiv_treatment_verification/observation/_163101_disclosedOther_99DCT" relevant=" /hiv_treatment_verification/observation/_5616_toWhoMULTISELECT_99DCT =&quot;_5622_disclosedOther_99DCT&quot;" type="string"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT" required="false()" type="date"/>
+      <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_159948_yearDiagonisedHIVpositive_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT" required="false()" type="date"/>
       <bind constraint=". &gt;=  /hiv_treatment_verification/observation/_162320_whenStartedIpt_99DCT  and . &lt;= today()" jr:constraintMsg="jr:itext('/hiv_treatment_verification/observation/_162279_whenFinishedIpt_99DCT:jr:constraintMsg')" nodeset="/hiv_treatment_verification/observation/_162279_whenFinishedIpt_99DCT" required="false()" type="date"/>
       <bind nodeset="/hiv_treatment_verification/observation/_164947_onDifferentiatedCare_99DCT" required="false()" type="select1"/>
       <bind nodeset="/hiv_treatment_verification/observation/_165302_supprotGroup_99DCT" required="false()" type="select1"/>

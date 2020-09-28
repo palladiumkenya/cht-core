@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <prep_treatment_verification delimiter="#" id="prep_treatment_verification" prefix="J1!prep_treatment_verification!" version="2020-09-17 10:03:45">
+        <prep_treatment_verification delimiter="#" id="prep_treatment_verification" prefix="J1!prep_treatment_verification!" version="2020-09-28 15:02:27">
           <inputs>
             <meta>
               <location>
@@ -139,10 +139,10 @@
       <bind constraint=". &lt;= today()" nodeset="/prep_treatment_verification/observation/_163526_enrollmenetDate_99DCT" required="true()" type="date"/>
       <bind nodeset="/prep_treatment_verification/observation/_162724_facilityName_99DCT" required="true()" type="select1"/>
       <bind nodeset="/prep_treatment_verification/observation/_1768_pepfarSites_99DCT" required="false()" type="select1"/>
-      <bind constraint=". &lt;= today()" nodeset="/prep_treatment_verification/observation/_160555_dateInitiatedOnPrEP_99DCT" type="date"/>
+      <bind constraint=". &gt;=  /prep_treatment_verification/observation/_163526_enrollmenetDate_99DCT  and . &lt;= today()" nodeset="/prep_treatment_verification/observation/_160555_dateInitiatedOnPrEP_99DCT" type="date"/>
       <bind nodeset="/prep_treatment_verification/observation/_164515_prepRegimen_99DCT" type="select1"/>
       <bind nodeset="/prep_treatment_verification/observation/_162568_sourceOfInformation_99DCT" required="false()" type="select1"/>
-      <bind constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/prep_treatment_verification/observation/_5096_verificationDate_99DCT:jr:constraintMsg')" nodeset="/prep_treatment_verification/observation/_5096_verificationDate_99DCT" required="true()" type="date"/>
+      <bind constraint=". &gt;=  /prep_treatment_verification/encounter_date  and . &lt;= today()" jr:constraintMsg="jr:itext('/prep_treatment_verification/observation/_5096_verificationDate_99DCT:jr:constraintMsg')" nodeset="/prep_treatment_verification/observation/_5096_verificationDate_99DCT" required="true()" type="date"/>
       <bind nodeset="/prep_treatment_verification/observation/_165109_prepStatus_99DCT" required="true()" type="select1"/>
       <bind nodeset="/prep_treatment_verification/observation/_161555_discontinuationReason_99DCT" relevant=" /prep_treatment_verification/observation/_165109_prepStatus_99DCT =&quot;_1260_discontinue_99DCT&quot;" required="false()" type="select1"/>
       <bind nodeset="/prep_treatment_verification/observation/other_reason" relevant=" /prep_treatment_verification/observation/_161555_discontinuationReason_99DCT =&quot;_5622_other_99DCT&quot;" required="false()" type="string"/>

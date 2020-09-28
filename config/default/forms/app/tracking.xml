@@ -12,12 +12,12 @@
             <value>Date tracking attempted can not be in the future</value>
           </text>
           <text id="/tracking/observation/_1639_numberOFattempt_99DCT:jr:constraintMsg">
-            <value>Can not be more than 10</value>
+            <value>Attempt number should be between 1 and 3</value>
           </text>
         </translation>
       </itext>
       <instance>
-        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-09-17 12:50:02">
+        <tracking delimiter="#" id="tracking" prefix="J1!tracking!" version="2020-09-28 15:22:13">
           <inputs>
             <meta>
               <location>
