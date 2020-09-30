@@ -66,7 +66,7 @@ context.hts_latest_form = {
 };
 
 context.kpif_contact = {
-    contact_date: getField(mostRecentContactForm, 'encounter_date') || '',
+  contact_date: getField(mostRecentContactForm, 'encounter_date') || '',
 };
 context.recentHtsTracing = {
   phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_call') || '',
