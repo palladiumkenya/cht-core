@@ -83,7 +83,7 @@
         </translation>
       </itext>
       <instance>
-        <peer_calendar delimiter="#" id="peer_calendar" prefix="J1!peer_calendar!" version="2020-09-18 12:53:38">
+        <peer_calendar delimiter="#" id="peer_calendar" prefix="J1!peer_calendar!" version="2020-09-21 14:51:56">
           <inputs>
             <meta>
               <location>
@@ -182,7 +182,6 @@
               <_1272_clinicalService_99DCT/>
               <_123160_violenceReported_99DCT/>
             </_165307_weekFour_99DCT>
-            <_160632_remarks_99DCT/>
           </observation>
           <group_review>
             <n_submit/>
@@ -312,7 +311,6 @@
       <bind nodeset="/peer_calendar/observation/_165307_weekFour_99DCT/_1774_receivedClinicalService4_99DCT" required="false()" type="select1"/>
       <bind nodeset="/peer_calendar/observation/_165307_weekFour_99DCT/_1272_clinicalService_99DCT" relevant=" /peer_calendar/observation/_165307_weekFour_99DCT/_1774_receivedClinicalService4_99DCT =&quot;_1066_no_99DCT&quot;" required="true()" type="select1"/>
       <bind nodeset="/peer_calendar/observation/_165307_weekFour_99DCT/_123160_violenceReported_99DCT" required="true()" type="select1"/>
-      <bind nodeset="/peer_calendar/observation/_160632_remarks_99DCT" type="string"/>
       <bind nodeset="/peer_calendar/group_review/n_submit" readonly="true()" type="string"/>
       <bind nodeset="/peer_calendar/group_review/n_household_details_title" readonly="true()" type="string"/>
       <bind nodeset="/peer_calendar/group_review/n_household_details" readonly="true()" type="string"/>
@@ -886,9 +884,6 @@
           </item>
         </select1>
       </group>
-      <input ref="/peer_calendar/observation/_160632_remarks_99DCT">
-        <label>Remarks</label>
-      </input>
     </group>
     <group appearance="field-list summary" ref="/peer_calendar/group_review">
       <label>Summary page</label>
