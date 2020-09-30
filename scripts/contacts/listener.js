@@ -5,7 +5,6 @@ const PouchDB = require('pouchdb-core');
 
 PouchDB.plugin(require('pouchdb-adapter-http'));
 PouchDB.plugin(require('pouchdb-mapreduce'));
-PouchDB.plugin(require('pouchdb-find'));
 
 const CONTACT_TYPES = {
   case: 'universal_client', // trace_case
@@ -166,7 +165,7 @@ const createNewClientDocument = item => {
     type: 'contact',
     contact_type: 'universal_client',
     record_originator: 'kenyaemr',
-    record_purpose: 'testing',
+    record_purpose: item.record_purpose,
     reported_date: item.reported_date
   };
   for (const key of Object.keys(item.fields)) {
@@ -181,30 +180,6 @@ const createNewClientDocument = item => {
 
   newClient['contacts'] = item.contacts;
   return newClient;
-};
-
-const createLinkageClientDocument = item => {
-    const newClient = {
-        _id: uuidv4(),
-        kemr_uuid: item._id,
-        type: 'contact',
-        contact_type: 'universal_client',
-        record_originator: 'kenyaemr',
-        record_purpose: 'linkage',
-        reported_date: item.reported_date
-    };
-    for (const key of Object.keys(item.fields)) {
-        if (!EXCLUDED_KEYS.includes(key) && !!item.fields[key]) {
-            newClient[key] = item.fields[key];
-        }
-    }
-
-    if (!newClient.client_name) {
-        newClient.client_name = [newClient.patient_firstName, newClient.patient_familyName, newClient.patient_middleName].join(' ').replace(/\s+/, ' ');
-    }
-
-    newClient['contacts'] = item.contacts;
-    return newClient;
 };
 
 const extractContactDetails = (item, retainReference) => {
@@ -249,7 +224,7 @@ const logPouchDBResults = results => {
   }
 };
 
-const moveClientsToHealthFacility = async (db, newCases, counties) => {
+const moveClientsToHealthFacility = async (db, newCases) => {
   const parentHealthFacility = (await getPlacesByType(couchdb, CONTACT_TYPES.parent_health_facility))[0];
 
   newCases.forEach(async item => {
@@ -264,17 +239,10 @@ const moveClientsToHealthFacility = async (db, newCases, counties) => {
      on KenyaEMRs='s cht_ref_uuid attribute.
     */
     const existingCase = cases.existingCase;
-    const covidCase = existingCase;
-    const existingCaseType = (covidCase || {}).contact_type;
+    const existingClientCase = existingCase;
+    const existingCaseType = (existingClientCase || {}).contact_type;
 
-    let newClientObj;
-    if (item.record_purpose === 'linkage') {
-        newClientObj = createLinkageClientDocument(item);
-    } else {
-        newClientObj = createNewClientDocument(item);
-    }
-
-    const newClient = newClientObj;
+    const newClient = createNewClientDocument(item);
 
         //delete report pushed from EMR
     docsToCreate.push({ _id: item._id, _rev: item._rev, _deleted: true });
@@ -301,7 +269,7 @@ const moveClientsToHealthFacility = async (db, newCases, counties) => {
         }
 
         if (!parent || !newClient.assignee) {
-          console.warn(`Adding this client/patient to the health facility: ${item._id}`);
+          console.warn(`No assignee for record ${item._id}. Adding the client/patient to the parent health facility`);
           parent = parentHealthFacility;
         }
       }
@@ -326,92 +294,26 @@ const moveClientsToHealthFacility = async (db, newCases, counties) => {
       logPouchDBResults(results);
 
     } else { // delete any record with existing reference.
-      console.info(`Found existing record ${covidCase._id} for KenyaEMR Reference: ${item._id}`);
-
       if (docsToCreate) {
          const results = await db.bulkDocs(docsToCreate);
          logPouchDBResults(results);
       }
-      console.info(`Successfully deleted record with reference: ${item._id}`);
+      console.info(`Successfully deleted record from the EMR with reference: ${item._id}`);
     }
   });
 };
 
-const createMutingDocument = item => {
-  return {
-    _id: uuidv4(),
-    fields: {
-      patient_id: item._id,
-      reported_date: getUTCTimestamp()
-    },
-    type: 'data_record',
-    content_type: 'xml',
-    form: 'trigger_muting',
-    reported_date: getUTCTimestamp(),
-  };
-};
-
-const effectAssignmentOfCases = async (db, cases) => {
-    cases.forEach(async item => {
-        const docsToCreate = [];
-        if (!item.assignee) {
-            console.warn(`Case ID: <${item._id}> KEMR REF: <${item.kemr_uuid}> Case Name: <${item.name}> not yet assined to a tracer`);
-            return;
-        }
-
-        // delete the case we are moving
-        docsToCreate.push({ _id: item._id, _rev: item._rev, _deleted: true });
-
-        // get new parent
-        const parentPlace = await db.get(item.assignee);
-        const caseLineage = minifyLineage(Object.assign({}, { _id: parentPlace._id, parent: parentPlace.parent }));
-
-        const allocatedCovidCase = {
-            _id: uuidv4(),
-            case_id: item.case_id,
-            name: item.name,
-            kemr_uuid: item.kemr_uuid,
-            county: item.county,
-            sub_county: item.subcounty,
-            parent: caseLineage,
-            type: 'contact',
-            contact_type: 'trace_case',
-            reported_date: item.reported_date,
-        };
-
-        const contactLineage = Object.assign({}, { _id: allocatedCovidCase._id, parent: caseLineage });
-
-        docsToCreate.push(allocatedCovidCase);
-
-        item.contacts.forEach(contactData => {
-            const contact = extractContactDetails(contactData, true);
-        contact.parent = contactLineage;
-        contact.kemr_uuid = allocatedCovidCase.kemr_uuid;
-        docsToCreate.push(contact);
-    });
-        docsToCreate.push(createMutingDocument(allocatedCovidCase));
-
-        if (docsToCreate.length > 0) {
-            console.info(`Effecting assignment of Case: ${allocatedCovidCase._id} with KEMR Reference: ${allocatedCovidCase.kemr_uuid}`);
-            const results = await db.bulkDocs(docsToCreate);
-            logPouchDBResults(results);
-        }
-    });
-};
-
-
 const updater = async () => {
   let DELAY_FACTOR = 1;
   const seqNumber = await getSeqNumber(cache);
-  const counties = await getPlacesByType(couchdb, 'county_office');
 
   console.info(`Processing from Sequence Number: ${seqNumber.substring(0, 61)}`);
 
   const result = await getChangesAndLastSeq(couchdb, seqNumber);
   const docs = await getDocsFromChangeSet(couchdb, result.changeSet);
 
-  const casesFromKEMR = docs.filter(doc => doc.type === 'data_record' && doc.form === 'case_information');
-  await moveClientsToHealthFacility(couchdb, casesFromKEMR, counties);
+  const dataFromKEMR = docs.filter(doc => doc.type === 'data_record' && doc.form === 'case_information');
+  await moveClientsToHealthFacility(couchdb, dataFromKEMR);
 
   await updateSeqNumber(cache, result.seqNumber);
 
