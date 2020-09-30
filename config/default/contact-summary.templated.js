@@ -26,6 +26,7 @@ const mostRecentHtsForm = getNewestReport(allReports, ['hts_initial_form', 'hts_
 const latestHtsForm = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form', 'hts_screening_form']);
 const mostRecentHtsRetest = getNewestReport(allReports, ['hts_retest_form']);
 const mostRecentHtsContactTracing = getNewestReport(allReports, ['contact_follow_up']);
+const mostRecentContactForm = getNewestReport(allReports, ['contact']);
 
 let lastScreeningDate = null;
 let lastHtsService = null;
@@ -63,7 +64,10 @@ context.hts_latest_form = {
   form_type:latestHtsForm ? latestHtsForm.form : '',
   //form_type:mostRecentHtsForm ? mostRecentHtsForm.form : '',
 };
-console.log('latest form: ' + context.hts_latest_form.form_type);
+
+context.kpif_contact = {
+    contact_date: getField(mostRecentContactForm, 'encounter_date') || '',
+};
 context.recentHtsTracing = {
   phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_call') || '',
   physicalTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_visit') || '',
