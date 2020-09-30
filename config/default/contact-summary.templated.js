@@ -72,7 +72,8 @@ context.recentHtsTracing = {
 const fields = [
   //{ appliesToType: 'person', label: 'patient_id', value: thisContact.patient_id, width: 4 },
   { appliesToType: 'bfacility_employee', label: 'Role', value: thisContact.role, width: 4 },
-  { appliesToType: 'bfacility_employee', appliesIf: function () { return thisContact.parent && thisLineage[0]; }, label: 'client.facility', value: thisLineage, filter: 'lineage' }, { appliesToType: 'patient_contact', label: 'contact.age', value: thisContact.date_of_birth, width: 4, filter: 'age' },
+  { appliesToType: 'bfacility_employee', appliesIf: function () { return thisContact.parent && thisLineage[0]; }, label: 'client.facility', value: thisLineage, filter: 'lineage' },
+  { appliesToType: 'patient_contact', label: 'contact.age', value: thisContact.date_of_birth, width: 4, filter: 'age' },
   { appliesToType: 'patient_contact', label: 'contact.sex', value: 'contact.sex.' + thisContact.sex, translate: true, width: 4 },
   { appliesToType: 'patient_contact', label: 'person.field.phone', value: thisContact.phone, width: 4 },
   { appliesToType: 'patient_contact', label: 'person.field.physical_address', value: thisContact.physical_address, width: 4 },
@@ -90,7 +91,9 @@ const fields = [
   { appliesToType: 'universal_client', label: 'person.address.village', value: thisContact.patient_village, width: 4 },
   { appliesToType: 'universal_client', label: 'person.address.landmark', value: thisContact.patient_landmark, width: 4 },
   { appliesToType: 'universal_client', appliesIf: function () { return thisContact.parent && thisLineage[0]; }, label: 'client.facility', value: thisLineage, filter: 'lineage' },
-  { appliesToType: 'universal_client', label: 'contact.notes', value: thisContact.notes, width: 12 }
+  { appliesToType: 'universal_client', label: 'contact.notes', value: thisContact.notes, width: 12 },
+  { appliesToType: 'patient_support_group', appliesIf: function () { return thisContact.parent && thisLineage[0]; }, label: 'client.facility', value: thisLineage, filter: 'lineage' }
+
 ];
 
 if (thisContact.short_name) {
