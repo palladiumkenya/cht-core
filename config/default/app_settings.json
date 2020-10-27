@@ -517,7 +517,7 @@
       }
     },
     "cht_form_data": {
-      "relevant_to": "doc.type === 'data_record' && ['hts_initial_form','hts_retest_form','hts_referral','hts_linkage','hiv_treatment_verification','contact','prep_treatment_verification','tracking'].includes(doc.form)",
+      "relevant_to": "doc.type === 'data_record' && ['hts_initial_form','hts_retest_form','hts_referral','hts_linkage','hiv_treatment_verification','contact','prep_treatment_verification','tracking','hts_client_tracing'].includes(doc.form)",
       "destination": {
         "base_url": "https://data.kenyahmis.org:9100/",
         "auth": {
