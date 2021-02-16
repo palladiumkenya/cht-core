@@ -1,0 +1,116 @@
+{
+  "form:child_health_registration": {
+    "localhost/medic": "Ty85ALBDBz+GuLQlOQ5oSQ=="
+  },
+  "form:death_confirmation": {
+    "localhost/medic": "Ly0m1/4p/vOKLJVAtKzS9Q=="
+  },
+  "form:delivery": {
+    "localhost/medic": "9SIW5sSY0B65iuvORQcjNw=="
+  },
+  "form:immunization_visit": {
+    "localhost/medic": "veg4v0qxlZb7DWDtDViSnQ=="
+  },
+  "form:nutrition_exit": {
+    "localhost/medic": "DGJHLfY8wPNjzaTUn8m8GA=="
+  },
+  "form:nutrition_followup": {
+    "localhost/medic": "5XZJIZRZVv69E08uzPptfA=="
+  },
+  "form:nutrition_screening": {
+    "localhost/medic": "xSNc3V4bonUnxblappkKJw=="
+  },
+  "form:off": {
+    "localhost/medic": "u+Nn+BCrIBN8wXFBqJ91xg=="
+  },
+  "form:on": {
+    "localhost/medic": "bJtM38lGo91zEcHbBX9gaw=="
+  },
+  "form:postnatal_visit": {
+    "localhost/medic": "owm4aOkxhhjO0q87yjkrWw=="
+  },
+  "form:pregnancy": {
+    "localhost/medic": "TaMTFqvzIrLIOUtkRpoQgw=="
+  },
+  "form:pregnancy_visit": {
+    "localhost/medic": "69NT/C9ECqWFA0VtHSq5AQ=="
+  },
+  "form:c_imm": {
+    "localhost/medic": "7u+RIFOFcHiDD7VU9wp1yQ=="
+  },
+  "form:cf": {
+    "localhost/medic": "3anT5I/PUOkfdgdzAJhaMw=="
+  },
+  "form:child": {
+    "localhost/medic": "J4o5kvCsncXsP9lXfmzUEg=="
+  },
+  "form:collect_off": {
+    "localhost/medic": "ptKgCTS2n+c5opOcG00sJA=="
+  },
+  "form:collect_on": {
+    "localhost/medic": "HmrvxQ+rYkyF7bjesob2ag=="
+  },
+  "form:d": {
+    "localhost/medic": "ZK8Cn77gI8J+LwTSgAWIpg=="
+  },
+  "form:dr": {
+    "localhost/medic": "B81FQmw3ehVoO+9V0dMd5g=="
+  },
+  "form:f": {
+    "localhost/medic": "fMxAxq5frTBuT0J40oQ0uw=="
+  },
+  "form:g": {
+    "localhost/medic": "iFmsZaa3yolcPoiVG5KS/w=="
+  },
+  "form:m": {
+    "localhost/medic": "HY8/Q4ZxeCUuKyqpv+JCug=="
+  },
+  "form:n": {
+    "localhost/medic": "Qn0d3bZGF3kj7Zbr20ZxCQ=="
+  },
+  "form:p": {
+    "localhost/medic": "S6j/P5f3q0nXcBvHORUVxA=="
+  },
+  "form:v": {
+    "localhost/medic": "gQ982imAUKAy4jbEJJuPyw=="
+  },
+  "form:contact:clinic:create": {
+    "localhost/medic": "vr0fnBaraF7UG8cRnpsFoA=="
+  },
+  "form:contact:clinic:edit": {
+    "localhost/medic": "KA66iEbnngzgPuGdeofQlQ=="
+  },
+  "form:contact:district_hospital:create": {
+    "localhost/medic": "5d9ve+8n9IQuOlPsgRimtw=="
+  },
+  "form:contact:district_hospital:edit": {
+    "localhost/medic": "gG0CO3bGwRaRSCK6tv5fnA=="
+  },
+  "form:contact:health_center:create": {
+    "localhost/medic": "A3akBDEHmm0jfFdGF93a4w=="
+  },
+  "form:contact:health_center:edit": {
+    "localhost/medic": "ftlXiSH3+hKXi+SM/yxxXg=="
+  },
+  "form:contact:person:create": {
+    "localhost/medic": "g5QEkYy3rHvMdYXz71ETEA=="
+  },
+  "form:contact:person:edit": {
+    "localhost/medic": "kB9UGbtmQU/IW9eLxglm1g=="
+  },
+  "resources": {
+    "localhost/medic": "GN2fCcIuVMV8xCqgZFLcig=="
+  },
+  "messages-en": {
+    "localhost/medic": "9eAimurOUvd1z50MzKTyoQ=="
+  },
+  "messages-hi": {
+    "localhost/medic": "A8e2BHQPRtA1wNFNimbCHg=="
+  },
+  "messages-id": {
+    "localhost/medic": "n8mRyeuCx8aTxl81qHUTtA=="
+  },
+  "messages-sw": {
+    "localhost/medic": "1MWbGX15RXCL3M00lGjLOQ=="
+  }
+}
