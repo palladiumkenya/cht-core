@@ -98,7 +98,7 @@ const fields = [
   { appliesToType: 'universal_client', label: 'person.address.ward', value: thisContact.patient_ward, width: 4 },
   { appliesToType: 'universal_client', label: 'person.address.village', value: thisContact.patient_village, width: 4 },
   { appliesToType: 'universal_client', label: 'person.address.landmark', value: thisContact.patient_landmark, width: 8 },
-  { appliesToType: 'universal_client', appliesIf: function () { return thisContact.relation_uuid; }, label: 'Index Client', value: `<a href='/#/contacts/${thisContact.relation_uuid}'>${thisContact.relation_name}</a>`, width: 4, filter: 'safeHtml' },
+  { appliesToType: 'universal_client', appliesIf: function () { return thisContact.relation_uuid; }, label: 'Related Client', value: `<a href='/#/contacts/${thisContact.relation_uuid}'>${thisContact.relation_name}</a>`, width: 4, filter: 'safeHtml' },
   { appliesToType: 'universal_client', appliesIf: function () { return thisContact.relation_uuid; }, label: 'Relationship', value: thisContact.relation_type, width: 4 },
   { appliesToType: 'universal_client', appliesIf: function () { return thisContact.parent && thisLineage[0]; }, label: 'client.facility', value: thisLineage, filter: 'lineage' },
   { appliesToType: 'universal_client', label: 'contact.notes', value: thisContact.notes, width: 12 },
