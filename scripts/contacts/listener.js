@@ -250,17 +250,22 @@ const moveClientsToHealthFacility = async (db, newCases) => {
       let parent;
 
       if (cases.transitionedContact) {
-        // parent new case to the contact's grand parent
+        // parent new case to the contact's grand parent -- the facility under which a client was registered
         parent = cases.transitionedContact.parent.parent;
         // change contact type
-        newClient.contact_type = CONTACT_TYPES.case; // using this for clinic
+        newClient.contact_type = CONTACT_TYPES.case; // using this for universal_client
+
           console.warn(`Processing contact with uuid: ${item._id}.`);
 
           // for contacts that become cases
         const contact = Object.assign({}, cases.transitionedContact);
-        contact.transitioned_to_case = newClient._id;
-        contact.muted = true;
-        docsToCreate.push(contact);
+        //contact.transitioned_to_case = newClient._id;
+        //contact.muted = true;
+        //docsToCreate.push(contact);
+
+        // try to delete the old record
+
+        docsToCreate.push({ _id: contact._id, _rev: contact._rev, _deleted: true });
 
       } else {
           if (item.fields.assignee) {
