@@ -234,8 +234,8 @@ const moveClientsToHealthFacility = async (db, newCases) => {
 
     const docsToCreate = [];
     /*
-     When we transition suspected cases to confirmed cases, we'll change it's contact type
-     to trace_case from suspected_case. When looking them up after the transition, we still need to rely
+     When we transition patient contact to fully registered contact (universal_client), we'll change it's contact type
+     to universal_client from patient_contact. When looking them up after the transition, we still need to rely
      on KenyaEMRs='s cht_ref_uuid attribute.
     */
     const existingCase = cases.existingCase;
@@ -266,6 +266,31 @@ const moveClientsToHealthFacility = async (db, newCases) => {
         // try to delete the old record
 
         docsToCreate.push({ _id: contact._id, _rev: contact._rev, _deleted: true });
+
+        // get the index client and update the list of registered contacts
+
+          let indexClient = await getCase(db, CONTACT_TYPES.case, '_id', newClient.relation_uuid);
+          console.info("Found this index: " + indexClient + " for uuid: " + newClient.relation_uuid)
+
+          if (!indexClient) {
+            indexClient = await getCase(db, CONTACT_TYPES.case, 'kemr_uuid', newClient.relation_uuid);
+          }
+
+          if (indexClient) {
+            // extract the transitioned_contacts section
+              const contacts = Object.assign([], indexClient.transitioned_contacts);
+              const contactObj = {};
+              contactObj.contact_name = newClient.name;
+              contactObj.contact_relation_type = newClient.relation_type;
+              contactObj.contact_uuid = newClient._id;
+
+              contacts.push(contactObj);
+              indexClient.transitioned_contacts = contacts;
+
+              console.info("Contacts: " + contacts);
+
+              docsToCreate.push(indexClient);
+          }
 
       } else {
           if (item.fields.assignee) {
