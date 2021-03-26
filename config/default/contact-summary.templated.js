@@ -68,8 +68,8 @@ context.kpif_contact = {
   contact_date: getField(mostRecentContactForm, 'encounter_date') || '',
 };
 context.recentHtsTracing = {
-  phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_call') || '',
-  physicalTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.status_visit') || '',
+  phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.contact_status') || '',
+  physicalTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.contact_status') || '',
 };
 
 const fields = [
