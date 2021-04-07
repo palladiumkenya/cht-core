@@ -120,12 +120,15 @@ const cards = [
       let linkageDate;
       let linkageFacility;
       let linkageCCCNumber;
+      let consentForPnsQuestion;
+      let consentForPns;
 
 
       const testReport = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form']);
       if (testReport) {
         lastTested = getField(testReport, 'encounter_date');
         lastTestResult = getField(testReport, 'observation._159427_finalResults_99DCT');
+        consentForPnsQuestion = getField(testReport, 'observation._160592_consentForPns_99DCT');
         if (lastTestResult) {
           if (lastTestResult === '_703_positive_99DCT') {
             resultTranslated = 'Positive';
@@ -133,6 +136,14 @@ const cards = [
             resultTranslated = 'Negative';
           } else if (lastTestResult === '_1138_inconclusive_99DCT') {
             resultTranslated = 'Inconclusive';
+          }
+        }
+
+        if (consentForPnsQuestion) {
+          if (consentForPnsQuestion === '_1065_yes_99DCT') {
+            consentForPns = 'Yes';
+          } else if (consentForPnsQuestion === '_1066_no_99DCT') {
+            consentForPns = 'No';
           }
         }
       }
@@ -149,7 +160,12 @@ const cards = [
           {
             label: 'client.last_test_result',
             value: resultTranslated,
-            width: 6
+            width: 4
+          },
+          {
+            label: 'Consented for PNS',
+            value: consentForPns,
+            width: 4
           }
         );
         if (resultTranslated === 'Positive') {
