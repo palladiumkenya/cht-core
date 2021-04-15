@@ -1,5 +1,5 @@
 {
-        "icon": "icon-treatment",
+        "icon": "icon-form-general",
         "title": "  HIV Treatment Verification",
         "context": {
                 "person": false,
