@@ -28,5 +28,7 @@
     "medic-district-hospital": "medic-health-center.svg",
     "medic-health-center": "medic-chw-area.svg",
     "medic-person": "medic-person.svg",
-    "listed-contact": "listed-contact.svg"
+    "listed-contact": "listed-contact.svg",
+    "icon-form-general": "icon-form-general@2x.png"
+
 }

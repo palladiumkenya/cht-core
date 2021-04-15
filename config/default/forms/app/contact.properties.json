@@ -1,5 +1,5 @@
 {
-  "icon": "icon-new-person",
+  "icon": "icon-form-general",
   "title": "Contact Form",
   "context": {
     "person": false,
