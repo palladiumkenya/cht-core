@@ -52,6 +52,11 @@ function getLastScreeningDate(report) {
   return getField(report, 'encounter_date') && moment(getField(report, 'encounter_date'));
 }
 
+
+function getLastScreeningFormDateCreated(report) {
+  return getField(report, 'audit_trail.date_created') && moment(getField(report, 'audit_trail.date_created'));
+}
+
 function getLMPDateFromPregnancyFollowUp(report) {
   return isPregnancyFollowUpForm(report) && getField(report, 'lmp_date_8601') && moment(getField(report, 'lmp_date_8601'));
 }
@@ -409,5 +414,6 @@ module.exports = {
   getFormArraySubmittedInWindow,
   getRecentANCVisitWithEvent,
   getLastScreeningDate,
+  getLastScreeningFormDateCreated,
   getField
 };
