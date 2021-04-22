@@ -4,6 +4,6 @@
         "context": {
                 "person": false,
                 "place": true,
-                "expression": "(user.role === 'hts_provider' || user.role === 'clinician') && !contact.muted && contact.contact_type == 'universal_client' && contact.record_purpose !== 'linkage' && ((summary.screenedToday && summary.lastHtsService === 'newOrRetest' && summary.hts_latest_form.form_type === 'hts_screening_form') || (!summary.has_hts_initial || (summary.hts_latest_form.form_type === 'hts_initial_form' && (summary.hts_latest_consent.consent === '0' || summary.hts_initial_latest.final_result !== '_703_positive_99DCT'))))"
+                "expression": "(user.role === 'hts_provider' || user.role === 'clinician') && !contact.muted && contact.contact_type == 'universal_client' && contact.record_purpose !== 'linkage' && ((summary.screenedToday && summary.lastHtsService === 'newOrRetest' && summary.hts_latest_form.form_type === 'hts_screening_form') || ((summary.hts_latest_form.form_type === 'hts_initial_form' && (summary.hts_latest_consent.consent === '0' || (summary.hts_initial_latest.final_result != null && summary.hts_initial_latest.final_result !== '_703_positive_99DCT')))))"
         }
 }

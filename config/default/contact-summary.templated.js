@@ -39,8 +39,9 @@ const pocHtsScreening = lastScreenDateCreated ? today.diff(lastScreenDateCreated
 
 context.screenedToday = durationSinceLastScreen === 0 ? true : false; // check if one had screening today
 
-if (durationSinceLastScreen !== null && durationSinceLastScreen !== 0) { // handle retrospective data entry. set screenedToday to true if screening form has been entered today
-  if (pocHtsScreening === null || pocHtsScreening > 0) {
+
+if (latestHtsForm !== null && durationSinceLastScreen !== null && durationSinceLastScreen > 0) { // handle retrospective data entry. set screenedToday to true if screening form has been entered today
+  if ( pocHtsScreening === null || pocHtsScreening === 0) {
     context.screenedToday = true;
   }
 }
@@ -87,6 +88,20 @@ context.recentHtsTracing = {
   phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.contact_status') || '',
   physicalTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.contact_status') || '',
 };
+
+// get the name of the configured facility
+let configuredFacilityName = '';
+if( thisContact.parent && thisLineage[0]) {
+  for (let i = 0; i < 4; i++) { // we use 4 since our hierarchy has at most 3 levels for clients
+    const parentObj = thisLineage[i];
+    if (parentObj !== null && 'contact_type' in parentObj && parentObj.contact_type === 'ahealth_facility') { // we are only interested in ahealth_facility contact type
+      configuredFacilityName = parentObj.name;
+      break;
+    }
+  }
+}
+
+context.thisFacilityName = configuredFacilityName;
 
 const fields = [
   //{ appliesToType: 'person', label: 'patient_id', value: thisContact.patient_id, width: 4 },
