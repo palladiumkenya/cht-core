@@ -1,5 +1,5 @@
 const extras = require('./contact-summary-extras');
-const { today, getNewestReport, isAlive, isReadyForNewPregnancy, isReadyForDelivery, getLastScreeningDate, getField } = extras;
+const { today, getNewestReport, isAlive, isReadyForNewPregnancy, isReadyForDelivery, getLastScreeningDate, getLastScreeningFormDateCreated, getField } = extras;
 
 //contact, reports, lineage are globally available for contact-summary
 const thisContact = contact;
@@ -20,21 +20,34 @@ const context = {
 const mostRecentHtsForm = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form']);
 const latestHtsForm = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form', 'hts_screening_form']);
 const mostRecentHtsRetest = getNewestReport(allReports, ['hts_retest_form']);
+const mostRecentHtsInitial = getNewestReport(allReports, ['hts_initial_form']);
 const mostRecentHtsContactTracing = getNewestReport(allReports, ['contact_follow_up']);
 const mostRecentContactForm = getNewestReport(allReports, ['contact']);
 
 let lastScreeningDate = null;
+let lastScreenDateCreated = null;
 let lastHtsService = null;
 
 const mostRecentScreeningForm = getNewestReport(allReports, ['hts_screening_form']);
 if (mostRecentScreeningForm) {
   lastScreeningDate = getLastScreeningDate(mostRecentScreeningForm);
+  lastScreenDateCreated = getLastScreeningFormDateCreated(mostRecentScreeningForm);
   lastHtsService = getField(mostRecentScreeningForm, 'hts_service') || '';
 }
 const durationSinceLastScreen = lastScreeningDate ? today.diff(lastScreeningDate, 'days') : null;
+const pocHtsScreening = lastScreenDateCreated ? today.diff(lastScreenDateCreated, 'days') : null;
 
-context.screenedToday = durationSinceLastScreen === 0 ? true : false;
+context.screenedToday = durationSinceLastScreen === 0 ? true : false; // check if one had screening today
+
+
+if (latestHtsForm !== null && durationSinceLastScreen !== null && durationSinceLastScreen > 0) { // handle retrospective data entry. set screenedToday to true if screening form has been entered today
+  if ( pocHtsScreening === null || pocHtsScreening === 0) {
+    context.screenedToday = true;
+  }
+}
+
 context.lastHtsService = lastHtsService;
+context.pocHtsScreening = pocHtsScreening === 0 ? true : false;
 
 context.hts_initial = {
   population_type:getField(mostRecentHtsForm, 'observation._164930_populationType_99DCT') || '',
@@ -54,6 +67,10 @@ context.hts_retest_latest = {
   test_date:getField(mostRecentHtsRetest, 'encounter_date') || '',
 };
 
+context.hts_initial_latest = {
+  final_result:getField(mostRecentHtsInitial, 'observation._159427_finalResults_99DCT') || '',
+};
+
 context.hts_latest_consent = {
   consent:getField(mostRecentHtsForm, 'observation._1710_clientConsented_99DCT') || '',
   eligibility: getField(mostRecentHtsForm, 'observation._162699_eligibleForTesting_99DCT') || '',
@@ -71,6 +88,20 @@ context.recentHtsTracing = {
   phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.contact_status') || '',
   physicalTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.contact_status') || '',
 };
+
+// get the name of the configured facility
+let configuredFacilityName = '';
+if( thisContact.parent && thisLineage[0]) {
+  for (let i = 0; i < 4; i++) { // we use 4 since our hierarchy has at most 3 levels for clients
+    const parentObj = thisLineage[i];
+    if (parentObj !== null && 'contact_type' in parentObj && parentObj.contact_type === 'ahealth_facility') { // we are only interested in ahealth_facility contact type
+      configuredFacilityName = parentObj.name;
+      break;
+    }
+  }
+}
+
+context.thisFacilityName = configuredFacilityName;
 
 const fields = [
   //{ appliesToType: 'person', label: 'patient_id', value: thisContact.patient_id, width: 4 },
