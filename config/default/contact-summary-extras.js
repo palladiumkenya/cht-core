@@ -389,6 +389,17 @@ function knowsHIVStatusInPast3Months(allReports) {
   return knows;
 }
 
+function getAgeInMonths(contact) {
+  console.log('Contact object:::::::::::::::::' + contact.patient_birthDate);
+  let birthDate;
+  let ageInMs;
+  if (contact.patient_birthDate && contact.patient_birthDate !== '') {
+    birthDate = new Date(contact.patient_birthDate);
+    ageInMs = new Date(Date.now() - birthDate.getTime());
+    return (Math.abs(ageInMs.getFullYear() - 1970) * 12) + ageInMs.getMonth();
+  }
+}
+
 module.exports = {
   today,
   MAX_DAYS_IN_PREGNANCY,
@@ -415,5 +426,6 @@ module.exports = {
   getRecentANCVisitWithEvent,
   getLastScreeningDate,
   getLastScreeningFormDateCreated,
-  getField
+  getField,
+  getAgeInMonths
 };
