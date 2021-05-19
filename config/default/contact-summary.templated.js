@@ -1,5 +1,5 @@
 const extras = require('./contact-summary-extras');
-const { today, getNewestReport, isAlive, isReadyForNewPregnancy, isReadyForDelivery, getLastScreeningDate, getLastScreeningFormDateCreated, getField } = extras;
+const { today, getNewestReport, isAlive, isReadyForNewPregnancy, isReadyForDelivery, getLastScreeningDate, getLastScreeningFormDateCreated, getField, getAgeInMonths } = extras;
 
 //contact, reports, lineage are globally available for contact-summary
 const thisContact = contact;
@@ -38,6 +38,8 @@ const durationSinceLastScreen = lastScreeningDate ? today.diff(lastScreeningDate
 const pocHtsScreening = lastScreenDateCreated ? today.diff(lastScreenDateCreated, 'days') : null;
 
 context.screenedToday = durationSinceLastScreen === 0 ? true : false; // check if one had screening today
+context.contactAgeInMonths = getAgeInMonths(thisContact);
+context.contactAgeInYears = Math.floor(getAgeInMonths(thisContact)/12);
 
 
 if (latestHtsForm !== null && durationSinceLastScreen !== null && durationSinceLastScreen > 0) { // handle retrospective data entry. set screenedToday to true if screening form has been entered today
