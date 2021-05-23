@@ -14,14 +14,14 @@ const context = {
   has_hts_referral: allReports.some((report) => report.form === 'hts_referral'),
   has_kp_contact_form: allReports.some((report) => report.form === 'contact'),
   has_hts_linkage: allReports.some((report) => report.form === 'hts_linkage'),
-  has_hts_contact_followup: allReports.some((report) => report.form === 'contact_follow_up'),
+  has_hts_contact_followup: allReports.some((report) => report.form === 'hts_client_tracing'),
 };
 
 const mostRecentHtsForm = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form']);
 const latestHtsForm = getNewestReport(allReports, ['hts_initial_form', 'hts_retest_form', 'hts_screening_form']);
 const mostRecentHtsRetest = getNewestReport(allReports, ['hts_retest_form']);
 const mostRecentHtsInitial = getNewestReport(allReports, ['hts_initial_form']);
-const mostRecentHtsContactTracing = getNewestReport(allReports, ['contact_follow_up']);
+const mostRecentHtsContactTracing = getNewestReport(allReports, ['hts_client_tracing']);
 const mostRecentContactForm = getNewestReport(allReports, ['contact']);
 
 let lastScreeningDate = null;
@@ -71,6 +71,7 @@ context.hts_retest_latest = {
 
 context.hts_initial_latest = {
   final_result:getField(mostRecentHtsInitial, 'observation._159427_finalResults_99DCT') || '',
+  referral_facility:getField(mostRecentHtsInitial, 'observation._160481_referralFacility_99DCT') || '',
 };
 
 context.hts_latest_consent = {
@@ -86,9 +87,8 @@ context.hts_latest_form = {
 context.kpif_contact = {
   contact_date: getField(mostRecentContactForm, 'encounter_date') || '',
 };
-context.recentHtsTracing = {
-  phoneTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.contact_status') || '',
-  physicalTraceOutcome:getField(mostRecentHtsContactTracing, 'group_follow_up.contact_status') || '',
+context.hts_client_trace_latest = {
+  outcome:getField(mostRecentHtsContactTracing, 'observation._159811_outcome_99DCT') || '',
 };
 
 // get the name of the configured facility
@@ -129,6 +129,7 @@ const fields = [
   { appliesToType: 'universal_client', appliesIf: function () { return thisContact.relation_uuid; }, label: 'Related Client', value: `<a href='/#/contacts/${thisContact.relation ? thisContact.relation._id : thisContact.relation_uuid}'>${thisContact.relation_name}</a>`, width: 4, filter: 'safeHtml' },
   { appliesToType: 'universal_client', appliesIf: function () { return thisContact.relation_uuid; }, label: 'Relationship', value: thisContact.relation_type, width: 4 },
   { appliesToType: 'universal_client', appliesIf: function () { return thisContact.parent && thisLineage[0]; }, label: 'client.facility', value: thisLineage, filter: 'lineage' },
+  { appliesToType: 'universal_client', appliesIf: function () { return thisContact.record_purpose && thisContact.record_purpose === 'linkage'; }, label: 'Service Alert', value: `<p style='color: red;font-weight: bold'>This client originated from the EMR and is due for linkage </p>`, width: 12, filter: 'safeHtml' },
   { appliesToType: 'universal_client', label: 'contact.notes', value: thisContact.notes, width: 12 },
   { appliesToType: 'patient_support_group', appliesIf: function () { return thisContact.parent && thisLineage[0]; }, label: 'client.facility', value: thisLineage, filter: 'lineage' }
 
@@ -210,7 +211,7 @@ const cards = [
           fields.push(
             {
               label: 'client.date_linked',
-              value: linkageDate ? linkageDate : 'Not linked',
+              value: linkageDate ? linkageDate : `<p style='color: red;font-weight: bold;'>NOT YET LINKED</p>`,
               filter: linkageDate ? 'simpleDate' : '',
               translate: linkageDate ? false : true,
               width: 4
