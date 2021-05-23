@@ -4,6 +4,6 @@
     "context": {
         "place": false,
         "person": true,
-        "expression": "(user.role === 'hts_provider' || user.role === 'clinician') && !contact.muted  && contact.contact_type =='patient_contact' && (contact.ipv_outcome ===null || contact.ipv_outcome ==='No') && (summary.recentHtsTracing.phoneTraceOutcome != 'contactedAndLinked' && summary.recentHtsTracing.phoneTraceOutcome != 'contactedNotLinked')"
+        "expression": "(user.role === 'hts_provider' || user.role === 'clinician') && !contact.muted  && contact.contact_type =='patient_contact' && (!contact.ipv_outcome || contact.ipv_outcome ==='No') && (summary.recentHtsTracing.phoneTraceOutcome != 'contactedAndLinked' && summary.recentHtsTracing.phoneTraceOutcome != 'contactedNotLinked')"
     }
 }
