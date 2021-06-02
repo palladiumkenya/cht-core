@@ -233,7 +233,7 @@ const cards = [
     }
   },
   {
-    label: 'Transitioned Contacts',
+    label: 'Contacts registered in EMR',
     appliesToType: 'universal_client',
     appliesIf: function () {
       return thisContact.transitioned_contacts && thisContact.transitioned_contacts.length > 0;
