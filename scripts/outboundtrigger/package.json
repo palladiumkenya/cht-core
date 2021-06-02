@@ -1,0 +1,13 @@
+{
+  "name": "outbound-scripts",
+  "version": "1.0.0",
+  "description": "Scripts rerun outbound for data",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "@medic/outbound": "file:node_modules/medic/shared-libs/outbound",
+    "medic": "git+https://github.com/medic/cht-core.git#3.10.x"
+  }
+}
