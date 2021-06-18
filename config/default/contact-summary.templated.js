@@ -61,7 +61,8 @@ context.hts_initial = {
   previous_settings: getField(mostRecentHtsForm, 'observation.test_setting') || '',
   previous_hiv_self_test: getField(mostRecentHtsForm, 'observation._164952_HasClientdoneHIVselfTestInlast12months_99DCT') || '',
   duration_since_last_test: getField(mostRecentHtsForm, 'observation._159813_durationSinceLastTest_99DCT') || '',
-  initial_test_date: getField(mostRecentHtsRetest, 'encounter_date') || '',
+  initial_test_date: getField(mostRecentHtsForm, 'encounter_date') || '',
+
 
 };
 
