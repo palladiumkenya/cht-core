@@ -39,11 +39,11 @@ const pocHtsScreening = lastScreenDateCreated ? today.diff(lastScreenDateCreated
 
 context.screenedToday = durationSinceLastScreen === 0 ? true : false; // check if one had screening today
 context.contactAgeInMonths = getAgeInMonths(thisContact);
-context.contactAgeInYears = Math.floor(getAgeInMonths(thisContact)/12);
+context.contactAgeInYears = Math.floor(getAgeInMonths(thisContact) / 12);
 
 
 if (latestHtsForm !== null && durationSinceLastScreen !== null && durationSinceLastScreen > 0) { // handle retrospective data entry. set screenedToday to true if screening form has been entered today
-  if ( pocHtsScreening === null || pocHtsScreening === 0) {
+  if (pocHtsScreening === null || pocHtsScreening === 0) {
     context.screenedToday = true;
   }
 }
@@ -52,35 +52,37 @@ context.lastHtsService = lastHtsService;
 context.pocHtsScreening = pocHtsScreening === 0 ? true : false;
 
 context.hts_initial = {
-  population_type:getField(mostRecentHtsForm, 'observation._164930_populationType_99DCT') || '',
-  key_population_type:getField(mostRecentHtsForm, 'observation._164929_kpTypeMULTISELECT_99DCT') || '',
-  priority_population_type:getField(mostRecentHtsForm, 'observation._160581_priorityTypeMULTISELECT_99DCT') || '',
-  disability:getField(mostRecentHtsForm, 'observation._164951_disability_99DCT') || '',
-  disability_type:getField(mostRecentHtsForm, 'observation._162558_disabilityTypeMULTISELECT_99DCT') || '',
-  ever_tested:getField(mostRecentHtsForm, 'observation._164401_everTestedByProvider_99DCT') || '',
+  population_type: getField(mostRecentHtsForm, 'observation._164930_populationType_99DCT') || '',
+  key_population_type: getField(mostRecentHtsForm, 'observation._164929_kpTypeMULTISELECT_99DCT') || '',
+  priority_population_type: getField(mostRecentHtsForm, 'observation._160581_priorityTypeMULTISELECT_99DCT') || '',
+  disability: getField(mostRecentHtsForm, 'observation._164951_disability_99DCT') || '',
+  disability_type: getField(mostRecentHtsForm, 'observation._162558_disabilityTypeMULTISELECT_99DCT') || '',
+  ever_tested: getField(mostRecentHtsForm, 'observation._164401_everTestedByProvider_99DCT') || '',
   previous_settings: getField(mostRecentHtsForm, 'observation.test_setting') || '',
   previous_hiv_self_test: getField(mostRecentHtsForm, 'observation._164952_HasClientdoneHIVselfTestInlast12months_99DCT') || '',
   duration_since_last_test: getField(mostRecentHtsForm, 'observation._159813_durationSinceLastTest_99DCT') || '',
+  initial_test_date: getField(mostRecentHtsForm, 'encounter_date') || '',
+
 
 };
 
 context.hts_retest_latest = {
-  final_result:getField(mostRecentHtsRetest, 'observation._159427_finalResults_99DCT') || '',
-  test_date:getField(mostRecentHtsRetest, 'encounter_date') || '',
+  final_result: getField(mostRecentHtsRetest, 'observation._159427_finalResults_99DCT') || '',
+  test_date: getField(mostRecentHtsRetest, 'encounter_date') || '',
 };
 
 context.hts_initial_latest = {
-  final_result:getField(mostRecentHtsInitial, 'observation._159427_finalResults_99DCT') || '',
-  referral_facility:getField(mostRecentHtsInitial, 'observation._160481_referralFacility_99DCT') || '',
+  final_result: getField(mostRecentHtsInitial, 'observation._159427_finalResults_99DCT') || '',
+  referral_facility: getField(mostRecentHtsInitial, 'observation._160481_referralFacility_99DCT') || '',
 };
 
 context.hts_latest_consent = {
-  consent:getField(mostRecentHtsForm, 'observation._1710_clientConsented_99DCT') || '',
+  consent: getField(mostRecentHtsForm, 'observation._1710_clientConsented_99DCT') || '',
   eligibility: getField(mostRecentHtsForm, 'observation._162699_eligibleForTesting_99DCT') || '',
 };
 
 context.hts_latest_form = {
-  form_type:latestHtsForm ? latestHtsForm.form : '',
+  form_type: latestHtsForm ? latestHtsForm.form : '',
   //form_type:mostRecentHtsForm ? mostRecentHtsForm.form : '',
 };
 
@@ -88,12 +90,12 @@ context.kpif_contact = {
   contact_date: getField(mostRecentContactForm, 'encounter_date') || '',
 };
 context.hts_client_trace_latest = {
-  outcome:getField(mostRecentHtsContactTracing, 'observation._159811_outcome_99DCT') || '',
+  outcome: getField(mostRecentHtsContactTracing, 'observation._159811_outcome_99DCT') || '',
 };
 
 // get the name of the configured facility
 let configuredFacilityName = '';
-if( thisContact.parent && thisLineage[0]) {
+if (thisContact.parent && thisLineage[0]) {
   for (let i = 0; i < 4; i++) { // we use 4 since our hierarchy has at most 3 levels for clients
     const parentObj = thisLineage[i];
     if (parentObj !== null && 'contact_type' in parentObj && parentObj.contact_type === 'ahealth_facility') { // we are only interested in ahealth_facility contact type
